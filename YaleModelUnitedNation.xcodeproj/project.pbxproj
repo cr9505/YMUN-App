@@ -55,6 +55,17 @@
 		9BDAEFA517A86DF70049C707 /* ShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDAEF9717A86DF70049C707 /* ShadowView.m */; };
 		9BDAEFA617A86DF70049C707 /* TouchThroughUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDAEF9917A86DF70049C707 /* TouchThroughUIView.m */; };
 		9BDAEFA717A86DF70049C707 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDAEF9B17A86DF70049C707 /* UIView+Screenshot.m */; };
+		9BDAEFAC17A8D5D00049C707 /* p6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDAEFAA17A8D5D00049C707 /* p6.png */; };
+		9BDAEFAD17A8D5D00049C707 /* p6_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDAEFAB17A8D5D00049C707 /* p6_@2X.png */; };
+		9BDAEFB617A959D80049C707 /* YMDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDAEFB517A959D80049C707 /* YMDateView.m */; };
+		9BDAEFBC17A987350049C707 /* blue_pattern.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9BDAEFBB17A987350049C707 /* blue_pattern.jpg */; };
+		9BDAEFBE17A990AD0049C707 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BDAEFBD17A990AC0049C707 /* MapKit.framework */; };
+		9BDAEFC117A993E20049C707 /* YMMapTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDAEFC017A993E20049C707 /* YMMapTableViewCell.m */; };
+		9BDAEFC317A996610049C707 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BDAEFC217A996610049C707 /* CoreLocation.framework */; };
+		9BDAEFC517A9A2260049C707 /* payments.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDAEFC417A9A2260049C707 /* payments.png */; };
+		9BDAEFC717A9A2880049C707 /* purchases.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDAEFC617A9A2880049C707 /* purchases.png */; };
+		9BDAEFC917A9A2D40049C707 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDAEFC817A9A2D40049C707 /* info.png */; };
+		9BDAEFCB17A9A6760049C707 /* blue_pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDAEFCA17A9A6760049C707 /* blue_pattern.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +154,19 @@
 		9BDAEF9917A86DF70049C707 /* TouchThroughUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchThroughUIView.m; sourceTree = "<group>"; };
 		9BDAEF9A17A86DF70049C707 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
 		9BDAEF9B17A86DF70049C707 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
+		9BDAEFAA17A8D5D00049C707 /* p6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p6.png; sourceTree = "<group>"; };
+		9BDAEFAB17A8D5D00049C707 /* p6_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "p6_@2X.png"; sourceTree = "<group>"; };
+		9BDAEFB417A959D80049C707 /* YMDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMDateView.h; sourceTree = "<group>"; };
+		9BDAEFB517A959D80049C707 /* YMDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMDateView.m; sourceTree = "<group>"; };
+		9BDAEFBB17A987350049C707 /* blue_pattern.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blue_pattern.jpg; sourceTree = "<group>"; };
+		9BDAEFBD17A990AC0049C707 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9BDAEFBF17A993E20049C707 /* YMMapTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMMapTableViewCell.h; sourceTree = "<group>"; };
+		9BDAEFC017A993E20049C707 /* YMMapTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMMapTableViewCell.m; sourceTree = "<group>"; };
+		9BDAEFC217A996610049C707 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9BDAEFC417A9A2260049C707 /* payments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payments.png; sourceTree = "<group>"; };
+		9BDAEFC617A9A2880049C707 /* purchases.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purchases.png; sourceTree = "<group>"; };
+		9BDAEFC817A9A2D40049C707 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		9BDAEFCA17A9A6760049C707 /* blue_pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_pattern.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +174,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BDAEFC317A996610049C707 /* CoreLocation.framework in Frameworks */,
+				9BDAEFBE17A990AD0049C707 /* MapKit.framework in Frameworks */,
 				9BDAEF7F17A76D940049C707 /* QuartzCore.framework in Frameworks */,
 				9B8477C417A1FE20008BBFC6 /* Security.framework in Frameworks */,
 				9B8477C217A1FE1B008BBFC6 /* CFNetwork.framework in Frameworks */,
@@ -165,6 +191,7 @@
 		9B84776E17A1EC88008BBFC6 = {
 			isa = PBXGroup;
 			children = (
+				9BDAEFC217A996610049C707 /* CoreLocation.framework */,
 				9BDAEF8417A86DF70049C707 /* PaperFold */,
 				9B8477C017A1F64B008BBFC6 /* AFNetworking */,
 				9BDAEF6317A76B1E0049C707 /* MMProgressHUD */,
@@ -186,6 +213,7 @@
 		9B84777917A1EC88008BBFC6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BDAEFBD17A990AC0049C707 /* MapKit.framework */,
 				9BDAEF7E17A76D940049C707 /* QuartzCore.framework */,
 				9B8477C317A1FE20008BBFC6 /* Security.framework */,
 				9B8477C117A1FE1B008BBFC6 /* CFNetwork.framework */,
@@ -199,6 +227,7 @@
 		9B84778017A1EC88008BBFC6 /* YaleModelUnitedNation */ = {
 			isa = PBXGroup;
 			children = (
+				9BDAEFB117A8DA040049C707 /* Views */,
 				9B84778917A1EC88008BBFC6 /* YMAppDelegate.h */,
 				9B84778A17A1EC88008BBFC6 /* YMAppDelegate.m */,
 				9B84779217A1EC88008BBFC6 /* MainStoryboard.storyboard */,
@@ -212,6 +241,13 @@
 		9B84778117A1EC88008BBFC6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9BDAEFCA17A9A6760049C707 /* blue_pattern.png */,
+				9BDAEFC817A9A2D40049C707 /* info.png */,
+				9BDAEFC617A9A2880049C707 /* purchases.png */,
+				9BDAEFC417A9A2260049C707 /* payments.png */,
+				9BDAEFBB17A987350049C707 /* blue_pattern.jpg */,
+				9BDAEFAA17A8D5D00049C707 /* p6.png */,
+				9BDAEFAB17A8D5D00049C707 /* p6_@2X.png */,
 				9B84778217A1EC88008BBFC6 /* YaleModelUnitedNation-Info.plist */,
 				9B84778317A1EC88008BBFC6 /* InfoPlist.strings */,
 				9B84778617A1EC88008BBFC6 /* main.m */,
@@ -342,6 +378,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		9BDAEFB117A8DA040049C707 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9BDAEFBF17A993E20049C707 /* YMMapTableViewCell.h */,
+				9BDAEFC017A993E20049C707 /* YMMapTableViewCell.m */,
+				9BDAEFB417A959D80049C707 /* YMDateView.h */,
+				9BDAEFB517A959D80049C707 /* YMDateView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -402,6 +449,13 @@
 				9BDAEFA017A86DF70049C707 /* PaperFoldResources.bundle in Resources */,
 				9BDAEFA317A86DF70049C707 /* swipe_guide.psd in Resources */,
 				9BDAEFA417A86DF70049C707 /* swipe_guide2.psd in Resources */,
+				9BDAEFAC17A8D5D00049C707 /* p6.png in Resources */,
+				9BDAEFAD17A8D5D00049C707 /* p6_@2X.png in Resources */,
+				9BDAEFBC17A987350049C707 /* blue_pattern.jpg in Resources */,
+				9BDAEFC517A9A2260049C707 /* payments.png in Resources */,
+				9BDAEFC717A9A2880049C707 /* purchases.png in Resources */,
+				9BDAEFC917A9A2D40049C707 /* info.png in Resources */,
+				9BDAEFCB17A9A6760049C707 /* blue_pattern.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +500,8 @@
 				9BDAEFA517A86DF70049C707 /* ShadowView.m in Sources */,
 				9BDAEFA617A86DF70049C707 /* TouchThroughUIView.m in Sources */,
 				9BDAEFA717A86DF70049C707 /* UIView+Screenshot.m in Sources */,
+				9BDAEFB617A959D80049C707 /* YMDateView.m in Sources */,
+				9BDAEFC117A993E20049C707 /* YMMapTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
