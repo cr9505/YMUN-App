@@ -13,21 +13,15 @@
 #import "YMAfterLoginInitialViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface YMLoginViewController () <UITextFieldDelegate, YMAPIInterfaceCenterDelegate>
+@interface YMLoginViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary *emailAndPassword;
 @property (nonatomic, strong) YMAPIInterfaceCenter *interfaceCenter;
-@property (nonatomic, strong) NSDictionary *userInfo;
 
 @end
 
 @implementation YMLoginViewController
 
-- (void)interfaceCenterDidGetUserInfo:(NSDictionary *)userInfo
-{
-    self.userInfo = userInfo;
-    [self performSegueWithIdentifier:@"didLoginSegue" sender:self];
-}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -42,7 +36,7 @@
 {
     if ([segue.identifier isEqualToString:@"didLoginSegue"]) {
         YMAfterLoginInitialViewController *destinationVC = (YMAfterLoginInitialViewController *)segue.destinationViewController;
-        destinationVC.userInfo = self.userInfo;
+        destinationVC.interfaceCenter = self.interfaceCenter;
     }
 }
 
@@ -51,7 +45,6 @@
     [super viewDidLoad];
     
     self.interfaceCenter = [[YMAPIInterfaceCenter alloc] initWithEmail:[self.emailAndPassword objectForKey:@"email"] Password:[self.emailAndPassword objectForKey:@"password"]];
-    self.interfaceCenter.delegate = self;
     
     // top margin for table view    
     UIEdgeInsets inset = UIEdgeInsetsMake(self.tableView.bounds.size.height/2 - 46 * 2, 0, 0, 0);
@@ -68,7 +61,7 @@
         NSLog(@"we already got your info, no need to login");
         // test if API data is valid
         // if yes, go to the next page directly
-        [self.interfaceCenter getUserInfo];
+        [self performSegueWithIdentifier:@"didLoginSegue" sender:self];
         // else
         // clear the userDefaults first then
         // make the user login again
@@ -153,21 +146,23 @@
 - (void)didLogin:(NSNotification *)notification
 {
     NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN]);
-    NSDictionary *userInfo = notification.userInfo;
-    if ([[userInfo objectForKey:LOGIN_STATUS] isEqualToString:@"failure"])
-    {
-        dispatch_queue_t dismissQ = dispatch_queue_create("dismiss queue", NULL);
-        dispatch_async(dismissQ, ^{
-            sleep(1.0);
-            [MMProgressHUD dismissWithError:@"Password/email error :(" title:@"Try again?"];
-        });
-    } else {
-        dispatch_queue_t dismissQ = dispatch_queue_create("dismiss queue", NULL);
-        dispatch_async(dismissQ, ^{
-            sleep(1.0);
-            [MMProgressHUD dismissWithSuccess:@"Awesome!"];
-        });
-        [self performSegueWithIdentifier:@"didLoginSegue" sender:self];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN]) {
+        NSDictionary *userInfo = notification.userInfo;
+        if ([[userInfo objectForKey:LOGIN_STATUS] isEqualToString:@"failure"])
+        {
+            dispatch_queue_t dismissQ = dispatch_queue_create("dismiss queue", NULL);
+            dispatch_async(dismissQ, ^{
+                sleep(1.0);
+                [MMProgressHUD dismissWithError:@"Password/email error :(" title:@"Try again?"];
+            });
+        } else {
+            dispatch_queue_t dismissQ = dispatch_queue_create("dismiss queue", NULL);
+            dispatch_async(dismissQ, ^{
+                sleep(1.0);
+                [MMProgressHUD dismissWithSuccess:@"Awesome!"];
+            });
+            [self performSegueWithIdentifier:@"didLoginSegue" sender:self];
+        }
     }
 }
 

@@ -19,9 +19,9 @@
 #define PAYMENTS        @"payments"
 #define PURCHASES       @"purchases"
 #define PAYMENTS        @"payments"
-#define FIN_AMOUNT      @"amount"
-#define FIN_DATE        @"date"
-#define FIN_NAME        @"name"
+#define AMOUNT      @"amount"
+#define DATE        @"date"
+#define NAME        @"name"
 #define SCHOOL_NAME     @"school_name"
 #define SUBMITTED_FORM  @"submitted_forms"
 

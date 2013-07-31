@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YMAPIInterfaceCenter.h"
 #import "ECSlidingViewController.h"
 
-@interface YMAfterLoginInitialViewController : UIViewController
+@interface YMAfterLoginInitialViewController : UIViewController <YMAPIInterfaceCenterDelegate>
 
-// a dictionary of userInfo
-@property (nonatomic, strong) id userInfo;
+@property (nonatomic, strong) YMAPIInterfaceCenter *interfaceCenter;
 
 @end

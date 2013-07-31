@@ -9,12 +9,15 @@
 #import "YMAfterLoginInitialViewController.h"
 #import "PaperFoldView.h"
 #import "YMAPIInterfaceCenter.h"
+#import "MMProgressHUD.h"
 
 @interface YMAfterLoginInitialViewController () <UITableViewDataSource, UITableViewDelegate, PaperFoldViewDelegate>
 
 @property (nonatomic, strong) PaperFoldView *paperView;
 @property (nonatomic, strong) UITableView *centerTableView;
 @property (nonatomic, strong) UITableView *leftTableView;
+@property (nonatomic, strong) NSDictionary *userInfo;
+@property (nonatomic, strong) NSArray *purchases;
 
 @end
 
@@ -24,6 +27,24 @@
 @synthesize centerTableView = _centerTableView;
 @synthesize leftTableView = _leftTableView;
 @synthesize userInfo = _userInfo;
+@synthesize purchases = _purchases;
+
+- (void)setPurchases:(NSArray *)purchases
+{
+    if (_purchases != purchases) {
+        _purchases = purchases;
+        NSLog(@"%@", [[purchases objectAtIndex:0] objectForKey:AMOUNT]);
+        [self.leftTableView reloadData];
+    }
+}
+
+- (void)interfaceCenterDidGetUserInfo:(NSDictionary *)userInfo
+{
+    self.userInfo = userInfo;
+    NSLog(@"%@", userInfo);
+    self.purchases = [self.userInfo objectForKey:PURCHASES];
+    [MMProgressHUD dismissWithSuccess:@"Loaded!"];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,14 +55,26 @@
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [MMProgressHUD showWithTitle:@"Loading" status:@"Please be patient"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    NSLog(@"%@", self.userInfo);
+    self.interfaceCenter.delegate = self;
+    [self.interfaceCenter getUserInfo];
     [self setupPaperView];
     [self setupCenterView];
     [self setupLeftView];
+}
+
+- (void)setupRightView
+{
+    
 }
 
 - (void)setupLeftView
@@ -83,7 +116,7 @@
     if (tableView == self.centerTableView) {
         return 3;
     } else if (tableView == self.leftTableView) {
-        return [[(NSDictionary *)self.userInfo objectForKey:PAYMENTS] count];
+        return [[(NSDictionary *)self.userInfo objectForKey:PURCHASES] count];
     }
     return 1;
 }
@@ -92,15 +125,20 @@
 {
     static NSString *identifier = @"cellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     if (tableView == self.centerTableView) {
         if (indexPath.row == 0) [cell.textLabel setText:@"General Infomation"];
         if (indexPath.row == 1) [cell.textLabel setText:@"Purchase History"];
         if (indexPath.row == 2) [cell.textLabel setText:@"Payment History"];
     } else if (tableView == self.leftTableView) {
-        cell.textLabel.text = @"Test";
+        cell.textLabel.text = [[self.purchases objectAtIndex:indexPath.row] objectForKey:NAME];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"$%-5.2f, %@", [[[self.purchases objectAtIndex:indexPath.row] objectForKey:AMOUNT] doubleValue], [[self.purchases objectAtIndex:indexPath.row] objectForKey:DATE]];
     }
     
     return cell;
