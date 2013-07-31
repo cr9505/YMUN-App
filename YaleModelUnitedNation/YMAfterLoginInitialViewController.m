@@ -65,7 +65,7 @@
     self.payments = [self.userInfo objectForKey:PAYMENTS];
     self.topLabel.text = [NSString stringWithFormat:@"Hi, %@", [self.userInfo objectForKey:USER_NAME]];
     [self.topTableView reloadData];
-    [MMProgressHUD dismissWithSuccess:@"Loaded!"];
+//    [MMProgressHUD dismissWithSuccess:@"Loaded!"];
 }
 
 - (void)updateMapView:(MKMapView *)mapView withPlaceMarks:(NSArray *)placemarks
@@ -85,9 +85,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [MMProgressHUD showWithTitle:@"Loading" status:@"Please be patient" cancelBlock:^{
-        NSLog(@"User canceled ProgressHUD");
-    }];
+//    [MMProgressHUD showWithTitle:@"Loading" status:@"Please be patient" cancelBlock:^{
+//        NSLog(@"User canceled ProgressHUD");
+//    }];
 }
 
 - (void)viewDidLoad
@@ -95,7 +95,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.interfaceCenter.delegate = self;
-    [self.interfaceCenter getUserInfo];
+    [YMAPIInterfaceCenter getUserInfo];
     [self setupPaperView];
     [self setupCenterView];
     [self setupLeftView];
@@ -240,7 +240,7 @@
     if (tableView == self.centerTableView) {
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.indentationLevel = 6;
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 46, 32, 32)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, CGRectGetMidY(cell.frame) + 32/2, 32, 32)];
         [cell addSubview:imageView];
         if (indexPath.row == 0) {
             [cell.textLabel setText:@"General Infomation"];

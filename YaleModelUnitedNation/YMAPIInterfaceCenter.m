@@ -42,7 +42,7 @@
     return parsedDict;
 }
 
-- (void)getUserInfo
++ (void)getUserInfo
 {
     NSURL *url = [NSURL URLWithString:YMUN_URL];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
@@ -50,7 +50,8 @@
     [client getPath:@"Registration/api/user_info.php" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [operation responseString];
         NSDictionary *jsonResponse = [YMAPIInterfaceCenter parseJSON:response];
-        [self.delegate interfaceCenterDidGetUserInfo:jsonResponse];
+        // post a notification
+        [[NSNotificationCenter defaultCenter] postNotificationName:YMUNDidGetUserInfoNotification object:self userInfo:jsonResponse];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 #warning tell user there is a network error
         NSLog(@"Network error!");

@@ -192,7 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				9BDAEFCC17A9AC6F0049C707 /* PaperFold */,
-				9BDAEFC217A996610049C707 /* CoreLocation.framework */,
 				9B8477C017A1F64B008BBFC6 /* AFNetworking */,
 				9BDAEF6317A76B1E0049C707 /* MMProgressHUD */,
 				9BDAEF5C17A76A330049C707 /* ECSlidingViewController */,
@@ -213,6 +212,7 @@
 		9B84777917A1EC88008BBFC6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BDAEFC217A996610049C707 /* CoreLocation.framework */,
 				9BDAEFBD17A990AC0049C707 /* MapKit.framework */,
 				9BDAEF7E17A76D940049C707 /* QuartzCore.framework */,
 				9B8477C317A1FE20008BBFC6 /* Security.framework */,

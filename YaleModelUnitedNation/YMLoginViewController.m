@@ -101,7 +101,7 @@
 - (void)login
 {
     [MMProgressHUD showWithTitle:@"Hi there!" status:@"Logging you in!"];
-
+    self.interfaceCenter = [[YMAPIInterfaceCenter alloc] initWithEmail:[self.emailAndPassword objectForKey:@"email"] Password:[self.emailAndPassword objectForKey:@"password"]];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -148,6 +148,7 @@
     NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN]);
     if (![[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN]) {
         NSDictionary *userInfo = notification.userInfo;
+        NSLog(@"%@", userInfo);
         if ([[userInfo objectForKey:LOGIN_STATUS] isEqualToString:@"failure"])
         {
             dispatch_queue_t dismissQ = dispatch_queue_create("dismiss queue", NULL);

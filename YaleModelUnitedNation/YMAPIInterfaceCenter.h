@@ -26,6 +26,7 @@
 #define SUBMITTED_FORM  @"submitted_forms"
 
 #define YMUNLoginStatusNotification @"YMUNLoginStatusNotification"
+#define YMUNDidGetUserInfoNotification @"YMUNDidGetUserInfoNotification"
 #define YMUNNetworkErrorNotificatoin @"YMUNNetworkErrorNotificatoin"
 
 #import <Foundation/Foundation.h>
@@ -40,7 +41,7 @@
 @property (nonatomic, readonly, getter = isLogin) BOOL login;
 @property (nonatomic, weak) id<YMAPIInterfaceCenterDelegate> delegate;
 - (id)initWithEmail:(NSString *)email Password:(NSString *)password;
-- (void)getUserInfo;
++ (void)getUserInfo;
 + (BOOL)hasUserAccessToken;
 
 @end

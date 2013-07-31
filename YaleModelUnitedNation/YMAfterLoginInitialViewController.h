@@ -10,7 +10,7 @@
 #import "YMAPIInterfaceCenter.h"
 #import "ECSlidingViewController.h"
 
-@interface YMAfterLoginInitialViewController : UIViewController <YMAPIInterfaceCenterDelegate>
+@interface YMAfterLoginInitialViewController : UIViewController
 
 @property (nonatomic, strong) YMAPIInterfaceCenter *interfaceCenter;
 
