@@ -39,7 +39,7 @@
     _rightViewController = rightViewController;
     
     [self.rightViewController.view setFrame:CGRectMake(0,0,width,[self.view bounds].size.height)];
-    [self.paperFoldView setRightFoldContentView:self.rightViewController.view rightViewFoldCount:rightViewFoldCount rightViewPullFactor:rightViewPullFactor];
+    [self.paperFoldView setRightFoldContentView:self.rightViewController.view foldCount:rightViewFoldCount pullFactor:rightViewFoldCount];
 }
 
 - (void)setLeftViewController:(UIViewController *)leftViewController width:(float)width
@@ -47,41 +47,41 @@
     _leftViewController = leftViewController;
     
     [self.leftViewController.view setFrame:CGRectMake(0,0,width,[self.view bounds].size.height)];
-    [self.paperFoldView setLeftFoldContentView:self.leftViewController.view];
+    [self.paperFoldView setLeftFoldContentView:self.leftViewController.view foldCount:3 pullFactor:0.9];
 }
 
 - (void)paperFoldView:(id)paperFoldView didFoldAutomatically:(BOOL)automated toState:(PaperFoldState)paperFoldState
 {
     if (paperFoldState==PaperFoldStateDefault)
     {
-        [self.rootViewController viewWillAppear:YES];
-        [self.rootViewController viewDidAppear:YES];
-        
-        if (self.rightViewController) {
-            [self.rightViewController viewWillDisappear:YES];
-            [self.rightViewController viewDidDisappear:YES];
-        }
-        
         if (self.leftViewController) {
             [self.leftViewController viewWillDisappear:YES];
             [self.leftViewController viewDidDisappear:YES];
         }
+
+        if (self.rightViewController) {
+            [self.rightViewController viewWillDisappear:YES];
+            [self.rightViewController viewDidDisappear:YES];
+        }
+
+        [self.rootViewController viewWillAppear:YES];
+        [self.rootViewController viewDidAppear:YES];
     }
     else if (paperFoldState==PaperFoldStateLeftUnfolded)
     {
+        [self.rootViewController viewWillDisappear:YES];
+        [self.rootViewController viewDidDisappear:YES];
+
         [self.leftViewController viewWillAppear:YES];
         [self.leftViewController viewDidAppear:YES];
-        
-        [self.rootViewController viewWillDisappear:YES];
-        [self.rootViewController viewDidDisappear:YES];
     }
     else if (paperFoldState==PaperFoldStateRightUnfolded)
-    {
-        [self.rightViewController viewWillAppear:YES];
-        [self.rightViewController viewDidAppear:YES];
-        
+    {   
         [self.rootViewController viewWillDisappear:YES];
         [self.rootViewController viewDidDisappear:YES];
+        
+        [self.rightViewController viewWillAppear:YES];
+        [self.rightViewController viewDidAppear:YES];
     }
 }
 
