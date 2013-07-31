@@ -329,6 +329,8 @@
             [self.paperView setPaperFoldState:PaperFoldStateLeftUnfolded];
         } else if (indexPath.row == 2) {
             [self.paperView setPaperFoldState:PaperFoldStateRightUnfolded];
+        } else if (indexPath.row == 0) {
+            [self.paperView setPaperFoldState:PaperFoldStateTopUnfolded];
         }
     }
 }
