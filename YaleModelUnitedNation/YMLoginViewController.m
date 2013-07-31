@@ -43,9 +43,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.interfaceCenter = [[YMAPIInterfaceCenter alloc] initWithEmail:[self.emailAndPassword objectForKey:@"email"] Password:[self.emailAndPassword objectForKey:@"password"]];
-    
     // top margin for table view    
     UIEdgeInsets inset = UIEdgeInsetsMake(self.tableView.bounds.size.height/2 - 46 * 2, 0, 0, 0);
     self.tableView.contentInset = inset;
@@ -145,25 +142,18 @@
 
 - (void)didLogin:(NSNotification *)notification
 {
+    NSLog(@"received login notification!");
     NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN]);
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN]) {
-        NSDictionary *userInfo = notification.userInfo;
-        NSLog(@"%@", userInfo);
-        if ([[userInfo objectForKey:LOGIN_STATUS] isEqualToString:@"failure"])
-        {
-            dispatch_queue_t dismissQ = dispatch_queue_create("dismiss queue", NULL);
-            dispatch_async(dismissQ, ^{
-                sleep(1.0);
-                [MMProgressHUD dismissWithError:@"Password/email error :(" title:@"Try again?"];
-            });
-        } else {
-            dispatch_queue_t dismissQ = dispatch_queue_create("dismiss queue", NULL);
-            dispatch_async(dismissQ, ^{
-                sleep(1.0);
-                [MMProgressHUD dismissWithSuccess:@"Awesome!"];
-            });
-            [self performSegueWithIdentifier:@"didLoginSegue" sender:self];
-        }
+    NSDictionary *userInfo = notification.userInfo;
+    NSLog(@"%@", userInfo);
+    if ([[userInfo objectForKey:LOGIN_STATUS] isEqualToString:@"failure"])
+    {
+        sleep(1.0);
+        [MMProgressHUD dismissWithError:@"Password/email error :(" title:@"Try again?"];
+    } else {
+        sleep(1.0);
+        [MMProgressHUD dismissWithSuccess:@"Awesome!"];
+        [self performSegueWithIdentifier:@"didLoginSegue" sender:self];
     }
 }
 

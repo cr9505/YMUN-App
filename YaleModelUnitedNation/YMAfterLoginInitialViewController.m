@@ -57,8 +57,9 @@
     }
 }
 
-- (void)interfaceCenterDidGetUserInfo:(NSDictionary *)userInfo
+- (void)didGetUserInfo:(NSNotification *)notification
 {
+    NSDictionary *userInfo = notification.userInfo;
     self.userInfo = userInfo;
     NSLog(@"%@", userInfo);
     self.purchases = [self.userInfo objectForKey:PURCHASES];
@@ -93,8 +94,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo:) name:YMUNDidGetUserInfoNotification object:nil];
 	// Do any additional setup after loading the view.
-    self.interfaceCenter.delegate = self;
     [YMAPIInterfaceCenter getUserInfo];
     [self setupPaperView];
     [self setupCenterView];
