@@ -42,6 +42,7 @@
 @property (nonatomic, weak) id<YMAPIInterfaceCenterDelegate> delegate;
 - (id)initWithEmail:(NSString *)email Password:(NSString *)password;
 + (void)getUserInfo;
++ (BOOL)validateUserInfo:(NSDictionary *)userinfo;
 + (BOOL)hasUserAccessToken;
 
 @end

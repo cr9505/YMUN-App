@@ -59,6 +59,14 @@
     }];
 }
 
++ (BOOL)validateUserInfo:(NSDictionary *)userinfo
+{
+    if ([userinfo objectForKey:@"error"]) {
+        return NO;
+    }
+    return YES;
+}
+
 - (id)initWithEmail:(NSString *)email Password:(NSString *)password
 {
     self = [super init];

@@ -79,10 +79,10 @@
     [_contentView setBackgroundColor:[UIColor whiteColor]];
     [_contentView setAutoresizesSubviews:YES];
     
-    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onContentViewPanned:)];
-	panGestureRecognizer.delegate = self;
-    [_contentView addGestureRecognizer:panGestureRecognizer];
-    [panGestureRecognizer setDelegate:self];
+    self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onContentViewPanned:)];
+	self.panGestureRecognizer.delegate = self;
+    [_contentView addGestureRecognizer:self.panGestureRecognizer];
+    [self.panGestureRecognizer setDelegate:self];
     
     _state = PaperFoldStateDefault;
     _lastState = _state;
@@ -833,7 +833,14 @@
 - (void)finishForState:(PaperFoldState)state
 {
     [self setShowDividerLines:NO animated:YES];
-	
+    
+    // IMPORTANT CODE, SOLVES TOP VIEW BUG
+    if (state == PaperFoldStateTopUnfolded || state == PaperFoldStateBottomUnfolded) {
+        [self.contentView removeGestureRecognizer:self.panGestureRecognizer];
+    } else {
+        [self.contentView addGestureRecognizer:self.panGestureRecognizer];
+    }
+    
     // we prefer executing the completion block, otherwise we notify the delegate
     if (self.completionBlock != nil) {
         self.completionBlock();

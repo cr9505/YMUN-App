@@ -25,6 +25,9 @@
 @property (nonatomic, strong) NSDictionary *userInfo;
 @property (nonatomic, strong) NSArray *purchases;
 @property (nonatomic, strong) NSArray *payments;
+@property (nonatomic) double balance;
+@property (nonatomic) double purchaseAmount;
+@property (nonatomic) double paymentAmount;
 
 @end
 
@@ -57,6 +60,23 @@
     }
 }
 
+- (void)calculateBalance
+{
+    self.balance = 0;
+    self.purchaseAmount = 0;
+    self.paymentAmount = 0;
+    
+    for (NSDictionary *purchase in self.purchases) {
+        self.purchaseAmount += [[purchase objectForKey:AMOUNT] doubleValue];
+        NSLog(@"%f", self.purchaseAmount);
+    }
+    for (NSDictionary *payment in self.payments) {
+        self.paymentAmount += [[payment objectForKey:AMOUNT] doubleValue];
+    }
+    self.balance = self.purchaseAmount - self.paymentAmount;
+    [self.centerTableView reloadData];
+}
+
 - (void)didGetUserInfo:(NSNotification *)notification
 {
     NSDictionary *userInfo = notification.userInfo;
@@ -66,7 +86,14 @@
     self.payments = [self.userInfo objectForKey:PAYMENTS];
     self.topLabel.text = [NSString stringWithFormat:@"Hi, %@", [self.userInfo objectForKey:USER_NAME]];
     [self.topTableView reloadData];
-//    [MMProgressHUD dismissWithSuccess:@"Loaded!"];
+    [self calculateBalance];
+    if (![YMAPIInterfaceCenter validateUserInfo:userInfo]) {
+        [MMProgressHUD dismissWithError:@"Incorrect information loaded!"];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        NSLog(@"%@", self.navigationController.viewControllers);
+    } else {
+        [MMProgressHUD dismissWithSuccess:@"Loaded!"];
+    }
 }
 
 - (void)updateMapView:(MKMapView *)mapView withPlaceMarks:(NSArray *)placemarks
@@ -91,10 +118,16 @@
 //    }];
 }
 
+- (void)didReceiveNetworkError:(NSNotification *)notification
+{
+    [MMProgressHUD dismissWithError:@"Network Error. Please check your connection."];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo:) name:YMUNDidGetUserInfoNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNetworkError:) name:YMUNNetworkErrorNotificatoin object:nil];
 	// Do any additional setup after loading the view.
     [YMAPIInterfaceCenter getUserInfo];
     [self setupPaperView];
@@ -103,6 +136,9 @@
     [self setupRightView];
     [self setupTopView];
     [self setupTopLabel];
+    [MMProgressHUD showWithTitle:@"Loading" status:@"Please be patient" cancelBlock:^{
+        NSLog(@"User canceled ProgressHUD");
+    }];
 }
 
 - (void)setupTopLabel
@@ -236,23 +272,28 @@
         }
         [cell addSubview:placeholder];
     }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (tableView == self.centerTableView) {
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.indentationLevel = 6;
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, CGRectGetMidY(cell.frame) + 32/2, 32, 32)];
+        UIImage *image = [UIImage imageNamed:@"info.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, (self.view.bounds.size.height - 80)/3.0/2 - image.size.height/2, 32, 32)];
         [cell addSubview:imageView];
         if (indexPath.row == 0) {
             [cell.textLabel setText:@"General Infomation"];
+            if (self.balance < 0) cell.detailTextLabel.textColor = [UIColor colorWithRed:237/255.0 green:29/255.0 blue:37/255.0 alpha:1.0];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Current Balance: $%.2f", self.balance];
             imageView.image = [UIImage imageNamed:@"info.png"];
         }
         if (indexPath.row == 1) {
             [cell.textLabel setText:@"Purchase History"];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Purchases: $%.2f", self.purchaseAmount];
             imageView.image = [UIImage imageNamed:@"purchases.png"];
         }
         if (indexPath.row == 2) {
             [cell.textLabel setText:@"Payment History"];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Payments $%.2f", self.paymentAmount];
             imageView.image = [UIImage imageNamed:@"payments.png"];
         }
     } else if (tableView == self.leftTableView) {
@@ -322,19 +363,23 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)dealloc
 {
-    if (tableView == self.centerTableView) {
-        [tableView cellForRowAtIndexPath:indexPath].selected = NO;
-        if (indexPath.row == 1) {
-            [self.paperView setPaperFoldState:PaperFoldStateLeftUnfolded];
-        } else if (indexPath.row == 2) {
-            [self.paperView setPaperFoldState:PaperFoldStateRightUnfolded];
-        } else if (indexPath.row == 0) {
-            [self.paperView setPaperFoldState:PaperFoldStateTopUnfolded];
-        }
-    }
+    self.leftTableView.delegate = nil;
+    self.leftTableView.dataSource = nil;
+    self.centerTableView.delegate = nil;
+    self.centerTableView.dataSource = nil;
+    self.rightTableView.delegate = nil;
+    self.rightTableView.dataSource = nil;
+    self.topTableView.delegate = nil;
+    self.topTableView.dataSource = nil;
+    self.paperView.delegate = nil;
 }
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//}
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -349,6 +394,8 @@
         self.topLabel.text = @"Payments";
     } else if (paperFoldState == PaperFoldStateDefault) {
         self.topLabel.text = [NSString stringWithFormat:@"Hi, %@", [self.userInfo objectForKey:USER_NAME]];
+    } else if (paperFoldState == PaperFoldStateTopUnfolded) {
+        // should disable left/right swipe here
     }
 }
 
