@@ -30,6 +30,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.date = date;
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -44,7 +45,6 @@
     NSDateComponents *components = [[NSCalendar currentCalendar] components: NSDayCalendarUnit | NSMonthCalendarUnit fromDate:self.date];
     NSInteger day = [components day];
     NSInteger month = [components month];
-    self.dayLabel.backgroundColor = [UIColor clearColor];
     // cosmetics for month label
     self.monthLabel.layer.cornerRadius = 2.0f;
     self.monthLabel.textAlignment = NSTextAlignmentCenter;
@@ -53,7 +53,7 @@
     self.monthLabel.text = [[[[NSDateFormatter alloc]init] monthSymbols] objectAtIndex:month-1];
     // cosmetics for day label
     self.dayLabel.textAlignment = NSTextAlignmentCenter;
-    self.dayLabel.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    self.dayLabel.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
     self.dayLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:30.0];
     self.dayLabel.text = [NSString stringWithFormat:@"%ld", (long)day];
     [self addSubview:self.monthLabel];
@@ -61,17 +61,17 @@
 }
 
 
-//- (void)drawRect:(CGRect)rect
-//{
-//    [super drawRect:rect];
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGContextBeginPath(context);
-//    CGContextMoveToPoint(context, 30 - 5.0, 20);
-//    CGContextAddLineToPoint(context, 30 + 5.0, 20);
-//    CGContextAddLineToPoint(context, 30, 20 + 4.0);
-//    CGContextAddLineToPoint(context, 30 - 5.0, 20);
-//    CGContextSetRGBFillColor(context, 0, 118/255.0, 166/255.0, 1.0);
-//    CGContextFillPath(context);
-//}
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 30 - 6.0, 20);
+    CGContextAddLineToPoint(context, 30 + 6.0, 20);
+    CGContextAddLineToPoint(context, 30, 20 + 5.0);
+    CGContextAddLineToPoint(context, 30 - 6.0, 20);
+    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:0/255.0 green:118/255.0 blue:166/255.0 alpha:1.0].CGColor);
+    CGContextFillPath(context);
+}
 
 @end

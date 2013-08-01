@@ -113,9 +113,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [MMProgressHUD showWithTitle:@"Loading" status:@"Please be patient" cancelBlock:^{
-//        NSLog(@"User canceled ProgressHUD");
-//    }];
+    [MMProgressHUD showWithTitle:@"Loading" status:@"Please be patient" cancelBlock:^{
+        NSLog(@"User canceled ProgressHUD");
+    }];
+    [YMAPIInterfaceCenter getUserInfo];
 }
 
 - (void)didReceiveNetworkError:(NSNotification *)notification
@@ -129,16 +130,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo:) name:YMUNDidGetUserInfoNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNetworkError:) name:YMUNNetworkErrorNotificatoin object:nil];
 	// Do any additional setup after loading the view.
-    [YMAPIInterfaceCenter getUserInfo];
     [self setupPaperView];
     [self setupCenterView];
     [self setupLeftView];
     [self setupRightView];
     [self setupTopView];
     [self setupTopLabel];
-    [MMProgressHUD showWithTitle:@"Loading" status:@"Please be patient" cancelBlock:^{
-        NSLog(@"User canceled ProgressHUD");
-    }];
+
 }
 
 - (void)setupTopLabel
@@ -279,22 +277,28 @@
         cell.indentationLevel = 6;
         UIImage *image = [UIImage imageNamed:@"info.png"];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, (self.view.bounds.size.height - 80)/3.0/2 - image.size.height/2, 32, 32)];
+        UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2.0 - 50, (self.view.bounds.size.height - 80)/3.0/2 - 30, 100, 60)];
+        arrowImageView.alpha = 0.0;
         [cell addSubview:imageView];
+        [cell addSubview:arrowImageView];
         if (indexPath.row == 0) {
             [cell.textLabel setText:@"General Infomation"];
             if (self.balance < 0) cell.detailTextLabel.textColor = [UIColor colorWithRed:237/255.0 green:29/255.0 blue:37/255.0 alpha:1.0];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"Current Balance: $%.2f", self.balance];
             imageView.image = [UIImage imageNamed:@"info.png"];
+            arrowImageView.image = [UIImage imageNamed:@"downarrow.png"];
         }
         if (indexPath.row == 1) {
             [cell.textLabel setText:@"Purchase History"];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"Purchases: $%.2f", self.purchaseAmount];
             imageView.image = [UIImage imageNamed:@"purchases.png"];
+            arrowImageView.image = [UIImage imageNamed:@"rightarrow.png"];
         }
         if (indexPath.row == 2) {
             [cell.textLabel setText:@"Payment History"];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"Payments $%.2f", self.paymentAmount];
             imageView.image = [UIImage imageNamed:@"payments.png"];
+            arrowImageView.image = [UIImage imageNamed:@"leftarrow.png"];
         }
     } else if (tableView == self.leftTableView) {
         cell.textLabel.text = [[self.purchases objectAtIndex:indexPath.row] objectForKey:NAME];
@@ -358,7 +362,7 @@
         if (indexPath.row != 5) {
             return 40.0;
         } else {
-            return 260.0;
+            return 268.0;
         }
     }
 }
@@ -376,10 +380,28 @@
     self.paperView.delegate = nil;
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UIImageView *arrowView = nil;
+    for (UIView *subview in cell.subviews) {
+        if ([subview isKindOfClass:[UIImageView class]] && subview.frame.size.width == 100) {
+            arrowView = (UIImageView *)subview;
+            break;
+        }
+    }
+    [UIView animateWithDuration:0.5 animations:^{
+        cell.textLabel.alpha = 0;
+        cell.detailTextLabel.alpha = 0;
+        arrowView.alpha = 1;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 animations:^{
+            cell.textLabel.alpha = 1.0;
+            cell.detailTextLabel.alpha = 1.0;
+            arrowView.alpha = 0.0;
+        }];
+    }];
+}
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
