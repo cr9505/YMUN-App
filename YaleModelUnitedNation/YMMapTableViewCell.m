@@ -23,10 +23,10 @@
 {
     [super layoutSubviews];
     CGRect frame = self.textLabel.frame;
-    frame.origin.y -= 100;
+    frame.origin.y -= 110;
     self.textLabel.frame = frame;
     CGRect detailFrame = self.detailTextLabel.frame;
-    detailFrame.origin.y -= 100;
+    detailFrame.origin.y -= 110;
     self.detailTextLabel.frame = detailFrame;
 }
 

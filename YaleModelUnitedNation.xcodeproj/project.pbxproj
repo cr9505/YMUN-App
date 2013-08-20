@@ -74,6 +74,7 @@
 		9BDAEFED17A9AC6F0049C707 /* ShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDAEFDF17A9AC6F0049C707 /* ShadowView.m */; };
 		9BDAEFEE17A9AC6F0049C707 /* TouchThroughUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDAEFE117A9AC6F0049C707 /* TouchThroughUIView.m */; };
 		9BDAEFEF17A9AC6F0049C707 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDAEFE317A9AC6F0049C707 /* UIView+Screenshot.m */; };
+		9BFDC73D17B00CF100DB100F /* noisy_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BFDC73C17B00CF100DB100F /* noisy_grid.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +184,7 @@
 		9BDAEFE117A9AC6F0049C707 /* TouchThroughUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchThroughUIView.m; sourceTree = "<group>"; };
 		9BDAEFE217A9AC6F0049C707 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
 		9BDAEFE317A9AC6F0049C707 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
+		9BFDC73C17B00CF100DB100F /* noisy_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noisy_grid.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 		9BC8B29917AABDDB00F6D3DF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9BFDC73C17B00CF100DB100F /* noisy_grid.png */,
 				9BC8B28917AABDCD00F6D3DF /* downarrow.png */,
 				9BC8B28A17AABDCD00F6D3DF /* downarrow@2x.png */,
 				9BC8B28B17AABDCD00F6D3DF /* leftarrow.png */,
@@ -496,6 +499,7 @@
 				9BC8B29617AABDCD00F6D3DF /* rightarrow@2x.png in Resources */,
 				9BC8B29717AABDCD00F6D3DF /* uparrow.png in Resources */,
 				9BC8B29817AABDCD00F6D3DF /* uparrow@2x.png in Resources */,
+				9BFDC73D17B00CF100DB100F /* noisy_grid.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
