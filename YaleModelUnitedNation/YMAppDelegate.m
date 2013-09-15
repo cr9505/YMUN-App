@@ -7,12 +7,30 @@
 //
 
 #import "YMAppDelegate.h"
+#import "DCIntrospect.h"
 
 @implementation YMAppDelegate
+
+@synthesize sharedSideBar = _sharedSideBar;
+
+- (RNFrostedSidebar *)sharedSideBar
+{
+    if (!_sharedSideBar) {
+        NSArray *images = [NSArray arrayWithObjects:[UIImage imageNamed:@"info.png"], [UIImage imageNamed:@"purchases.png"], [UIImage imageNamed:@"payments"] ,nil];
+        _sharedSideBar = [[RNFrostedSidebar alloc] initWithImages:images selectedIndices:[[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, [images count])] borderColors:[NSArray arrayWithObjects:[UIColor whiteColor], [UIColor whiteColor], [UIColor whiteColor], nil]];
+        _sharedSideBar.width = 75;
+        _sharedSideBar.itemSize = CGSizeMake(50, 50);
+    }
+    return _sharedSideBar;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self.window makeKeyAndVisible];
+#if TARGET_IPHONE_SIMULATOR
+    [[DCIntrospect sharedIntrospector] start];
+#endif
     return YES;
 }
 							

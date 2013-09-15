@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B06DDC617E50E7100BD6DC6 /* RNFrostedSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDC517E50E7100BD6DC6 /* RNFrostedSidebar.m */; };
+		9B06DDC917E510BF00BD6DC6 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B06DDC817E510BF00BD6DC6 /* Accelerate.framework */; };
+		9B06DDCB17E5135800BD6DC6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B06DDCA17E5135800BD6DC6 /* MobileCoreServices.framework */; };
+		9B06DDCD17E5135E00BD6DC6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B06DDCC17E5135E00BD6DC6 /* SystemConfiguration.framework */; };
+		9B06DDD017E513A400BD6DC6 /* YMTransactinTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDCF17E513A400BD6DC6 /* YMTransactinTableViewController.m */; };
+		9B06DDD317E5167400BD6DC6 /* YMNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDD217E5167400BD6DC6 /* YMNavBar.m */; };
+		9B06DDD617E5366F00BD6DC6 /* navBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B06DDD417E5366F00BD6DC6 /* navBar.png */; };
+		9B06DDD717E5366F00BD6DC6 /* navBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B06DDD517E5366F00BD6DC6 /* navBar@2x.png */; };
+		9B06DDE817E53D4100BD6DC6 /* menuBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B06DDE617E53D4100BD6DC6 /* menuBtn.png */; };
+		9B06DDE917E53D4100BD6DC6 /* menuBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B06DDE717E53D4100BD6DC6 /* menuBtn@2x.png */; };
+		9B06DDF317E542FA00BD6DC6 /* DCCrossHairView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDEB17E542F900BD6DC6 /* DCCrossHairView.m */; };
+		9B06DDF417E542FA00BD6DC6 /* DCFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDED17E542F900BD6DC6 /* DCFrameView.m */; };
+		9B06DDF517E542FA00BD6DC6 /* DCIntrospect.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDEF17E542FA00BD6DC6 /* DCIntrospect.m */; };
+		9B06DDF617E542FA00BD6DC6 /* DCStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDF217E542FA00BD6DC6 /* DCStatusBarOverlay.m */; };
 		9B84777B17A1EC88008BBFC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B84777A17A1EC88008BBFC6 /* UIKit.framework */; };
 		9B84777D17A1EC88008BBFC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B84777C17A1EC88008BBFC6 /* Foundation.framework */; };
 		9B84777F17A1EC88008BBFC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B84777E17A1EC88008BBFC6 /* CoreGraphics.framework */; };
@@ -81,6 +95,28 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B06DDC417E50E7100BD6DC6 /* RNFrostedSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNFrostedSidebar.h; sourceTree = "<group>"; };
+		9B06DDC517E50E7100BD6DC6 /* RNFrostedSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNFrostedSidebar.m; sourceTree = "<group>"; };
+		9B06DDC817E510BF00BD6DC6 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		9B06DDCA17E5135800BD6DC6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9B06DDCC17E5135E00BD6DC6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9B06DDCE17E513A400BD6DC6 /* YMTransactinTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMTransactinTableViewController.h; path = ../YMTransactinTableViewController.h; sourceTree = "<group>"; };
+		9B06DDCF17E513A400BD6DC6 /* YMTransactinTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMTransactinTableViewController.m; path = ../YMTransactinTableViewController.m; sourceTree = "<group>"; };
+		9B06DDD117E5167400BD6DC6 /* YMNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMNavBar.h; sourceTree = "<group>"; };
+		9B06DDD217E5167400BD6DC6 /* YMNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMNavBar.m; sourceTree = "<group>"; };
+		9B06DDD417E5366F00BD6DC6 /* navBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBar.png; sourceTree = "<group>"; };
+		9B06DDD517E5366F00BD6DC6 /* navBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navBar@2x.png"; sourceTree = "<group>"; };
+		9B06DDE617E53D4100BD6DC6 /* menuBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBtn.png; sourceTree = "<group>"; };
+		9B06DDE717E53D4100BD6DC6 /* menuBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuBtn@2x.png"; sourceTree = "<group>"; };
+		9B06DDEA17E542F900BD6DC6 /* DCCrossHairView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCrossHairView.h; sourceTree = "<group>"; };
+		9B06DDEB17E542F900BD6DC6 /* DCCrossHairView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCrossHairView.m; sourceTree = "<group>"; };
+		9B06DDEC17E542F900BD6DC6 /* DCFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCFrameView.h; sourceTree = "<group>"; };
+		9B06DDED17E542F900BD6DC6 /* DCFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCFrameView.m; sourceTree = "<group>"; };
+		9B06DDEE17E542F900BD6DC6 /* DCIntrospect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCIntrospect.h; sourceTree = "<group>"; };
+		9B06DDEF17E542FA00BD6DC6 /* DCIntrospect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCIntrospect.m; sourceTree = "<group>"; };
+		9B06DDF017E542FA00BD6DC6 /* DCIntrospectSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCIntrospectSettings.h; sourceTree = "<group>"; };
+		9B06DDF117E542FA00BD6DC6 /* DCStatusBarOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCStatusBarOverlay.h; sourceTree = "<group>"; };
+		9B06DDF217E542FA00BD6DC6 /* DCStatusBarOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStatusBarOverlay.m; sourceTree = "<group>"; };
 		9B84777717A1EC88008BBFC6 /* YaleModelUnitedNation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaleModelUnitedNation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B84777A17A1EC88008BBFC6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9B84777C17A1EC88008BBFC6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -198,6 +234,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B06DDCD17E5135E00BD6DC6 /* SystemConfiguration.framework in Frameworks */,
+				9B06DDCB17E5135800BD6DC6 /* MobileCoreServices.framework in Frameworks */,
+				9B06DDC917E510BF00BD6DC6 /* Accelerate.framework in Frameworks */,
 				9BDAEFC317A996610049C707 /* CoreLocation.framework in Frameworks */,
 				9BDAEFBE17A990AD0049C707 /* MapKit.framework in Frameworks */,
 				9BDAEF7F17A76D940049C707 /* QuartzCore.framework in Frameworks */,
@@ -212,9 +251,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B06DDC717E50E7E00BD6DC6 /* SideBar */ = {
+			isa = PBXGroup;
+			children = (
+				9B06DDC417E50E7100BD6DC6 /* RNFrostedSidebar.h */,
+				9B06DDC517E50E7100BD6DC6 /* RNFrostedSidebar.m */,
+			);
+			name = SideBar;
+			sourceTree = "<group>";
+		};
+		9B06DDF717E542FF00BD6DC6 /* DCIntrospect */ = {
+			isa = PBXGroup;
+			children = (
+				9B06DDEA17E542F900BD6DC6 /* DCCrossHairView.h */,
+				9B06DDEB17E542F900BD6DC6 /* DCCrossHairView.m */,
+				9B06DDEC17E542F900BD6DC6 /* DCFrameView.h */,
+				9B06DDED17E542F900BD6DC6 /* DCFrameView.m */,
+				9B06DDEE17E542F900BD6DC6 /* DCIntrospect.h */,
+				9B06DDEF17E542FA00BD6DC6 /* DCIntrospect.m */,
+				9B06DDF017E542FA00BD6DC6 /* DCIntrospectSettings.h */,
+				9B06DDF117E542FA00BD6DC6 /* DCStatusBarOverlay.h */,
+				9B06DDF217E542FA00BD6DC6 /* DCStatusBarOverlay.m */,
+			);
+			name = DCIntrospect;
+			sourceTree = "<group>";
+		};
 		9B84776E17A1EC88008BBFC6 = {
 			isa = PBXGroup;
 			children = (
+				9B06DDF717E542FF00BD6DC6 /* DCIntrospect */,
+				9B06DDCC17E5135E00BD6DC6 /* SystemConfiguration.framework */,
+				9B06DDCA17E5135800BD6DC6 /* MobileCoreServices.framework */,
+				9B06DDC717E50E7E00BD6DC6 /* SideBar */,
 				9BDAEFCC17A9AC6F0049C707 /* PaperFold */,
 				9B8477C017A1F64B008BBFC6 /* AFNetworking */,
 				9BDAEF6317A76B1E0049C707 /* MMProgressHUD */,
@@ -236,6 +304,7 @@
 		9B84777917A1EC88008BBFC6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9B06DDC817E510BF00BD6DC6 /* Accelerate.framework */,
 				9BDAEFC217A996610049C707 /* CoreLocation.framework */,
 				9BDAEFBD17A990AC0049C707 /* MapKit.framework */,
 				9BDAEF7E17A76D940049C707 /* QuartzCore.framework */,
@@ -316,6 +385,8 @@
 		9BC8B29917AABDDB00F6D3DF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9B06DDD417E5366F00BD6DC6 /* navBar.png */,
+				9B06DDD517E5366F00BD6DC6 /* navBar@2x.png */,
 				9BEF29A617E395E6006C88D6 /* glyph */,
 				9BEF29A717E395F4006C88D6 /* pattern */,
 				9BEF29A817E395FE006C88D6 /* arrows */,
@@ -361,6 +432,8 @@
 		9BDAEF8317A849490049C707 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9B06DDCE17E513A400BD6DC6 /* YMTransactinTableViewController.h */,
+				9B06DDCF17E513A400BD6DC6 /* YMTransactinTableViewController.m */,
 				9BDAEF8017A849390049C707 /* YMAfterLoginInitialViewController.h */,
 				9BDAEF8117A849390049C707 /* YMAfterLoginInitialViewController.m */,
 				9B84779D17A1F031008BBFC6 /* YMLoginViewController.h */,
@@ -372,6 +445,8 @@
 		9BDAEFB117A8DA040049C707 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9B06DDD117E5167400BD6DC6 /* YMNavBar.h */,
+				9B06DDD217E5167400BD6DC6 /* YMNavBar.m */,
 				9BDAEFBF17A993E20049C707 /* YMMapTableViewCell.h */,
 				9BDAEFC017A993E20049C707 /* YMMapTableViewCell.m */,
 				9BDAEFB417A959D80049C707 /* YMDateView.h */,
@@ -420,6 +495,8 @@
 		9BEF29A617E395E6006C88D6 /* glyph */ = {
 			isa = PBXGroup;
 			children = (
+				9B06DDE617E53D4100BD6DC6 /* menuBtn.png */,
+				9B06DDE717E53D4100BD6DC6 /* menuBtn@2x.png */,
 				9BEF29A217E395B6006C88D6 /* purchases.png */,
 				9BEF29A317E395B6006C88D6 /* purchases@2x.png */,
 				9BEF299E17E39507006C88D6 /* payments.png */,
@@ -536,6 +613,10 @@
 				9BEF29A117E39507006C88D6 /* payments@2x.png in Resources */,
 				9BEF29A417E395B6006C88D6 /* purchases.png in Resources */,
 				9BEF29A517E395B6006C88D6 /* purchases@2x.png in Resources */,
+				9B06DDD617E5366F00BD6DC6 /* navBar.png in Resources */,
+				9B06DDD717E5366F00BD6DC6 /* navBar@2x.png in Resources */,
+				9B06DDE817E53D4100BD6DC6 /* menuBtn.png in Resources */,
+				9B06DDE917E53D4100BD6DC6 /* menuBtn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +663,13 @@
 				9BDAEFED17A9AC6F0049C707 /* ShadowView.m in Sources */,
 				9BDAEFEE17A9AC6F0049C707 /* TouchThroughUIView.m in Sources */,
 				9BDAEFEF17A9AC6F0049C707 /* UIView+Screenshot.m in Sources */,
+				9B06DDC617E50E7100BD6DC6 /* RNFrostedSidebar.m in Sources */,
+				9B06DDD017E513A400BD6DC6 /* YMTransactinTableViewController.m in Sources */,
+				9B06DDD317E5167400BD6DC6 /* YMNavBar.m in Sources */,
+				9B06DDF317E542FA00BD6DC6 /* DCCrossHairView.m in Sources */,
+				9B06DDF417E542FA00BD6DC6 /* DCFrameView.m in Sources */,
+				9B06DDF517E542FA00BD6DC6 /* DCIntrospect.m in Sources */,
+				9B06DDF617E542FA00BD6DC6 /* DCStatusBarOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

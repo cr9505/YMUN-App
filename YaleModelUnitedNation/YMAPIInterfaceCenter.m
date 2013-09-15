@@ -50,6 +50,7 @@
     [client getPath:@"Registration/api/user_info.php" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [operation responseString];
         NSDictionary *jsonResponse = [YMAPIInterfaceCenter parseJSON:response];
+        NSLog(@"%@", jsonResponse);
         // post a notification
         [[NSNotificationCenter defaultCenter] postNotificationName:YMUNDidGetUserInfoNotification object:self userInfo:jsonResponse];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

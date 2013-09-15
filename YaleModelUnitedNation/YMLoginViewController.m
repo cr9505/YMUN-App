@@ -11,9 +11,11 @@
 #import "MMProgressHUD.h"
 #import "MMProgressHUDOverlayView.h"
 #import "YMAfterLoginInitialViewController.h"
+#import "RNFrostedSidebar.h"
+#import "YMAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface YMLoginViewController () <UITextFieldDelegate>
+@interface YMLoginViewController () <UITextFieldDelegate, RNFrostedSidebarDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary *emailAndPassword;
 @property (nonatomic, strong) YMAPIInterfaceCenter *interfaceCenter;
@@ -58,7 +60,7 @@
         NSLog(@"we already got your info, no need to login");
         // test if API data is valid
         // if yes, go to the next page directly
-        [self performSegueWithIdentifier:@"didLoginSegue" sender:self];
+        [self performSegueWithIdentifier:@"transactionSegue" sender:self];
         // else
         // clear the userDefaults first then
         // make the user login again
@@ -153,7 +155,9 @@
     } else {
         sleep(1.0);
         [MMProgressHUD dismissWithSuccess:@"Awesome!"];
-        [self performSegueWithIdentifier:@"didLoginSegue" sender:self];
+#warning need to set up new segue
+//        [self performSegueWithIdentifier:@"didLoginSegue" sender:self];
+        [self performSegueWithIdentifier:@"transactionSegue" sender:self];
     }
 }
 

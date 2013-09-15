@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RNFrostedSideBar.h"
 
 @interface YMAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) RNFrostedSidebar *sharedSideBar;
+
 
 @end
