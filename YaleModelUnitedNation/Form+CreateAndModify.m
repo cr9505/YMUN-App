@@ -10,7 +10,7 @@
 
 @implementation Form (CreateAndModify)
 
-+ (void)createFormWithName:(NSString *)name formID:(NSNumber *)formID submitted:(NSNumber *)submitted dueDate:(NSDate *)dueDate
++ (Form *)createFormWithName:(NSString *)name formID:(NSNumber *)formID submitted:(NSNumber *)submitted dueDate:(NSDate *)dueDate
 {
     NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", formID];
@@ -28,10 +28,13 @@
         [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
             if (!success) NSLog(@"%@", error.localizedDescription);
         }];
+        return form;
     }
+    
+    return formFound;
 }
 
-+ (void)modifySubmitted:(NSNumber *)submitted forFormWithID:(NSNumber *)formID
++ (Form *)modifySubmitted:(NSNumber *)submitted forFormWithID:(NSNumber *)formID
 {
     NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", formID];
@@ -43,6 +46,8 @@
             if (!success) NSLog(@"%@", error.localizedDescription);
         }];
     }
+
+    return  formFound;
 }
 
 @end

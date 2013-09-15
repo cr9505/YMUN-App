@@ -21,6 +21,7 @@
 #define PAYMENTS        @"payments"
 #define AMOUNT      @"amount"
 #define DATE        @"date"
+#define DUEDATE     @"due"
 #define NAME        @"name"
 #define SCHOOL_NAME     @"school_name"
 #define SUBMITTED_FORM  @"submitted_forms"

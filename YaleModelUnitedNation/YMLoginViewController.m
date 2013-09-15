@@ -16,6 +16,7 @@
 #import "YMTransactinTableViewController.h"
 #import "Transaction+Create.h"
 #import "Form+CreateAndModify.h"
+#import "NSString+Date.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface YMLoginViewController () <UITextFieldDelegate, RNFrostedSidebarDelegate>
@@ -49,34 +50,43 @@
     }
 }
 
-- (void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-    // top margin for table view    
-    UIEdgeInsets inset = UIEdgeInsetsMake(self.tableView.bounds.size.height/2 - 46 * 2, 0, 0, 0);
-    self.tableView.contentInset = inset;
-    
-    self.emailAndPassword = [NSMutableDictionary dictionary];
-    
-    // set observer for login notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogin:) name:YMUNLoginStatusNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo:) name:YMUNDidGetUserInfoNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNetworkError:) name:YMUNNetworkErrorNotificatoin object:nil];
-    
+    [super viewDidAppear:animated];
     // check whether we already have user info or not
     if ([YMAPIInterfaceCenter hasUserAccessToken]) {
         NSLog(@"we already got your info, no need to login");
         // test if API data is valid
         // if yes, go to the next page directly
         [YMAPIInterfaceCenter getUserInfo];
+        [MMProgressHUD showWithTitle:@"Loading Data" status:@"Please wait..."];
         // else
         // clear the userDefaults first then
         // make the user login again
     } else {
         NSLog(@"we don't have your info");
     }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // top margin for table view    
+    UIEdgeInsets inset = UIEdgeInsetsMake(self.tableView.bounds.size.height/2 - 46*3, 0, 0, 0);
+    self.tableView.contentInset = inset;
+    UIImageView *bgImageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loginbg.png"]];
+    [bgImageV setFrame:self.tableView.frame];
+    [bgImageV setAlpha:0.9];
+    self.tableView.backgroundView = bgImageV;
     
-    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+    self.emailAndPassword = [NSMutableDictionary dictionary];
+    
+    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleNone];
+    
+    // set observer for login notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogin:) name:YMUNLoginStatusNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo:) name:YMUNDidGetUserInfoNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNetworkError:) name:YMUNNetworkErrorNotificatoin object:nil];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -148,6 +158,7 @@
 - (void)didReceiveNetworkError:(NSNotification *)notification
 {
     [MMProgressHUD dismissWithError:@"Network Error. Please check your connection."];
+    [self performSegueWithIdentifier:@"generalInfoSegue" sender:self];
 }
 
 - (NSDate *)getDateFromUserInfo:(NSString *)dateString
@@ -158,21 +169,41 @@
     return result;
 }
 
+- (void)saveGeneralInfoToUserDefault:(NSDictionary *)info
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[info objectForKey:ADVISOR_COUNT] forKey:ADVISOR_COUNT];
+    [defaults setObject:[info objectForKey:DELEGATE_COUNT] forKey:DELEGATE_COUNT];
+    [defaults setObject:[info objectForKey:USER_NAME] forKey:USER_NAME];
+    [defaults setObject:[info objectForKey:HOTEL] forKey:HOTEL];
+    [defaults setObject:[info objectForKey:PAID_DEPOSIT] forKey:PAID_DEPOSIT];
+    [defaults setObject:[info objectForKey:SCHOOL_NAME] forKey:SCHOOL_NAME];
+    [defaults synchronize];
+}
+
 - (void)didGetUserInfo:(NSNotification *)notification
 {
     NSDictionary *userInfo = notification.userInfo;
-    NSLog(@"%@", userInfo);
-    for (NSDictionary *purchase in [userInfo objectForKey:PURCHASES]) {
-        [Transaction createTransactionWithName:[purchase objectForKey:NAME] transactionId:[purchase objectForKey:ID] amount:[purchase objectForKey:AMOUNT] date:[self getDateFromUserInfo:[purchase objectForKey:DATE]] type:PURCHASES];
-    }
-    for (NSDictionary *payment in [userInfo objectForKey:PAYMENTS]) {
-        [Transaction createTransactionWithName:[payment objectForKey:NAME] transactionId:[payment objectForKey:ID] amount:[payment objectForKey:AMOUNT] date:[self getDateFromUserInfo:[payment objectForKey:DATE]] type:PAYMENTS];
-    }
-    for (NSDictionary *form in [userInfo objectForKey:FORMS]) {
-        [Form createFormWithName:[form objectForKey:NAME] formID:[form objectForKey:ID] submitted:[NSNumber numberWithBool:([form objectForKey:SUBMITTED] ? YES : NO)] dueDate:[self getDateFromUserInfo:[form objectForKey:@"due"]]];
+    if ([YMAPIInterfaceCenter validateUserInfo:userInfo]) {
+        for (NSDictionary *purchase in [userInfo objectForKey:PURCHASES]) {
+            [Transaction createTransactionWithName:[purchase objectForKey:NAME] transactionId:[purchase objectForKey:ID] amount:[purchase objectForKey:AMOUNT] date:[NSString getDateFromUserInfo:[purchase objectForKey:DATE]] type:PURCHASES];
+            
+        }
+        for (NSDictionary *payment in [userInfo objectForKey:PAYMENTS]) {
+            [Transaction createTransactionWithName:[payment objectForKey:NAME] transactionId:[payment objectForKey:ID] amount:[payment objectForKey:AMOUNT] date:[NSString getDateFromUserInfo:[payment objectForKey:DATE]] type:PAYMENTS];
+        }
+        for (NSDictionary *form in [userInfo objectForKey:FORMS]) {
+            [Form createFormWithName:[form objectForKey:NAME] formID:[form objectForKey:ID] submitted:[NSNumber numberWithBool:[[form objectForKey:SUBMITTED] boolValue]] dueDate:[NSString getDateFromUserInfo:[form objectForKey:DUEDATE]]];
+            [Form modifySubmitted:[NSNumber numberWithBool:[[form objectForKey:SUBMITTED] boolValue]] forFormWithID:[form objectForKey:ID]];
+        }
+        [self saveGeneralInfoToUserDefault:notification.userInfo];
+        [MMProgressHUD dismissWithSuccess:@"Success!"];
+        [self performSegueWithIdentifier:@"generalInfoSegue" sender:self];
+    } else {
+        [MMProgressHUD dismissWithError:@"Incorrect information loaded!"];
     }
 #warning need to set up new segue
-    [self performSegueWithIdentifier:@"transactionSegue" sender:self];
+
 }   
 
 - (void)didLogin:(NSNotification *)notification
@@ -180,7 +211,6 @@
     NSLog(@"received login notification!");
     NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN]);
     NSDictionary *userInfo = notification.userInfo;
-    NSLog(@"%@", userInfo);
     if ([[userInfo objectForKey:LOGIN_STATUS] isEqualToString:@"failure"])
     {
         sleep(1.0);
@@ -189,8 +219,14 @@
         sleep(1.0);
         [MMProgressHUD dismissWithSuccess:@"Awesome!"];
         [YMAPIInterfaceCenter getUserInfo];
-
+        [MMProgressHUD showWithTitle:@"Loading Data" status:@"Please wait..."];
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -205,17 +241,18 @@
     UITextField *cellTextField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
     cellTextField.adjustsFontSizeToFitWidth = YES;
     cellTextField.textColor = [UIColor blackColor];
-
+    NSString *placeHolderText;
     if (indexPath.row == 0) {
-        cellTextField.placeholder = @"Email";
+        placeHolderText = @"Email";
         cellTextField.keyboardType = UIKeyboardTypeEmailAddress;
         cellTextField.returnKeyType = UIReturnKeyNext;
     } else {
-        cellTextField.placeholder = @"Required";
+        placeHolderText = @"Required";
         cellTextField.keyboardType = UIKeyboardTypeDefault;
         cellTextField.returnKeyType = UIReturnKeyDone;
         cellTextField.secureTextEntry = YES;
     }
+    cellTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolderText attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     cellTextField.backgroundColor = [UIColor clearColor];
     cellTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     cellTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -225,6 +262,8 @@
     cellTextField.enabled = YES;
     cellTextField.delegate = self;
     [cell addSubview:cellTextField];    
+    
+    cell.textLabel.backgroundColor =[[UIColor whiteColor] colorWithAlphaComponent:0.5];
     
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Email";
@@ -279,6 +318,11 @@
     return YES;
 }
 */
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 #pragma mark - Table view delegate
 

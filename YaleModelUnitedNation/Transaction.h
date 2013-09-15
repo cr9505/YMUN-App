@@ -14,7 +14,7 @@
 
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSNumber * amount;
-@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSDate * transactionDate;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * type;
 

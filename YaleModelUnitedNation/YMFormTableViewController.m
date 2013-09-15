@@ -1,34 +1,31 @@
 //
-//  YMTransactinTableViewController.m
+//  YMFormTableViewController.m
 //  YaleModelUnitedNation
 //
-//  Created by Hengchu Zhang on 9/14/13.
+//  Created by Hengchu Zhang on 9/15/13.
 //  Copyright (c) 2013 edu.yale.hengchu. All rights reserved.
 //
 
-#import "YMTransactinTableViewController.h"
 #import "YMFormTableViewController.h"
-#import "YMAppDelegate.h"
-#import "RNFrostedSidebar.h"
-#import "YMDateView.h"
-#import "MMProgressHUD.h"
-#import "Transaction+Create.h"
-#import "NSString+Date.h"
 #import "UIBarButtonItem+buttonWithImage.h"
+#import "Form+CreateAndModify.h"
+#import "RNFrostedSidebar.h"
+#import "YMAppDelegate.h"
+#import "YMDateView.h"
+#import "YMTransactinTableViewController.h"
 #import "YMGeneralInfoTableViewController.h"
 
-@interface YMTransactinTableViewController () <UITableViewDataSource, UITableViewDelegate, RNFrostedSidebarDelegate>
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@interface YMFormTableViewController () <RNFrostedSidebarDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) NSArray *forms;
 @property (nonatomic, weak) RNFrostedSidebar *sideBar;
-@property (nonatomic, strong) NSArray *transactions;
+
 @end
 
-@implementation YMTransactinTableViewController
+@implementation YMFormTableViewController
 
+@synthesize forms = _forms;
 @synthesize sideBar = _sideBar;
-@synthesize transactions = _transactions;
-@synthesize interfaceCenter = _interfaceCenter;
-@synthesize tableView = _tableView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -39,16 +36,12 @@
     return self;
 }
 
-- (void)setTransactions:(NSArray *)transactions
+- (void)setForms:(NSArray *)forms
 {
-    if (_transactions != transactions) {
-        _transactions = transactions;
+    if (_forms != forms) {
+        _forms = forms;
         [self.tableView reloadData];
     }
-}
-
-- (void)showMenu:(id)sender {
-    [self.sideBar show];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -57,83 +50,52 @@
     [self.sideBar dismiss];
 }
 
-- (void)setupNavBar
+- (void)showMenu
 {
-    // hide the back button
-    [self.navigationItem setHidesBackButton:YES animated:NO];
-    // set up sideBar Btn
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"menuBtn.png"] target:self action:@selector(showMenu:)];
-    
+    [self.sideBar show];
 }
 
-- (void)setupSideBar
+- (void)setupMenuBtn
 {
-    // get the side bar
-    self.sideBar = [(YMAppDelegate *)[UIApplication sharedApplication].delegate sharedSideBar];
-    self.sideBar.delegate = self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self setupSideBar];
-}
-
-- (void)didGetUserInfo:(NSNotification *)notification
-{
-    NSDictionary *userInfo = notification.userInfo;
-    if (![YMAPIInterfaceCenter validateUserInfo:userInfo]) {
-        [MMProgressHUD dismissWithError:@"Incorrect information loaded!"];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        return;
-    } else {
-        [MMProgressHUD dismissWithSuccess:@"Loaded!"];
-    }
-    NSArray *transac = [[userInfo objectForKey:PAYMENTS] arrayByAddingObjectsFromArray:[userInfo objectForKey:PURCHASES]];
-    transac = [transac sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSDate *date1 = [NSString getDateFromUserInfo:[obj1 objectForKey:DATE]];
-        NSDate *date2 = [NSString getDateFromUserInfo:[obj2 objectForKey:DATE]];
-        if ([date1 compare:date2]) {
-            return NSOrderedAscending;
-        } else {
-            return NSOrderedDescending;
-        }
-    }];
-    [self setTransactions:transac];
-}
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    // setup navbar
-    [self setupNavBar];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"menuBtn.png"] target:self action:@selector(showMenu)];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"p6.png"]];
-    
-    // setup sideBar
-    [self setupSideBar];
-    // sign up for notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo:) name:YMUNDidGetUserInfoNotification object:nil];
-    // get all transactions
-    NSArray *transactions = [Transaction MR_findAll];
-    self.transactions = [transactions sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSDate *date1 = ((Transaction *)obj1).transactionDate;
-        NSDate *date2 = ((Transaction *)obj2).transactionDate;
+    NSArray *forms = [Form MR_findAll];
+    forms = [forms sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSDate *date1 = [(Form *)obj1 dueDate];
+        NSDate *date2 = [(Form *)obj2 dueDate];
         if ([date1 compare:date2] == NSOrderedAscending) {
             return NSOrderedDescending;
         } else {
             return NSOrderedAscending;
         }
     }];
-    
+    forms = [forms sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSNumber *sub1 = [(Form *)obj1 submitted];
+        NSNumber *sub2 = [(Form *)obj2 submitted];
+        if ([sub1 compare:sub2] == NSOrderedAscending) {
+            return NSOrderedAscending;
+        } else {
+            return NSOrderedDescending;
+        }
+    }];
+    self.forms = forms;
+    // get sideBar
+    self.sideBar = ((YMAppDelegate *)[UIApplication sharedApplication].delegate).sharedSideBar;
+    self.sideBar.delegate = self;
+    // setup dataSource and delegate for tableView
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"p6.png"]];
+    // setup the menuBtn
+    [self setupMenuBtn];
+    // setup title
+    self.navigationItem.title = @"Forms";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -158,7 +120,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.transactions count];
+    return [self.forms count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -173,32 +135,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"transactionCell";
+    static NSString *CellIdentifier = @"formCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
+    
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
     cell.indentationWidth = 90.0;
-    Transaction *transaction = [self.transactions objectAtIndex:indexPath.row];
-    YMDateView *dateView = [[YMDateView alloc] initWithFrame:CGRectMake(20, 12, 60, 60) andDate:transaction.transactionDate];
+    
+    Form *f = [self.forms objectAtIndex:indexPath.row];
+    YMDateView *dateView = [[YMDateView alloc]initWithFrame:CGRectMake(20, 12, 60, 60) andDate:f.dueDate];
     [cell addSubview:dateView];
-    cell.textLabel.text = transaction.name;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0];
-    if ([transaction.type isEqualToString:PAYMENTS]) {
+    cell.textLabel.text = f.name;
+    if ([f.submitted boolValue]) {
         [cell.detailTextLabel setTextColor:[UIColor colorWithRed:0/255.0 green:166/255.0 blue:83/255.0 alpha:1.0]];
     } else {
         [cell.detailTextLabel setTextColor:[UIColor colorWithRed:237/255.0 green:29/255.0 blue:37/255.0 alpha:1.0]];
     }
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%3.2f", [transaction.amount doubleValue]];
+    cell.detailTextLabel.text = ([f.submitted boolValue]) ? @"Submitted" : @"Not Submitted";
     return cell;
-}
-
-- (NSString *)detailTextLabelForFinancialRecords:(NSArray *)records cellAtIndexPath:(NSIndexPath *)indexPath
-{
-    return  [NSString stringWithFormat:@"$%3.2f", [[[records objectAtIndex:indexPath.row] objectForKey:AMOUNT] doubleValue]];
 }
 
 /*
@@ -253,12 +211,7 @@
      */
 }
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma RNFrostedSideBarDelegateMethods
+#pragma RNFrostedSideBar
 - (void)sidebar:(RNFrostedSidebar *)sidebar didTapItemAtIndex:(NSUInteger)index
 {
     if (index == 0) {
@@ -272,16 +225,16 @@
         [self.navigationController pushViewController:generalInfoTableVC animated:YES];
     } else if (index == 1) {
         // write code to push forms page
+        [self.sideBar dismiss];
+    } else if (index == 2) {
         NSArray *vcS = [self.navigationController viewControllers];
-        if ([[vcS objectAtIndex:[vcS count]-2] isKindOfClass:[YMFormTableViewController class]]) {
+        if ([[vcS objectAtIndex:[vcS count]-2] isKindOfClass:[YMTransactinTableViewController class]]) {
             [self.navigationController popViewControllerAnimated:YES];
             return;
         }
-        YMFormTableViewController *formTableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"formTableVC"];
-        [self.navigationController pushViewController:formTableVC animated:YES];
-        
-    } else if (index == 2) {
-        [self.sideBar dismiss];
+        YMTransactinTableViewController *transacVC = [self.storyboard instantiateViewControllerWithIdentifier:@"transacVC"];
+        [self.navigationController pushViewController:transacVC animated:YES];
     }
 }
+
 @end

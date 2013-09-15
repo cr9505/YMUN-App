@@ -9,11 +9,11 @@
          condition = "if (!dateString)"
          continueAfterRunningActions = "No"
          filePath = "YaleModelUnitedNation/YMLoginViewController.m"
-         timestampString = "400922810.855553"
+         timestampString = "400966808.602013"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "157"
-         endingLineNumber = "157"
+         startingLineNumber = "168"
+         endingLineNumber = "168"
          landmarkName = "-getDateFromUserInfo:"
          landmarkType = "5">
       </FileBreakpoint>

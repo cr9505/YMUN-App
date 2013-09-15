@@ -12,6 +12,7 @@
 #import "MMProgressHUD.h"
 #import "YMDateView.h"
 #import "YMMapTableViewCell.h"
+#import "NSString+Date.h"
 
 #import <MapKit/MapKit.h>
 
@@ -245,13 +246,6 @@
     return  [NSString stringWithFormat:@"$%3.2f", [[[records objectAtIndex:indexPath.row] objectForKey:AMOUNT] doubleValue]];
 }
 
-- (NSDate *)getDateFromUserInfo:(NSString *)dateString
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    return [dateFormatter dateFromString:dateString];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"cellIdentifier";
@@ -265,10 +259,10 @@
         cell.indentationLevel = 7;
         YMDateView *placeholder = nil;
         if (tableView == self.leftTableView) {
-            placeholder =[[YMDateView alloc] initWithFrame:CGRectMake(20, 12, 60, 60) andDate: [self getDateFromUserInfo:[[self.purchases objectAtIndex:indexPath.row] objectForKey:DATE]]];
+            placeholder =[[YMDateView alloc] initWithFrame:CGRectMake(20, 12, 60, 60) andDate: [NSString getDateFromUserInfo:[[self.purchases objectAtIndex:indexPath.row] objectForKey:DATE]]];
         }
         if (tableView == self.rightTableView) {
-            placeholder =[[YMDateView alloc] initWithFrame:CGRectMake(20, 12, 60, 60) andDate: [self getDateFromUserInfo:[[self.payments objectAtIndex:indexPath.row] objectForKey:DATE]]];
+            placeholder =[[YMDateView alloc] initWithFrame:CGRectMake(20, 12, 60, 60) andDate: [NSString getDateFromUserInfo:[[self.payments objectAtIndex:indexPath.row] objectForKey:DATE]]];
         }
         [cell addSubview:placeholder];
     }

@@ -48,11 +48,18 @@
 		9B8067ED17E5813500DE4212 /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8067D017E5813500DE4212 /* MagicalRecord+ShorthandSupport.m */; };
 		9B8067EE17E5813500DE4212 /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8067D217E5813500DE4212 /* MagicalRecord.m */; };
 		9B8067F117E5824D00DE4212 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B8067EF17E5824D00DE4212 /* DataModel.xcdatamodeld */; };
-		9B8067F417E582E700DE4212 /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8067F317E582E700DE4212 /* Form.m */; };
 		9B8067FB17E5834B00DE4212 /* Transaction+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8067FA17E5834B00DE4212 /* Transaction+Create.m */; };
 		9B8067FE17E5859A00DE4212 /* Form+CreateAndModify.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8067FD17E5859900DE4212 /* Form+CreateAndModify.m */; };
-		9B80680117E5890900DE4212 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80680017E5890900DE4212 /* Transaction.m */; };
 		9B80680317E5918E00DE4212 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B80680217E5918D00DE4212 /* CoreData.framework */; };
+		9B80680617E5F80200DE4212 /* NSString+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80680517E5F80100DE4212 /* NSString+Date.m */; };
+		9B80680F17E607CF00DE4212 /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80680E17E607CF00DE4212 /* Form.m */; };
+		9B80681217E607CF00DE4212 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80681117E607CF00DE4212 /* Transaction.m */; };
+		9B80681517E60A7F00DE4212 /* YMFormTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80681417E60A7F00DE4212 /* YMFormTableViewController.m */; };
+		9B80681817E6240A00DE4212 /* form.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B80681617E6240A00DE4212 /* form.png */; };
+		9B80681917E6240A00DE4212 /* form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B80681717E6240A00DE4212 /* form@2x.png */; };
+		9B80681C17E6284A00DE4212 /* UIBarButtonItem+buttonWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80681B17E6284A00DE4212 /* UIBarButtonItem+buttonWithImage.m */; };
+		9B80681F17E6343400DE4212 /* YMGeneralInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80681E17E6343400DE4212 /* YMGeneralInfoTableViewController.m */; };
+		9B80682117E6423900DE4212 /* loginbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B80682017E6423900DE4212 /* loginbg.png */; };
 		9B84777B17A1EC88008BBFC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B84777A17A1EC88008BBFC6 /* UIKit.framework */; };
 		9B84777D17A1EC88008BBFC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B84777C17A1EC88008BBFC6 /* Foundation.framework */; };
 		9B84777F17A1EC88008BBFC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B84777E17A1EC88008BBFC6 /* CoreGraphics.framework */; };
@@ -204,15 +211,26 @@
 		9B8067D317E5813500DE4212 /* MagicalRecordShorthand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordShorthand.h; sourceTree = "<group>"; };
 		9B8067D417E5813500DE4212 /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
 		9B8067F017E5824D00DE4212 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		9B8067F217E582E700DE4212 /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Form.h; sourceTree = "<group>"; };
-		9B8067F317E582E700DE4212 /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Form.m; sourceTree = "<group>"; };
 		9B8067F917E5834B00DE4212 /* Transaction+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Transaction+Create.h"; sourceTree = "<group>"; };
 		9B8067FA17E5834B00DE4212 /* Transaction+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Transaction+Create.m"; sourceTree = "<group>"; };
 		9B8067FC17E5859900DE4212 /* Form+CreateAndModify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Form+CreateAndModify.h"; sourceTree = "<group>"; };
 		9B8067FD17E5859900DE4212 /* Form+CreateAndModify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Form+CreateAndModify.m"; sourceTree = "<group>"; };
-		9B8067FF17E5890900DE4212 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
-		9B80680017E5890900DE4212 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 		9B80680217E5918D00DE4212 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9B80680417E5F80100DE4212 /* NSString+Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Date.h"; sourceTree = "<group>"; };
+		9B80680517E5F80100DE4212 /* NSString+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Date.m"; sourceTree = "<group>"; };
+		9B80680D17E607CF00DE4212 /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Form.h; sourceTree = "<group>"; };
+		9B80680E17E607CF00DE4212 /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Form.m; sourceTree = "<group>"; };
+		9B80681017E607CF00DE4212 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		9B80681117E607CF00DE4212 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
+		9B80681317E60A7F00DE4212 /* YMFormTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMFormTableViewController.h; sourceTree = "<group>"; };
+		9B80681417E60A7F00DE4212 /* YMFormTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMFormTableViewController.m; sourceTree = "<group>"; };
+		9B80681617E6240A00DE4212 /* form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form.png; sourceTree = "<group>"; };
+		9B80681717E6240A00DE4212 /* form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "form@2x.png"; sourceTree = "<group>"; };
+		9B80681A17E6284A00DE4212 /* UIBarButtonItem+buttonWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+buttonWithImage.h"; sourceTree = "<group>"; };
+		9B80681B17E6284A00DE4212 /* UIBarButtonItem+buttonWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+buttonWithImage.m"; sourceTree = "<group>"; };
+		9B80681D17E6343400DE4212 /* YMGeneralInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMGeneralInfoTableViewController.h; sourceTree = "<group>"; };
+		9B80681E17E6343400DE4212 /* YMGeneralInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMGeneralInfoTableViewController.m; sourceTree = "<group>"; };
+		9B80682017E6423900DE4212 /* loginbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginbg.png; sourceTree = "<group>"; };
 		9B84777717A1EC88008BBFC6 /* YaleModelUnitedNation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaleModelUnitedNation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B84777A17A1EC88008BBFC6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9B84777C17A1EC88008BBFC6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -477,10 +495,10 @@
 		9B8067F817E582ED00DE4212 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9B8067FF17E5890900DE4212 /* Transaction.h */,
-				9B80680017E5890900DE4212 /* Transaction.m */,
-				9B8067F217E582E700DE4212 /* Form.h */,
-				9B8067F317E582E700DE4212 /* Form.m */,
+				9B80681017E607CF00DE4212 /* Transaction.h */,
+				9B80681117E607CF00DE4212 /* Transaction.m */,
+				9B80680D17E607CF00DE4212 /* Form.h */,
+				9B80680E17E607CF00DE4212 /* Form.m */,
 				9B8067F917E5834B00DE4212 /* Transaction+Create.h */,
 				9B8067FA17E5834B00DE4212 /* Transaction+Create.m */,
 				9B8067FC17E5859900DE4212 /* Form+CreateAndModify.h */,
@@ -550,6 +568,8 @@
 		9B84778117A1EC88008BBFC6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9B80680417E5F80100DE4212 /* NSString+Date.h */,
+				9B80680517E5F80100DE4212 /* NSString+Date.m */,
 				9B8067EF17E5824D00DE4212 /* DataModel.xcdatamodeld */,
 				9BC8B29917AABDDB00F6D3DF /* images */,
 				9B84778217A1EC88008BBFC6 /* YaleModelUnitedNation-Info.plist */,
@@ -602,6 +622,7 @@
 		9BC8B29917AABDDB00F6D3DF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9B80682017E6423900DE4212 /* loginbg.png */,
 				9B06DDD417E5366F00BD6DC6 /* navBar.png */,
 				9B06DDD517E5366F00BD6DC6 /* navBar@2x.png */,
 				9BEF29A617E395E6006C88D6 /* glyph */,
@@ -649,12 +670,16 @@
 		9BDAEF8317A849490049C707 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9B80681317E60A7F00DE4212 /* YMFormTableViewController.h */,
+				9B80681417E60A7F00DE4212 /* YMFormTableViewController.m */,
 				9B06DDCE17E513A400BD6DC6 /* YMTransactinTableViewController.h */,
 				9B06DDCF17E513A400BD6DC6 /* YMTransactinTableViewController.m */,
 				9BDAEF8017A849390049C707 /* YMAfterLoginInitialViewController.h */,
 				9BDAEF8117A849390049C707 /* YMAfterLoginInitialViewController.m */,
 				9B84779D17A1F031008BBFC6 /* YMLoginViewController.h */,
 				9B84779E17A1F031008BBFC6 /* YMLoginViewController.m */,
+				9B80681D17E6343400DE4212 /* YMGeneralInfoTableViewController.h */,
+				9B80681E17E6343400DE4212 /* YMGeneralInfoTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -662,6 +687,8 @@
 		9BDAEFB117A8DA040049C707 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9B80681A17E6284A00DE4212 /* UIBarButtonItem+buttonWithImage.h */,
+				9B80681B17E6284A00DE4212 /* UIBarButtonItem+buttonWithImage.m */,
 				9B06DDD117E5167400BD6DC6 /* YMNavBar.h */,
 				9B06DDD217E5167400BD6DC6 /* YMNavBar.m */,
 				9BDAEFBF17A993E20049C707 /* YMMapTableViewCell.h */,
@@ -712,6 +739,8 @@
 		9BEF29A617E395E6006C88D6 /* glyph */ = {
 			isa = PBXGroup;
 			children = (
+				9B80681617E6240A00DE4212 /* form.png */,
+				9B80681717E6240A00DE4212 /* form@2x.png */,
 				9B06DDE617E53D4100BD6DC6 /* menuBtn.png */,
 				9B06DDE717E53D4100BD6DC6 /* menuBtn@2x.png */,
 				9BEF29A217E395B6006C88D6 /* purchases.png */,
@@ -834,6 +863,9 @@
 				9B06DDD717E5366F00BD6DC6 /* navBar@2x.png in Resources */,
 				9B06DDE817E53D4100BD6DC6 /* menuBtn.png in Resources */,
 				9B06DDE917E53D4100BD6DC6 /* menuBtn@2x.png in Resources */,
+				9B80681817E6240A00DE4212 /* form.png in Resources */,
+				9B80681917E6240A00DE4212 /* form@2x.png in Resources */,
+				9B80682117E6423900DE4212 /* loginbg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -914,10 +946,14 @@
 				9B8067ED17E5813500DE4212 /* MagicalRecord+ShorthandSupport.m in Sources */,
 				9B8067EE17E5813500DE4212 /* MagicalRecord.m in Sources */,
 				9B8067F117E5824D00DE4212 /* DataModel.xcdatamodeld in Sources */,
-				9B8067F417E582E700DE4212 /* Form.m in Sources */,
 				9B8067FB17E5834B00DE4212 /* Transaction+Create.m in Sources */,
 				9B8067FE17E5859A00DE4212 /* Form+CreateAndModify.m in Sources */,
-				9B80680117E5890900DE4212 /* Transaction.m in Sources */,
+				9B80680617E5F80200DE4212 /* NSString+Date.m in Sources */,
+				9B80680F17E607CF00DE4212 /* Form.m in Sources */,
+				9B80681217E607CF00DE4212 /* Transaction.m in Sources */,
+				9B80681517E60A7F00DE4212 /* YMFormTableViewController.m in Sources */,
+				9B80681C17E6284A00DE4212 /* UIBarButtonItem+buttonWithImage.m in Sources */,
+				9B80681F17E6343400DE4212 /* YMGeneralInfoTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1002,10 +1038,14 @@
 		9B84779B17A1EC88008BBFC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hengchu Zhang (H9KJL79Q6B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengchu Zhang (H9KJL79Q6B)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YaleModelUnitedNation/YaleModelUnitedNation-Prefix.pch";
 				INFOPLIST_FILE = "YaleModelUnitedNation/YaleModelUnitedNation-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "260B4CFF-333F-43B9-BF6E-8BE95B7EFEFB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "260B4CFF-333F-43B9-BF6E-8BE95B7EFEFB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1013,10 +1053,14 @@
 		9B84779C17A1EC88008BBFC6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hengchu Zhang (H9KJL79Q6B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengchu Zhang (H9KJL79Q6B)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YaleModelUnitedNation/YaleModelUnitedNation-Prefix.pch";
 				INFOPLIST_FILE = "YaleModelUnitedNation/YaleModelUnitedNation-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "260B4CFF-333F-43B9-BF6E-8BE95B7EFEFB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "260B4CFF-333F-43B9-BF6E-8BE95B7EFEFB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

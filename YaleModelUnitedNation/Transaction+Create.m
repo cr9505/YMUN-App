@@ -10,7 +10,7 @@
 
 @implementation Transaction (Create)
 
-+ (void)createTransactionWithName:(NSString *)name transactionId:(NSNumber *)transactionID amount:(NSNumber *)amount date:(NSDate *)date type:(NSString *)type
++ (Transaction *)createTransactionWithName:(NSString *)name transactionId:(NSNumber *)transactionID amount:(NSNumber *)amount date:(NSDate *)date type:(NSString *)type
 {
     NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
     
@@ -23,16 +23,17 @@
         transaction.id = transactionID;
         transaction.amount = amount;
         transaction.type = type;
+        transaction.transactionDate = date;
         
         NSLog(@"%@", transaction);
         
         [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
             if (!success) NSLog(@"%@", error.localizedDescription);
         }];
+        
+        return transaction;
     }
-    
-
-
+    return transactionFound;
 }
 
 @end

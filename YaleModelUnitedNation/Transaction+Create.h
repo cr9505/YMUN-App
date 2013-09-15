@@ -10,6 +10,6 @@
 
 @interface Transaction (Create)
 
-+ (void)createTransactionWithName:(NSString *)name transactionId:(NSNumber *)transactionID amount:(NSNumber *)amount date:(NSDate *)date type:(NSString *)type;
++ (Transaction *)createTransactionWithName:(NSString *)name transactionId:(NSNumber *)transactionID amount:(NSNumber *)amount date:(NSDate *)date type:(NSString *)type;
 
 @end

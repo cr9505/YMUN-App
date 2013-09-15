@@ -13,7 +13,7 @@
 
 @dynamic id;
 @dynamic amount;
-@dynamic date;
+@dynamic transactionDate;
 @dynamic name;
 @dynamic type;
 
