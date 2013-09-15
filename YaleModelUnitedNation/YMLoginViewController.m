@@ -58,8 +58,9 @@
         NSLog(@"we already got your info, no need to login");
         // test if API data is valid
         // if yes, go to the next page directly
-        [YMAPIInterfaceCenter getUserInfo];
         [MMProgressHUD showWithTitle:@"Loading Data" status:@"Please wait..."];
+        [YMAPIInterfaceCenter getUserInfo];
+
         // else
         // clear the userDefaults first then
         // make the user login again
@@ -157,8 +158,12 @@
 
 - (void)didReceiveNetworkError:(NSNotification *)notification
 {
+    
+    if ([YMAPIInterfaceCenter hasUserAccessToken]) {
+        [self performSegueWithIdentifier:@"generalInfoSegue" sender:self];
+    }
     [MMProgressHUD dismissWithError:@"Network Error. Please check your connection."];
-    [self performSegueWithIdentifier:@"generalInfoSegue" sender:self];
+
 }
 
 - (NSDate *)getDateFromUserInfo:(NSString *)dateString
@@ -197,8 +202,8 @@
             [Form modifySubmitted:[NSNumber numberWithBool:[[form objectForKey:SUBMITTED] boolValue]] forFormWithID:[form objectForKey:ID]];
         }
         [self saveGeneralInfoToUserDefault:notification.userInfo];
-        [MMProgressHUD dismissWithSuccess:@"Success!"];
         [self performSegueWithIdentifier:@"generalInfoSegue" sender:self];
+        [MMProgressHUD dismissWithSuccess:@"Success!"];
     } else {
         [MMProgressHUD dismissWithError:@"Incorrect information loaded!"];
     }
@@ -218,8 +223,8 @@
     } else {
         sleep(1.0);
         [MMProgressHUD dismissWithSuccess:@"Awesome!"];
-        [YMAPIInterfaceCenter getUserInfo];
         [MMProgressHUD showWithTitle:@"Loading Data" status:@"Please wait..."];
+        [YMAPIInterfaceCenter getUserInfo];
     }
 }
 
