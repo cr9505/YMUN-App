@@ -13,6 +13,9 @@
 #import "YMAfterLoginInitialViewController.h"
 #import "RNFrostedSidebar.h"
 #import "YMAppDelegate.h"
+#import "YMTransactinTableViewController.h"
+#import "Transaction+Create.h"
+#import "Form+CreateAndModify.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface YMLoginViewController () <UITextFieldDelegate, RNFrostedSidebarDelegate>
@@ -40,6 +43,10 @@
         YMAfterLoginInitialViewController *destinationVC = (YMAfterLoginInitialViewController *)segue.destinationViewController;
         destinationVC.interfaceCenter = self.interfaceCenter;
     }
+    if ([segue.identifier isEqualToString:@"transactionSegue"]) {
+        YMTransactinTableViewController *destinationVC = (YMTransactinTableViewController *)segue.destinationViewController;
+        destinationVC.interfaceCenter = self.interfaceCenter;
+    }
 }
 
 - (void)viewDidLoad
@@ -53,6 +60,7 @@
     
     // set observer for login notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogin:) name:YMUNLoginStatusNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo:) name:YMUNDidGetUserInfoNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNetworkError:) name:YMUNNetworkErrorNotificatoin object:nil];
     
     // check whether we already have user info or not
@@ -60,7 +68,7 @@
         NSLog(@"we already got your info, no need to login");
         // test if API data is valid
         // if yes, go to the next page directly
-        [self performSegueWithIdentifier:@"transactionSegue" sender:self];
+        [YMAPIInterfaceCenter getUserInfo];
         // else
         // clear the userDefaults first then
         // make the user login again
@@ -142,6 +150,31 @@
     [MMProgressHUD dismissWithError:@"Network Error. Please check your connection."];
 }
 
+- (NSDate *)getDateFromUserInfo:(NSString *)dateString
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *result = [dateFormatter dateFromString:dateString];
+    return result;
+}
+
+- (void)didGetUserInfo:(NSNotification *)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    NSLog(@"%@", userInfo);
+    for (NSDictionary *purchase in [userInfo objectForKey:PURCHASES]) {
+        [Transaction createTransactionWithName:[purchase objectForKey:NAME] transactionId:[purchase objectForKey:ID] amount:[purchase objectForKey:AMOUNT] date:[self getDateFromUserInfo:[purchase objectForKey:DATE]] type:PURCHASES];
+    }
+    for (NSDictionary *payment in [userInfo objectForKey:PAYMENTS]) {
+        [Transaction createTransactionWithName:[payment objectForKey:NAME] transactionId:[payment objectForKey:ID] amount:[payment objectForKey:AMOUNT] date:[self getDateFromUserInfo:[payment objectForKey:DATE]] type:PAYMENTS];
+    }
+    for (NSDictionary *form in [userInfo objectForKey:FORMS]) {
+        [Form createFormWithName:[form objectForKey:NAME] formID:[form objectForKey:ID] submitted:[NSNumber numberWithBool:([form objectForKey:SUBMITTED] ? YES : NO)] dueDate:[self getDateFromUserInfo:[form objectForKey:@"due"]]];
+    }
+#warning need to set up new segue
+    [self performSegueWithIdentifier:@"transactionSegue" sender:self];
+}   
+
 - (void)didLogin:(NSNotification *)notification
 {
     NSLog(@"received login notification!");
@@ -155,9 +188,8 @@
     } else {
         sleep(1.0);
         [MMProgressHUD dismissWithSuccess:@"Awesome!"];
-#warning need to set up new segue
-//        [self performSegueWithIdentifier:@"didLoginSegue" sender:self];
-        [self performSegueWithIdentifier:@"transactionSegue" sender:self];
+        [YMAPIInterfaceCenter getUserInfo];
+
     }
 }
 

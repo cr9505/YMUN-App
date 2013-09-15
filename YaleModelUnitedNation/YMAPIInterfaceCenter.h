@@ -24,6 +24,9 @@
 #define NAME        @"name"
 #define SCHOOL_NAME     @"school_name"
 #define SUBMITTED_FORM  @"submitted_forms"
+#define ID          @"id"
+#define FORMS       @"forms"
+#define SUBMITTED   @"submitted"
 
 #define YMUNLoginStatusNotification @"YMUNLoginStatusNotification"
 #define YMUNDidGetUserInfoNotification @"YMUNDidGetUserInfoNotification"

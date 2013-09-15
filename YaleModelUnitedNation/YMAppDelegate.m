@@ -16,8 +16,8 @@
 - (RNFrostedSidebar *)sharedSideBar
 {
     if (!_sharedSideBar) {
-        NSArray *images = [NSArray arrayWithObjects:[UIImage imageNamed:@"info.png"], [UIImage imageNamed:@"purchases.png"], [UIImage imageNamed:@"payments"] ,nil];
-        _sharedSideBar = [[RNFrostedSidebar alloc] initWithImages:images selectedIndices:[[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, [images count])] borderColors:[NSArray arrayWithObjects:[UIColor whiteColor], [UIColor whiteColor], [UIColor whiteColor], nil]];
+        NSArray *images = [NSArray arrayWithObjects:[UIImage imageNamed:@"info.png"], [UIImage imageNamed:@"purchases.png"], nil];
+        _sharedSideBar = [[RNFrostedSidebar alloc] initWithImages:images selectedIndices:[[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, [images count])] borderColors:[NSArray arrayWithObjects:[UIColor whiteColor], [UIColor whiteColor], nil]];
         _sharedSideBar.width = 75;
         _sharedSideBar.itemSize = CGSizeMake(50, 50);
     }
@@ -27,10 +27,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [MagicalRecord setupCoreDataStack];
     [self.window makeKeyAndVisible];
 #if TARGET_IPHONE_SIMULATOR
     [[DCIntrospect sharedIntrospector] start];
 #endif
+
     return YES;
 }
 							
@@ -59,6 +61,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [MagicalRecord cleanUp];
 }
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YMAPIInterfaceCenter.h"
 
 @interface YMTransactinTableViewController : UITableViewController
-
+@property (nonatomic, strong) YMAPIInterfaceCenter *interfaceCenter;
 @end
