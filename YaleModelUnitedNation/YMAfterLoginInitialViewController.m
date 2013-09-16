@@ -9,7 +9,6 @@
 #import "YMAfterLoginInitialViewController.h"
 #import "PaperFoldView.h"
 #import "YMAPIInterfaceCenter.h"
-#import "MMProgressHUD.h"
 #import "YMDateView.h"
 #import "YMMapTableViewCell.h"
 #import "NSString+Date.h"
@@ -91,11 +90,11 @@
     [self.topTableView reloadData];
     [self calculateBalance];
     if (![YMAPIInterfaceCenter validateUserInfo:userInfo]) {
-        [MMProgressHUD dismissWithError:@"Incorrect information loaded!"];
+//        [MMProgressHUD dismissWithError:@"Incorrect information loaded!"];
         [self.navigationController popToRootViewControllerAnimated:YES];
         NSLog(@"%@", self.navigationController.viewControllers);
     } else {
-        [MMProgressHUD dismissWithSuccess:@"Loaded!"];
+//        [MMProgressHUD dismissWithSuccess:@"Loaded!"];
     }
 }
 
@@ -116,15 +115,15 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [MMProgressHUD showWithTitle:@"Loading" status:@"Please be patient" cancelBlock:^{
-        NSLog(@"User canceled ProgressHUD");
-    }];
+//    [MMProgressHUD showWithTitle:@"Loading" status:@"Please be patient" cancelBlock:^{
+//        NSLog(@"User canceled ProgressHUD");
+//    }];
     [YMAPIInterfaceCenter getUserInfo];
 }
 
 - (void)didReceiveNetworkError:(NSNotification *)notification
 {
-    [MMProgressHUD dismissWithError:@"Network Error. Please check your connection."];
+//    [MMProgressHUD dismissWithError:@"Network Error. Please check your connection."];
 }
 
 - (void)viewDidLoad

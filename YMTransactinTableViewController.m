@@ -11,11 +11,11 @@
 #import "YMAppDelegate.h"
 #import "RNFrostedSidebar.h"
 #import "YMDateView.h"
-#import "MMProgressHUD.h"
 #import "Transaction+Create.h"
 #import "NSString+Date.h"
 #import "UIBarButtonItem+buttonWithImage.h"
 #import "YMGeneralInfoTableViewController.h"
+#import "MBProgressHUD.h"
 
 @interface YMTransactinTableViewController () <UITableViewDataSource, UITableViewDelegate, RNFrostedSidebarDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -83,11 +83,13 @@
 {
     NSDictionary *userInfo = notification.userInfo;
     if (![YMAPIInterfaceCenter validateUserInfo:userInfo]) {
-        [MMProgressHUD dismissWithError:@"Incorrect information loaded!"];
+//        [MMProgressHUD dismissWithError:@"Incorrect information loaded!"];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.navigationController popToRootViewControllerAnimated:YES];
         return;
     } else {
-        [MMProgressHUD dismissWithSuccess:@"Loaded!"];
+//        [MMProgressHUD dismissWithSuccess:@"Loaded!"];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }
     NSArray *transac = [[userInfo objectForKey:PAYMENTS] arrayByAddingObjectsFromArray:[userInfo objectForKey:PURCHASES]];
     transac = [transac sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {

@@ -8,8 +8,7 @@
 
 #import "YMLoginViewController.h"
 #import "YMAPIInterfaceCenter.h"
-#import "MMProgressHUD.h"
-#import "MMProgressHUDOverlayView.h"
+#import "MBProgressHUD.h"
 #import "YMAfterLoginInitialViewController.h"
 #import "RNFrostedSidebar.h"
 #import "YMAppDelegate.h"
@@ -23,6 +22,7 @@
 
 @property (nonatomic, strong) NSMutableDictionary *emailAndPassword;
 @property (nonatomic, strong) YMAPIInterfaceCenter *interfaceCenter;
+@property (nonatomic, strong) MBProgressHUD *hud;
 
 @end
 
@@ -58,7 +58,8 @@
         NSLog(@"we already got your info, no need to login");
         // test if API data is valid
         // if yes, go to the next page directly
-        [MMProgressHUD showWithTitle:@"Loading Data" status:@"Please wait..."];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = @"Loading Data";
         [YMAPIInterfaceCenter getUserInfo];
 
         // else
@@ -81,9 +82,7 @@
     self.tableView.backgroundView = bgImageV;
     
     self.emailAndPassword = [NSMutableDictionary dictionary];
-    
-    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleNone];
-    
+        
     // set observer for login notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogin:) name:YMUNLoginStatusNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo:) name:YMUNDidGetUserInfoNotification object:nil];
@@ -118,7 +117,8 @@
 
 - (void)login
 {
-    [MMProgressHUD showWithTitle:@"Hi there!" status:@"Logging you in!"];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.labelText = @"Hi there!";
     self.interfaceCenter = [[YMAPIInterfaceCenter alloc] initWithEmail:[self.emailAndPassword objectForKey:@"email"] Password:[self.emailAndPassword objectForKey:@"password"]];
 }
 
@@ -162,8 +162,8 @@
     if ([YMAPIInterfaceCenter hasUserAccessToken]) {
         [self performSegueWithIdentifier:@"generalInfoSegue" sender:self];
     }
-    [MMProgressHUD dismissWithError:@"Network Error. Please check your connection."];
-
+    self.hud.labelText = @"Network Error. Please check your connection.";
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (NSDate *)getDateFromUserInfo:(NSString *)dateString
@@ -203,9 +203,10 @@
         }
         [self saveGeneralInfoToUserDefault:notification.userInfo];
         [self performSegueWithIdentifier:@"generalInfoSegue" sender:self];
-        [MMProgressHUD dismissWithSuccess:@"Success!"];
+        self.hud.labelText = @"Success";
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } else {
-        [MMProgressHUD dismissWithError:@"Incorrect information loaded!"];
+        self.hud.labelText = @"Incorrect information loaded!";
     }
 #warning need to set up new segue
 
@@ -219,11 +220,13 @@
     if ([[userInfo objectForKey:LOGIN_STATUS] isEqualToString:@"failure"])
     {
         sleep(1.0);
-        [MMProgressHUD dismissWithError:@"Password/email error :(" title:@"Try again?"];
+        self.hud.labelText = @"Password/email error :(";
     } else {
         sleep(1.0);
-        [MMProgressHUD dismissWithSuccess:@"Awesome!"];
-        [MMProgressHUD showWithTitle:@"Loading Data" status:@"Please wait..."];
+        self.hud.labelText = @"Awesome";
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.labelText = @"Loading Data";
         [YMAPIInterfaceCenter getUserInfo];
     }
 }
