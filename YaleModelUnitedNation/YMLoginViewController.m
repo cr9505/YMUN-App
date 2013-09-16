@@ -58,8 +58,8 @@
         NSLog(@"we already got your info, no need to login");
         // test if API data is valid
         // if yes, go to the next page directly
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.labelText = @"Loading Data";
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.labelText = @"Loading Data";
         [YMAPIInterfaceCenter getUserInfo];
 
         // else
@@ -152,6 +152,7 @@
     } else {
         [self.emailAndPassword setObject:textField.text forKey:@"password"];
         [self login];
+        [textField resignFirstResponder];
     }
     return YES;
 }
@@ -206,11 +207,15 @@
         self.hud.labelText = @"Success";
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     } else {
-        self.hud.labelText = @"Incorrect information loaded!";
+        self.hud.labelText = @"Pleas re-authenticate";
+        [self.hud hide:YES afterDelay:0.5];
     }
-#warning need to set up new segue
-
 }   
+
+- (void)hudTapped:(UIGestureRecognizer *)tap
+{
+    [self.hud hide:YES];
+}
 
 - (void)didLogin:(NSNotification *)notification
 {
@@ -220,7 +225,8 @@
     if ([[userInfo objectForKey:LOGIN_STATUS] isEqualToString:@"failure"])
     {
         sleep(1.0);
-        self.hud.labelText = @"Password/email error :(";
+        self.hud.labelText = @"Password/email error";
+        [self.hud hide:YES afterDelay:0.5];
     } else {
         sleep(1.0);
         self.hud.labelText = @"Awesome";
