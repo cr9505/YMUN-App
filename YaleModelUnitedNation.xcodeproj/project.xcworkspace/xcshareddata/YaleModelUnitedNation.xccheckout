@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D5EE57C2-2708-44CA-BC7C-8F4B65BD8D48</string>
+	<key>IDESourceControlProjectName</key>
+	<string>YaleModelUnitedNation</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>63378AA1-2B2F-4297-B29C-BE0E686E012D</key>
+		<string>ssh://github.com/hengchu/YMUN.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>YaleModelUnitedNation.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>63378AA1-2B2F-4297-B29C-BE0E686E012D</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/hengchu/YMUN.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>63378AA1-2B2F-4297-B29C-BE0E686E012D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>63378AA1-2B2F-4297-B29C-BE0E686E012D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>YaleModelUnitedNation</string>
+		</dict>
+	</array>
+</dict>
+</plist>
