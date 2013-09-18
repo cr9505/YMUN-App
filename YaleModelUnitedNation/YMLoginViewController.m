@@ -23,6 +23,8 @@
 @property (nonatomic, strong) NSMutableDictionary *emailAndPassword;
 @property (nonatomic, strong) YMAPIInterfaceCenter *interfaceCenter;
 @property (nonatomic, strong) MBProgressHUD *hud;
+@property (nonatomic, weak) UITableViewCell *emailCell;
+@property (nonatomic, weak) UITableViewCell *passwordCell;
 
 @end
 
@@ -74,10 +76,15 @@
 {
     [super viewDidLoad];
     // top margin for table view    
-    UIEdgeInsets inset = UIEdgeInsetsMake(self.tableView.bounds.size.height/2 - 46*3, 0, 0, 0);
+    UIEdgeInsets inset = UIEdgeInsetsMake(self.tableView.bounds.size.height/2 - 46*4, 0, 0, 0);
     self.tableView.contentInset = inset;
     UIImageView *bgImageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loginbg.png"]];
-    [bgImageV setFrame:self.tableView.frame];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [bgImageV setFrame:self.tableView.frame];
+    } else {
+        CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+        [bgImageV setFrame:CGRectMake(0, statusBarHeight, self.view.frame.size.width, self.view.frame.size.height - statusBarHeight)];
+    }
     [bgImageV setAlpha:0.9];
     self.tableView.backgroundView = bgImageV;
     
@@ -137,8 +144,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     UITableViewCell *hostingCell = (UITableViewCell *)textField.superview;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:hostingCell];
-    if (indexPath.row == 0) {
+    if (hostingCell == self.emailCell) {
         [self.emailAndPassword setObject:textField.text forKey:@"email"];
         [textField resignFirstResponder];
         // make the password field first responder
@@ -281,8 +287,10 @@
     
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Email";
+        self.emailCell = cell;
     } else {
         cell.textLabel.text = @"Password";
+        self.passwordCell = cell;
     }
     
     return cell;

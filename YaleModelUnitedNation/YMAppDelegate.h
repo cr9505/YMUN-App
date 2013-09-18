@@ -13,6 +13,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) RNFrostedSidebar *sharedSideBar;
-
+@property (strong, nonatomic) UIWindow *background;
 
 @end

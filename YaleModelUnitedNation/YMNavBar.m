@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self setBarStyle:UIBarStyleBlackTranslucent];
+    [self setBarStyle:UIBarStyleBlackOpaque];
+    self.translucent = NO;
     NSMutableDictionary *textAttributes = [self.titleTextAttributes mutableCopy];
     [textAttributes setObject:UITextAttributeTextShadowOffset forKey:[NSValue valueWithUIOffset:UIOffsetZero]];
     self.titleTextAttributes = textAttributes;

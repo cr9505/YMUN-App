@@ -216,22 +216,12 @@
 {
     if (index == 0) {
         // write code to push general info page
-        NSArray *vcS = [self.navigationController viewControllers];
-        if ([[vcS objectAtIndex:[vcS count]-2] isKindOfClass:[YMGeneralInfoTableViewController class]]) {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
         YMGeneralInfoTableViewController *generalInfoTableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"generalInfoTableVC"];
         [self.navigationController pushViewController:generalInfoTableVC animated:YES];
     } else if (index == 1) {
         // write code to push forms page
         [self.sideBar dismiss];
     } else if (index == 2) {
-        NSArray *vcS = [self.navigationController viewControllers];
-        if ([[vcS objectAtIndex:[vcS count]-2] isKindOfClass:[YMTransactinTableViewController class]]) {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
         YMTransactinTableViewController *transacVC = [self.storyboard instantiateViewControllerWithIdentifier:@"transacVC"];
         [self.navigationController pushViewController:transacVC animated:YES];
     }

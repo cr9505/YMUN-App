@@ -138,9 +138,20 @@
             break;
         case 4:
         {
-            UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 3, 42, 15)];
+            UILabel *textLabel;
+            UILabel *detailedTextLabel;
+            MKMapView *mapView;
+            if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+                textLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 3, 42, 15)];
+                detailedTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 18, self.tableView.bounds.size.width - 15 - 15, 18)];
+                mapView = [[MKMapView alloc] initWithFrame:CGRectMake(15, 45, self.tableView.bounds.size.width - 15 - 15, 260 - 30 - 40 + 20)];
+            } else {
+                textLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 3, 42, 15)];
+                detailedTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 18, self.tableView.bounds.size.width - 10 - 15, 18)];
+                mapView = [[MKMapView alloc] initWithFrame:CGRectMake(10, 45, self.tableView.bounds.size.width - 10 - 15, 260 - 30 - 40 + 20)];
+            }
+            
             textLabel.backgroundColor = [UIColor clearColor];
-            UILabel *detailedTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 18, self.tableView.bounds.size.width - 10 - 15, 18)];
             textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:12.0];
             textLabel.text = @"Hotel";
             detailedTextLabel.backgroundColor = [UIColor clearColor];
@@ -149,7 +160,6 @@
             detailedTextLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:HOTEL];
             [cell.contentView addSubview:textLabel];
             [cell.contentView addSubview:detailedTextLabel];
-            MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(10, 45, self.tableView.bounds.size.width - 10 - 15, 260 - 30 - 40 + 20)];
             // implement the geocoder
             [cell addSubview:mapView];
             break;
@@ -220,20 +230,10 @@
         [self.sideBar dismiss];
     } else if (index == 1) {
         // write code to push forms page
-        NSArray *vcS = [self.navigationController viewControllers];
-        if ([[vcS objectAtIndex:[vcS count]-2] isKindOfClass:[YMFormTableViewController class]]) {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
         YMFormTableViewController *formTableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"formTableVC"];
         [self.navigationController pushViewController:formTableVC animated:YES];
         
     } else if (index == 2) {
-        NSArray *vcS = [self.navigationController viewControllers];
-        if ([[vcS objectAtIndex:[vcS count]-2] isKindOfClass:[YMTransactinTableViewController class]]) {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
         YMTransactinTableViewController *transacVC = [self.storyboard instantiateViewControllerWithIdentifier:@"transacVC"];
         [self.navigationController pushViewController:transacVC animated:YES];
 

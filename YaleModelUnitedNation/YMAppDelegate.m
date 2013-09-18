@@ -12,6 +12,7 @@
 @implementation YMAppDelegate
 
 @synthesize sharedSideBar = _sharedSideBar;
+@synthesize background = _background;
 
 - (RNFrostedSidebar *)sharedSideBar
 {
@@ -33,6 +34,14 @@
     [[DCIntrospect sharedIntrospector] start];
 #endif
 
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        [application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+        self.window.clipsToBounds = YES;
+        self.background = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, self.window.frame.size.width, 20)];
+        self.background.backgroundColor = [UIColor blackColor];
+        [self.background setHidden:NO];
+    }
+    
     return YES;
 }
 							

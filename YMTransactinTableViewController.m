@@ -107,14 +107,13 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    // setup navbar
-    [self setupNavBar];
+
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -122,6 +121,7 @@
     
     // setup sideBar
     [self setupSideBar];
+    [self setupNavBar];
     // sign up for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo:) name:YMUNDidGetUserInfoNotification object:nil];
     // get all transactions
@@ -135,7 +135,6 @@
             return NSOrderedAscending;
         }
     }];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -265,20 +264,10 @@
 {
     if (index == 0) {
         // write code to push general info page
-        NSArray *vcS = [self.navigationController viewControllers];
-        if ([[vcS objectAtIndex:[vcS count]-2] isKindOfClass:[YMGeneralInfoTableViewController class]]) {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
         YMGeneralInfoTableViewController *generalInfoTableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"generalInfoTableVC"];
         [self.navigationController pushViewController:generalInfoTableVC animated:YES];
     } else if (index == 1) {
         // write code to push forms page
-        NSArray *vcS = [self.navigationController viewControllers];
-        if ([[vcS objectAtIndex:[vcS count]-2] isKindOfClass:[YMFormTableViewController class]]) {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
         YMFormTableViewController *formTableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"formTableVC"];
         [self.navigationController pushViewController:formTableVC animated:YES];
         
