@@ -48,5 +48,6 @@
 + (void)getUserInfo;
 + (BOOL)validateUserInfo:(NSDictionary *)userinfo;
 + (BOOL)hasUserAccessToken;
++ (NSString *)addressForHotel:(NSString *)name;
 
 @end

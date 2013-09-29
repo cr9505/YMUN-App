@@ -13,6 +13,7 @@
 #import "YMTransactinTableViewController.h"
 #import "YMFormTableViewController.h"
 #import "YMMapTableViewCell.h"
+#import "YMAnnotation.h"
 #import <MapKit/MapKit.h>
 
 @interface YMGeneralInfoTableViewController () <RNFrostedSidebarDelegate>
@@ -161,7 +162,44 @@
             [cell.contentView addSubview:textLabel];
             [cell.contentView addSubview:detailedTextLabel];
             // implement the geocoder
-            [cell addSubview:mapView];
+            NSString *address = [YMAPIInterfaceCenter addressForHotel:[[NSUserDefaults standardUserDefaults] objectForKey:HOTEL]];
+            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+            [geocoder geocodeAddressString:address
+                         completionHandler:^(NSArray *placemarks, NSError *error) {
+                             if ([placemarks count] > 0 && ![address isEqualToString:@"NA"]) {
+                                 CLPlacemark *placemark = [placemarks objectAtIndex:0];
+                                 YMAnnotation *annotation = [[YMAnnotation alloc] initWithCoordinates:placemark.location.coordinate
+                                                                                                title:[[NSUserDefaults standardUserDefaults] objectForKey:HOTEL]
+                                                                                             subtitle:address];
+                                 MKCoordinateRegion region;
+                                 MKCoordinateSpan span;
+                                 span.longitudeDelta = 0.01;
+                                 span.latitudeDelta = 0.01;
+                                 region.center = placemark.location.coordinate;
+                                 region.span = span;
+                                 [mapView addAnnotation:annotation];
+                                 [mapView setRegion:region animated:YES];
+                                 [mapView regionThatFits:region];
+                                 [cell addSubview:mapView];
+                             } else {
+                                 CLLocationCoordinate2D coord;
+                                 coord.latitude = 41.3111;
+                                 coord.longitude = -72.9267;
+                                 YMAnnotation *annotation = [[YMAnnotation alloc] initWithCoordinates:coord
+                                                                                                title:@"Yale University"
+                                                                                             subtitle:@"New Haven, CT"];
+                                 MKCoordinateRegion region;
+                                 MKCoordinateSpan span;
+                                 span.longitudeDelta = 0.01;
+                                 span.latitudeDelta = 0.01;
+                                 region.center = coord;
+                                 region.span = span;
+                                 [mapView addAnnotation:annotation];
+                                 [mapView setRegion:region animated:YES];
+                                 [mapView regionThatFits:region];
+                                 [cell addSubview:mapView];
+                             }
+                         }];
             break;
         }
         default:

@@ -21,6 +21,7 @@
 		9B06DDF417E542FA00BD6DC6 /* DCFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDED17E542F900BD6DC6 /* DCFrameView.m */; };
 		9B06DDF517E542FA00BD6DC6 /* DCIntrospect.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDEF17E542FA00BD6DC6 /* DCIntrospect.m */; };
 		9B06DDF617E542FA00BD6DC6 /* DCStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDF217E542FA00BD6DC6 /* DCStatusBarOverlay.m */; };
+		9B497BFE17F7B9CE001A174B /* YMAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B497BFD17F7B9CE001A174B /* YMAnnotation.m */; };
 		9B8067D517E5813500DE4212 /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80679D17E5813500DE4212 /* MagicalImportFunctions.m */; };
 		9B8067D617E5813500DE4212 /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80679F17E5813500DE4212 /* NSAttributeDescription+MagicalDataImport.m */; };
 		9B8067D717E5813500DE4212 /* NSEntityDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8067A117E5813500DE4212 /* NSEntityDescription+MagicalDataImport.m */; };
@@ -148,6 +149,8 @@
 		9B06DDF017E542FA00BD6DC6 /* DCIntrospectSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCIntrospectSettings.h; sourceTree = "<group>"; };
 		9B06DDF117E542FA00BD6DC6 /* DCStatusBarOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCStatusBarOverlay.h; sourceTree = "<group>"; };
 		9B06DDF217E542FA00BD6DC6 /* DCStatusBarOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStatusBarOverlay.m; sourceTree = "<group>"; };
+		9B497BFC17F7B9CE001A174B /* YMAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAnnotation.h; sourceTree = "<group>"; };
+		9B497BFD17F7B9CE001A174B /* YMAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAnnotation.m; sourceTree = "<group>"; };
 		9B80679C17E5813500DE4212 /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		9B80679D17E5813500DE4212 /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
 		9B80679E17E5813500DE4212 /* NSAttributeDescription+MagicalDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
@@ -530,6 +533,8 @@
 		9B84778017A1EC88008BBFC6 /* YaleModelUnitedNation */ = {
 			isa = PBXGroup;
 			children = (
+				9B497BFC17F7B9CE001A174B /* YMAnnotation.h */,
+				9B497BFD17F7B9CE001A174B /* YMAnnotation.m */,
 				9B8067F817E582ED00DE4212 /* Model */,
 				9BDAEFB117A8DA040049C707 /* Views */,
 				9B84778917A1EC88008BBFC6 /* YMAppDelegate.h */,
@@ -876,6 +881,7 @@
 				9B8067D617E5813500DE4212 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				9B8067D717E5813500DE4212 /* NSEntityDescription+MagicalDataImport.m in Sources */,
 				9B8067D817E5813500DE4212 /* NSNumber+MagicalDataImport.m in Sources */,
+				9B497BFE17F7B9CE001A174B /* YMAnnotation.m in Sources */,
 				9B8067D917E5813500DE4212 /* NSObject+MagicalDataImport.m in Sources */,
 				9B8067DA17E5813500DE4212 /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				9B8067DB17E5813500DE4212 /* NSString+MagicalDataImport.m in Sources */,

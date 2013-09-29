@@ -101,4 +101,20 @@
     return self;
 }
 
++ (NSString *)addressForHotel:(NSString *)name
+{
+    NSDictionary *address =
+    @{
+      @"La Quinta": @"400 Sargent Dr, New Haven, CT 06511",
+      @"Omni": @"155 Temple St, New Haven, CT 06510",
+      @"Other": @"NA",
+      @"New Haven Hotel": @"229 George Street, New Haven, Connecticut 06510",
+      @"Courtyard Marriott": @"30 Whalley Ave, New Haven, Connecticut 06511"
+      };
+    if ([address objectForKey:name])
+        return [address objectForKey:name];
+    else
+        return @"NA";
+}
+
 @end
