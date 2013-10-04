@@ -12,5 +12,6 @@
 
 + (Form *)createFormWithName:(NSString *)name formID:(NSNumber *)formID submitted:(NSNumber *)submitted dueDate:(NSDate *)dueDate;
 + (Form *)modifySubmitted:(NSNumber *)submitted forFormWithID:(NSNumber *)formID;
++ (void)deleteAll;
 
 @end

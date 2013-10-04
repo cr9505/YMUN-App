@@ -49,5 +49,6 @@
 + (BOOL)validateUserInfo:(NSDictionary *)userinfo;
 + (BOOL)hasUserAccessToken;
 + (NSString *)addressForHotel:(NSString *)name;
++ (void)destroySession;
 
 @end

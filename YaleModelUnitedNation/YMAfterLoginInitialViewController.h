@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "YMAPIInterfaceCenter.h"
-#import "ECSlidingViewController.h"
 
 @interface YMAfterLoginInitialViewController : UIViewController
 

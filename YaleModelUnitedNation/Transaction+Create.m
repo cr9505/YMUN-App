@@ -36,4 +36,13 @@
     return transactionFound;
 }
 
++ (void)deleteAll
+{
+    NSArray *all = [Transaction MR_findAll];
+    for (Transaction *t in all)
+    {
+        [t MR_deleteEntity];
+    }
+}
+
 @end

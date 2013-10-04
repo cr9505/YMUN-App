@@ -7,6 +7,8 @@
 //
 
 #import "YMAPIInterfaceCenter.h"
+#import "Form+CreateAndModify.h"
+#import "Transaction+Create.h"
 
 @interface YMAPIInterfaceCenter ()
 
@@ -115,6 +117,16 @@
         return [address objectForKey:name];
     else
         return @"NA";
+}
+
++ (void)destroySession
+{
+    // remove access token
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:nil forKey:ACCESS_TOKEN];
+    [userDefaults synchronize];
+    [Form deleteAll];
+    [Transaction deleteAll];
 }
 
 @end

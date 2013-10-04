@@ -16,6 +16,7 @@
 #import "Transaction+Create.h"
 #import "Form+CreateAndModify.h"
 #import "NSString+Date.h"
+#import "UIBarButtonItem+buttonWithImage.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface YMLoginViewController () <UITextFieldDelegate, RNFrostedSidebarDelegate>
@@ -95,11 +96,21 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo:) name:YMUNDidGetUserInfoNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNetworkError:) name:YMUNNetworkErrorNotificatoin object:nil];
     
+    // set up about page
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"about.png"] target:self action:@selector(showAbout)];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)showAbout
+{
+    UINavigationController *aboutNav = [self.storyboard instantiateViewControllerWithIdentifier:@"aboutNav"];
+    self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:aboutNav animated:YES completion:NULL];
 }
 
 - (void)didReceiveMemoryWarning
@@ -296,10 +307,26 @@
     return cell;
 }
 
+- (void)removeTextInCell:(UITableViewCell *)cell
+{
+    for (UIView *subview in cell.subviews)
+    {
+        if ([subview isKindOfClass:[UITextField class]])
+        {
+            [(UITextField *)subview setText:@""];
+        }
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
+    NSIndexPath *idx = [NSIndexPath indexPathForRow:0 inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:idx];
+    [self removeTextInCell:cell];
+    idx = [NSIndexPath indexPathForRow:1 inSection:0];
+    cell = [self.tableView cellForRowAtIndexPath:idx];
+    [self removeTextInCell:cell];
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*

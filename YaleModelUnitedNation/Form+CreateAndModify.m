@@ -50,4 +50,13 @@
     return  formFound;
 }
 
++ (void)deleteAll
+{
+    NSArray *all = [Form MR_findAll];
+    for (Form *f in all)
+    {
+        [f MR_deleteEntity];
+    }
+}
+
 @end

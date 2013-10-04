@@ -16,7 +16,7 @@
 #import "YMAnnotation.h"
 #import <MapKit/MapKit.h>
 
-@interface YMGeneralInfoTableViewController () <RNFrostedSidebarDelegate>
+@interface YMGeneralInfoTableViewController () <RNFrostedSidebarDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) RNFrostedSidebar *sideBar;
 
@@ -40,9 +40,29 @@
     [self.sideBar show];
 }
 
+- (void)logout
+{
+    UIAlertView *logoutAlert = [[UIAlertView alloc] initWithTitle:@"Logout"
+                                                          message:@"Would you like to log out?"
+                                                         delegate:self
+                                                cancelButtonTitle:@"cancel"
+                                                otherButtonTitles:@"Yes", nil];
+    [logoutAlert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [YMAPIInterfaceCenter destroySession];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
 - (void)setupMenuBtn
 {
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"menuBtn.png"] target:self action:@selector(showMenu)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"logout.png"] target:self action:@selector(logout)];
 }
 
 - (void)viewDidAppear:(BOOL)animated
