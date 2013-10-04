@@ -327,6 +327,7 @@
     cell = [self.tableView cellForRowAtIndexPath:idx];
     [self removeTextInCell:cell];
     [super viewWillDisappear:animated];
+    [self.tableView setNeedsDisplay];
 }
 
 /*
