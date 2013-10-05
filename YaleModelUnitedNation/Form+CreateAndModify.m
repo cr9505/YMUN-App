@@ -28,8 +28,13 @@
         [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
             if (!success) NSLog(@"%@", error.localizedDescription);
         }];
+        
+        [form.managedObjectContext MR_saveToPersistentStoreAndWait];
+        
         return form;
     }
+    
+
     
     return formFound;
 }
@@ -56,6 +61,8 @@
     for (Form *f in all)
     {
         [f MR_deleteEntity];
+        if (f == [all lastObject])
+            [f.managedObjectContext MR_saveToPersistentStoreAndWait];
     }
 }
 

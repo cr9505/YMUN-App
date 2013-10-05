@@ -183,6 +183,7 @@
             [cell.contentView addSubview:detailedTextLabel];
             // implement the geocoder
             NSString *address = [YMAPIInterfaceCenter addressForHotel:[[NSUserDefaults standardUserDefaults] objectForKey:HOTEL]];
+            [cell addSubview:mapView];
             CLGeocoder *geocoder = [[CLGeocoder alloc] init];
             [geocoder geocodeAddressString:address
                          completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -200,7 +201,6 @@
                                  [mapView addAnnotation:annotation];
                                  [mapView setRegion:region animated:YES];
                                  [mapView regionThatFits:region];
-                                 [cell addSubview:mapView];
                              } else {
                                  CLLocationCoordinate2D coord;
                                  coord.latitude = 41.3111;
@@ -217,7 +217,6 @@
                                  [mapView addAnnotation:annotation];
                                  [mapView setRegion:region animated:YES];
                                  [mapView regionThatFits:region];
-                                 [cell addSubview:mapView];
                              }
                          }];
             break;

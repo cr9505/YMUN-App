@@ -31,6 +31,8 @@
             if (!success) NSLog(@"%@", error.localizedDescription);
         }];
         
+        [transaction.managedObjectContext MR_saveToPersistentStoreAndWait];
+        
         return transaction;
     }
     return transactionFound;
@@ -42,6 +44,9 @@
     for (Transaction *t in all)
     {
         [t MR_deleteEntity];
+        if (t == [all lastObject])
+            [t.managedObjectContext MR_saveToPersistentStoreAndWait];
+
     }
 }
 

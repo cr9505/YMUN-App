@@ -26,11 +26,16 @@
 @property (nonatomic, strong) MBProgressHUD *hud;
 @property (nonatomic, weak) UITableViewCell *emailCell;
 @property (nonatomic, weak) UITableViewCell *passwordCell;
+@property (nonatomic, strong) UITextField *emailField;
+@property (nonatomic, strong) UITextField *passwordField;
 
 @end
 
 @implementation YMLoginViewController
 
+
+@synthesize emailField = _emailField;
+@synthesize passwordField = _passwordField;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -277,11 +282,13 @@
         placeHolderText = @"Email";
         cellTextField.keyboardType = UIKeyboardTypeEmailAddress;
         cellTextField.returnKeyType = UIReturnKeyNext;
+        self.emailField = cellTextField;
     } else {
         placeHolderText = @"Required";
         cellTextField.keyboardType = UIKeyboardTypeDefault;
         cellTextField.returnKeyType = UIReturnKeyDone;
         cellTextField.secureTextEntry = YES;
+        self.passwordField = cellTextField;
     }
     cellTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolderText attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     cellTextField.backgroundColor = [UIColor clearColor];
@@ -298,6 +305,7 @@
     
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Email";
+
         self.emailCell = cell;
     } else {
         cell.textLabel.text = @"Password";
@@ -327,7 +335,8 @@
     cell = [self.tableView cellForRowAtIndexPath:idx];
     [self removeTextInCell:cell];
     [super viewWillDisappear:animated];
-    [self.tableView setNeedsDisplay];
+    self.emailField.text = nil;
+    self.passwordField.text = nil;
 }
 
 /*
