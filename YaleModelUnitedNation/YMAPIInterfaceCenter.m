@@ -51,12 +51,11 @@
     [client getPath:@"Registration/api/user_info.php" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [operation responseString];
         NSDictionary *jsonResponse = [YMAPIInterfaceCenter parseJSON:response];
-        NSLog(@"%@", jsonResponse);
         // post a notification
         [[NSNotificationCenter defaultCenter] postNotificationName:YMUNDidGetUserInfoNotification object:self userInfo:jsonResponse];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 #warning tell user there is a network error
-        NSLog(@"Network error!");
+        DLog(@"Network error!");
         [[NSNotificationCenter defaultCenter] postNotificationName:YMUNNetworkErrorNotificatoin object:self userInfo:nil];
     }];
 }
@@ -95,7 +94,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:YMUNLoginStatusNotification object:self userInfo:jsonResponse];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 #warning tell user there is a network error
-            NSLog(@"Network error!");
+            DLog(@"Network error!");
             [[NSNotificationCenter defaultCenter] postNotificationName:YMUNNetworkErrorNotificatoin object:self userInfo:nil];
             self.isLoggedIn = NO;
         }];

@@ -7,7 +7,6 @@
 //
 
 #import "YMAppDelegate.h"
-#import "DCIntrospect.h"
 
 @implementation YMAppDelegate
 
@@ -30,10 +29,6 @@
     // Override point for customization after application launch.
     [MagicalRecord setupCoreDataStack];
     [self.window makeKeyAndVisible];
-#if TARGET_IPHONE_SIMULATOR
-    [[DCIntrospect sharedIntrospector] start];
-#endif
-
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         [application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
         self.window.clipsToBounds = YES;

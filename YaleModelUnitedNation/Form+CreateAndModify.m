@@ -23,10 +23,10 @@
         form.submitted = submitted;
         form.dueDate = dueDate;
         
-        NSLog(@"%@", form);
+        DLog(@"%@", form);
         
         [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-            if (!success) NSLog(@"%@", error.localizedDescription);
+            if (!success) DLog(@"%@", error.localizedDescription);
         }];
         
         [form.managedObjectContext MR_saveToPersistentStoreAndWait];
@@ -48,7 +48,7 @@
     if (formFound) {
         formFound.submitted = submitted;
         [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-            if (!success) NSLog(@"%@", error.localizedDescription);
+            if (!success) DLog(@"%@", error.localizedDescription);
         }];
     }
 

@@ -25,10 +25,10 @@
         transaction.type = type;
         transaction.transactionDate = date;
         
-        NSLog(@"%@", transaction);
+        DLog(@"%@", transaction);
         
         [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-            if (!success) NSLog(@"%@", error.localizedDescription);
+            if (!success) DLog(@"%@", error.localizedDescription);
         }];
         
         [transaction.managedObjectContext MR_saveToPersistentStoreAndWait];

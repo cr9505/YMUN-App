@@ -63,7 +63,7 @@
     [super viewDidAppear:animated];
     // check whether we already have user info or not
     if ([YMAPIInterfaceCenter hasUserAccessToken]) {
-        NSLog(@"we already got your info, no need to login");
+        DLog(@"we already got your info, no need to login");
         // test if API data is valid
         // if yes, go to the next page directly
         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -74,7 +74,7 @@
         // clear the userDefaults first then
         // make the user login again
     } else {
-        NSLog(@"we don't have your info");
+        DLog(@"we don't have your info");
     }
 }
 
@@ -159,18 +159,11 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    UITableViewCell *hostingCell = (UITableViewCell *)textField.superview;
-    if (hostingCell == self.emailCell) {
+    if (textField == self.emailField) {
         [self.emailAndPassword setObject:textField.text forKey:@"email"];
         [textField resignFirstResponder];
         // make the password field first responder
-        UITableViewCell *nextCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-        for (UIView *subview in nextCell.subviews)
-        {
-            if ([subview isKindOfClass:[UITextField class]]) {
-                [(UITextField *)subview becomeFirstResponder];
-            }
-        }
+        [self.passwordField becomeFirstResponder];
     } else {
         [self.emailAndPassword setObject:textField.text forKey:@"password"];
         [self login];
@@ -241,8 +234,8 @@
 
 - (void)didLogin:(NSNotification *)notification
 {
-    NSLog(@"received login notification!");
-    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN]);
+    DLog(@"received login notification!");
+    DLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN]);
     NSDictionary *userInfo = notification.userInfo;
     if ([[userInfo objectForKey:LOGIN_STATUS] isEqualToString:@"failure"])
     {

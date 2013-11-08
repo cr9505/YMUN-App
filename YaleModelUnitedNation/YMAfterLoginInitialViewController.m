@@ -57,7 +57,7 @@
 {
     if (_purchases != purchases) {
         _purchases = purchases;
-        NSLog(@"%@", [[purchases objectAtIndex:0] objectForKey:AMOUNT]);
+        DLog(@"%@", [[purchases objectAtIndex:0] objectForKey:AMOUNT]);
         [self.leftTableView reloadData];
     }
 }
@@ -70,7 +70,7 @@
     
     for (NSDictionary *purchase in self.purchases) {
         self.purchaseAmount += [[purchase objectForKey:AMOUNT] doubleValue];
-        NSLog(@"%f", self.purchaseAmount);
+        DLog(@"%f", self.purchaseAmount);
     }
     for (NSDictionary *payment in self.payments) {
         self.paymentAmount += [[payment objectForKey:AMOUNT] doubleValue];
@@ -83,7 +83,7 @@
 {
     NSDictionary *userInfo = notification.userInfo;
     self.userInfo = userInfo;
-    NSLog(@"%@", userInfo);
+    DLog(@"%@", userInfo);
     self.purchases = [self.userInfo objectForKey:PURCHASES];
     self.payments = [self.userInfo objectForKey:PAYMENTS];
     self.topLabel.text = [NSString stringWithFormat:@"Hi, %@", [self.userInfo objectForKey:USER_NAME]];
@@ -92,7 +92,7 @@
     if (![YMAPIInterfaceCenter validateUserInfo:userInfo]) {
 //        [MMProgressHUD dismissWithError:@"Incorrect information loaded!"];
         [self.navigationController popToRootViewControllerAnimated:YES];
-        NSLog(@"%@", self.navigationController.viewControllers);
+        DLog(@"%@", self.navigationController.viewControllers);
     } else {
 //        [MMProgressHUD dismissWithSuccess:@"Loaded!"];
     }
