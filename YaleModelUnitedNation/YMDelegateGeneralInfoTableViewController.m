@@ -1,27 +1,22 @@
 //
-//  YMGeneralInfoTableViewController.m
+//  YMDelegateGeneralInfoTableViewController.m
 //  YaleModelUnitedNation
 //
-//  Created by Hengchu Zhang on 9/15/13.
+//  Created by Hengchu Zhang on 11/8/13.
 //  Copyright (c) 2013 edu.yale.hengchu. All rights reserved.
 //
 
-#import "YMGeneralInfoTableViewController.h"
-#import "UIBarButtonItem+buttonWithImage.h"
-#import "RNFrostedSidebar.h"
-#import "YMAppDelegate.h"
-#import "YMTransactionTableViewController.h"
-#import "YMFormTableViewController.h"
+#import "YMDelegateGeneralInfoTableViewController.h"
+#import "YMAPIInterfaceCenter.h"
 #import "YMAnnotation.h"
+#import "UIBarButtonItem+buttonWithImage.h"
 #import <MapKit/MapKit.h>
 
-@interface YMGeneralInfoTableViewController () <RNFrostedSidebarDelegate, UIAlertViewDelegate>
-
+@interface YMDelegateGeneralInfoTableViewController ()
 
 @end
 
-@implementation YMGeneralInfoTableViewController
-
+@implementation YMDelegateGeneralInfoTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,14 +31,11 @@
 {
     [super viewDidLoad];
 
-    // get sidebar
-    self.sideBar = [(YMAppDelegate *)[UIApplication sharedApplication].delegate sharedSideBar];
-    self.sideBar.delegate = self;
-    //set title
-    self.navigationItem.title = @"Information";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
+    // need to setup delegateSharedSideBar
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -65,57 +57,22 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"p6.png"]];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row < 4) {
-        return 40.0;
-    } else {
-        return 268.0;
-    }
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"generalInfoCell";
+    static NSString *CellIdentifier = @"delegateGeneralInfoCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    // Configure the cell...
+
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:12.0];
     cell.textLabel.textColor = [UIColor blackColor];
     switch (indexPath.row) {
         case 0:
-            cell.textLabel.text = @"Advisor Count";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:ADVISOR_COUNT]];
+            cell.textLabel.text = @"School Name";
+            cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:SCHOOL_NAME];;
             break;
         case 1:
-            cell.textLabel.text = @"Delegate Count";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:DELEGATE_COUNT]];
-            break;
-        case 2:
-            cell.textLabel.text = @"Deposit";
-            if (![[[NSUserDefaults standardUserDefaults] objectForKey:PAID_DEPOSIT] boolValue]) {
-                cell.detailTextLabel.textColor = [UIColor colorWithRed:237/255.0 green:29/255.0 blue:37/255.0 alpha:1.0];
-            } else {
-                cell.detailTextLabel.textColor = [UIColor grayColor];
-            }
-            cell.detailTextLabel.text = ([[[NSUserDefaults standardUserDefaults] objectForKey:PAID_DEPOSIT] boolValue]) ? @"Received":@"Not received";
-            break;
-        case 3:
-            cell.textLabel.text = @"School Name";
-            cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:SCHOOL_NAME];
-            break;
-        case 4:
         {
             UILabel *textLabel;
             UILabel *detailedTextLabel;
@@ -225,34 +182,16 @@
 }
 */
 
-#pragma mark - Table view delegate
+/*
+#pragma mark - Navigation
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+// In a story board-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
 
-#pragma RNFrostedSideBar delegate
-- (void)sidebar:(RNFrostedSidebar *)sidebar didTapItemAtIndex:(NSUInteger)index
-{
-    if (index == 0) {
-        [self.sideBar dismiss];
-    } else if (index == 1) {
-        // write code to push forms page
-        YMFormTableViewController *formTableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"formTableVC"];
-        [self.navigationController pushViewController:formTableVC animated:YES];
-        
-    } else if (index == 2) {
-        YMTransactionTableViewController *transacVC = [self.storyboard instantiateViewControllerWithIdentifier:@"transacVC"];
-        [self.navigationController pushViewController:transacVC animated:YES];
-
-    }
-}
+ */
 
 @end

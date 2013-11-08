@@ -11,7 +11,7 @@
 		9B06DDC917E510BF00BD6DC6 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B06DDC817E510BF00BD6DC6 /* Accelerate.framework */; };
 		9B06DDCB17E5135800BD6DC6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B06DDCA17E5135800BD6DC6 /* MobileCoreServices.framework */; };
 		9B06DDCD17E5135E00BD6DC6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B06DDCC17E5135E00BD6DC6 /* SystemConfiguration.framework */; };
-		9B06DDD017E513A400BD6DC6 /* YMTransactinTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDCF17E513A400BD6DC6 /* YMTransactinTableViewController.m */; };
+		9B06DDD017E513A400BD6DC6 /* YMTransactionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDCF17E513A400BD6DC6 /* YMTransactionTableViewController.m */; };
 		9B06DDD317E5167400BD6DC6 /* YMNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B06DDD217E5167400BD6DC6 /* YMNavBar.m */; };
 		9B06DDD617E5366F00BD6DC6 /* navBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B06DDD417E5366F00BD6DC6 /* navBar.png */; };
 		9B06DDD717E5366F00BD6DC6 /* navBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B06DDD517E5366F00BD6DC6 /* navBar@2x.png */; };
@@ -22,6 +22,8 @@
 		9B36353617FE3A08001DE18A /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B36353417FE3A08001DE18A /* about.png */; };
 		9B36353717FE3A08001DE18A /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B36353517FE3A08001DE18A /* about@2x.png */; };
 		9B36353A17FE3A90001DE18A /* YMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B36353917FE3A90001DE18A /* YMAboutViewController.m */; };
+		9B3F5504182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F5503182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.m */; };
+		9B3F5507182D9FE6000A0CC7 /* YMBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F5506182D9FE6000A0CC7 /* YMBaseTableViewController.m */; };
 		9B497BFE17F7B9CE001A174B /* YMAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B497BFD17F7B9CE001A174B /* YMAnnotation.m */; };
 		9B8067D517E5813500DE4212 /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80679D17E5813500DE4212 /* MagicalImportFunctions.m */; };
 		9B8067D617E5813500DE4212 /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80679F17E5813500DE4212 /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -138,8 +140,8 @@
 		9B06DDC817E510BF00BD6DC6 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		9B06DDCA17E5135800BD6DC6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		9B06DDCC17E5135E00BD6DC6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		9B06DDCE17E513A400BD6DC6 /* YMTransactinTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMTransactinTableViewController.h; path = ../YMTransactinTableViewController.h; sourceTree = "<group>"; };
-		9B06DDCF17E513A400BD6DC6 /* YMTransactinTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMTransactinTableViewController.m; path = ../YMTransactinTableViewController.m; sourceTree = "<group>"; };
+		9B06DDCE17E513A400BD6DC6 /* YMTransactionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMTransactionTableViewController.h; path = ../YMTransactionTableViewController.h; sourceTree = "<group>"; };
+		9B06DDCF17E513A400BD6DC6 /* YMTransactionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMTransactionTableViewController.m; path = ../YMTransactionTableViewController.m; sourceTree = "<group>"; };
 		9B06DDD117E5167400BD6DC6 /* YMNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMNavBar.h; sourceTree = "<group>"; };
 		9B06DDD217E5167400BD6DC6 /* YMNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMNavBar.m; sourceTree = "<group>"; };
 		9B06DDD417E5366F00BD6DC6 /* navBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBar.png; sourceTree = "<group>"; };
@@ -152,6 +154,10 @@
 		9B36353517FE3A08001DE18A /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
 		9B36353817FE3A90001DE18A /* YMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAboutViewController.h; sourceTree = "<group>"; };
 		9B36353917FE3A90001DE18A /* YMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAboutViewController.m; sourceTree = "<group>"; };
+		9B3F5502182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMDelegateGeneralInfoTableViewController.h; sourceTree = "<group>"; };
+		9B3F5503182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMDelegateGeneralInfoTableViewController.m; sourceTree = "<group>"; };
+		9B3F5505182D9FE6000A0CC7 /* YMBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMBaseTableViewController.h; sourceTree = "<group>"; };
+		9B3F5506182D9FE6000A0CC7 /* YMBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMBaseTableViewController.m; sourceTree = "<group>"; };
 		9B497BFC17F7B9CE001A174B /* YMAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAnnotation.h; sourceTree = "<group>"; };
 		9B497BFD17F7B9CE001A174B /* YMAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAnnotation.m; sourceTree = "<group>"; };
 		9B80679C17E5813500DE4212 /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
@@ -623,8 +629,8 @@
 			children = (
 				9B80681317E60A7F00DE4212 /* YMFormTableViewController.h */,
 				9B80681417E60A7F00DE4212 /* YMFormTableViewController.m */,
-				9B06DDCE17E513A400BD6DC6 /* YMTransactinTableViewController.h */,
-				9B06DDCF17E513A400BD6DC6 /* YMTransactinTableViewController.m */,
+				9B06DDCE17E513A400BD6DC6 /* YMTransactionTableViewController.h */,
+				9B06DDCF17E513A400BD6DC6 /* YMTransactionTableViewController.m */,
 				9BDAEF8017A849390049C707 /* YMAfterLoginInitialViewController.h */,
 				9BDAEF8117A849390049C707 /* YMAfterLoginInitialViewController.m */,
 				9B84779D17A1F031008BBFC6 /* YMLoginViewController.h */,
@@ -633,6 +639,10 @@
 				9B36353917FE3A90001DE18A /* YMAboutViewController.m */,
 				9B80681D17E6343400DE4212 /* YMGeneralInfoTableViewController.h */,
 				9B80681E17E6343400DE4212 /* YMGeneralInfoTableViewController.m */,
+				9B3F5502182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.h */,
+				9B3F5503182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.m */,
+				9B3F5505182D9FE6000A0CC7 /* YMBaseTableViewController.h */,
+				9B3F5506182D9FE6000A0CC7 /* YMBaseTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -864,12 +874,14 @@
 				9B8477A217A1F58D008BBFC6 /* YMAPIInterfaceCenter.m in Sources */,
 				9B8477B717A1F645008BBFC6 /* AFHTTPClient.m in Sources */,
 				9B8477B817A1F645008BBFC6 /* AFHTTPRequestOperation.m in Sources */,
+				9B3F5507182D9FE6000A0CC7 /* YMBaseTableViewController.m in Sources */,
 				9B8477B917A1F645008BBFC6 /* AFImageRequestOperation.m in Sources */,
 				9B8477BA17A1F645008BBFC6 /* AFJSONRequestOperation.m in Sources */,
 				9B8477BB17A1F645008BBFC6 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				9B8477BC17A1F645008BBFC6 /* AFPropertyListRequestOperation.m in Sources */,
 				9B8477BD17A1F645008BBFC6 /* AFURLConnectionOperation.m in Sources */,
 				9B8477BE17A1F645008BBFC6 /* AFXMLRequestOperation.m in Sources */,
+				9B3F5504182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.m in Sources */,
 				9B8477BF17A1F645008BBFC6 /* UIImageView+AFNetworking.m in Sources */,
 				9BDAEF8217A849390049C707 /* YMAfterLoginInitialViewController.m in Sources */,
 				9BDAEFB617A959D80049C707 /* YMDateView.m in Sources */,
@@ -885,7 +897,7 @@
 				9BDAEFEE17A9AC6F0049C707 /* TouchThroughUIView.m in Sources */,
 				9BDAEFEF17A9AC6F0049C707 /* UIView+Screenshot.m in Sources */,
 				9B06DDC617E50E7100BD6DC6 /* RNFrostedSidebar.m in Sources */,
-				9B06DDD017E513A400BD6DC6 /* YMTransactinTableViewController.m in Sources */,
+				9B06DDD017E513A400BD6DC6 /* YMTransactionTableViewController.m in Sources */,
 				9B06DDD317E5167400BD6DC6 /* YMNavBar.m in Sources */,
 				9B8067D517E5813500DE4212 /* MagicalImportFunctions.m in Sources */,
 				9B8067D617E5813500DE4212 /* NSAttributeDescription+MagicalDataImport.m in Sources */,

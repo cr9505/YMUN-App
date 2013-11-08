@@ -28,6 +28,7 @@
 #define ID          @"id"
 #define FORMS       @"forms"
 #define SUBMITTED   @"submitted"
+#define IS_DELEGATE @"is_delegate"
 
 #define YMUNLoginStatusNotification @"YMUNLoginStatusNotification"
 #define YMUNDidGetUserInfoNotification @"YMUNDidGetUserInfoNotification"

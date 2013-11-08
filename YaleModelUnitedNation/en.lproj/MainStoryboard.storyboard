@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="tpr-T1-KWD">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -34,6 +34,7 @@
                     <navigationItem key="navigationItem" title="YMUN" id="kB1-yb-GV1"/>
                     <connections>
                         <segue destination="UvA-RH-ZYi" kind="push" identifier="generalInfoSegue" id="NQ6-8f-48W"/>
+                        <segue destination="fHa-X1-hoR" kind="push" identifier="delegateGeneralInfo" id="Ckx-bS-Yj1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4JG-12-xQn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -84,10 +85,57 @@
             </objects>
             <point key="canvasLocation" x="1046" y="-576"/>
         </scene>
-        <!--Transactin Table View Controller - Transaction-->
+        <!--Delegate General Info Table View Controller-->
+        <scene sceneID="SUW-cr-Npy">
+            <objects>
+                <tableViewController id="fHa-X1-hoR" customClass="YMDelegateGeneralInfoTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OvY-7q-f6h">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="delegateGeneralInfoCell" textLabel="7rS-pD-lTp" detailTextLabel="EbZ-Ty-UF3" style="IBUITableViewCellStyleSubtitle" id="TBm-Ui-J3x">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7rS-pD-lTp">
+                                            <rect key="frame" x="10" y="2" width="36" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EbZ-Ty-UF3">
+                                            <rect key="frame" x="10" y="24" width="47" height="17"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fHa-X1-hoR" id="nmu-CN-HFJ"/>
+                            <outlet property="delegate" destination="fHa-X1-hoR" id="Kqg-do-6Ph"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="JIy-U2-WI4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tze-yL-Q7m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1059" y="73"/>
+        </scene>
+        <!--Transaction Table View Controller - Transaction-->
         <scene sceneID="Ktp-xt-BG1">
             <objects>
-                <tableViewController storyboardIdentifier="transacVC" id="sZF-0g-UH1" customClass="YMTransactinTableViewController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7fA-Sw-sYk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController storyboardIdentifier="transacVC" id="sZF-0g-UH1" customClass="YMTransactionTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Yty-Lc-KSM">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -127,9 +175,8 @@
                         <outlet property="tableView" destination="Yty-Lc-KSM" id="4yi-h6-Tfm"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7fA-Sw-sYk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1046" y="78"/>
+            <point key="canvasLocation" x="1448" y="737"/>
         </scene>
         <!--About View Controller - Credits-->
         <scene sceneID="9GK-ed-r8Z">
@@ -144,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gZM-hX-biL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1128" y="745"/>
+            <point key="canvasLocation" x="616" y="1342"/>
         </scene>
         <!--Form Table View Controller-->
         <scene sceneID="8tT-Ap-yLN">
@@ -187,7 +234,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MQq-Be-IVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1572" y="720"/>
+            <point key="canvasLocation" x="1448" y="73"/>
         </scene>
         <!--After Login Initial View Controller-->
         <scene sceneID="MD1-YX-aNI">
@@ -202,7 +249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGE-Jo-4QL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1757" y="-415"/>
+            <point key="canvasLocation" x="1448" y="-584"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="40G-Yc-nv8">
@@ -242,7 +289,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EG2-ob-SOQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="602" y="745"/>
+            <point key="canvasLocation" x="90" y="1342"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

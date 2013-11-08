@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 edu.yale.hengchu. All rights reserved.
 //
 
-#import "YMTransactinTableViewController.h"
+#import "YMTransactionTableViewController.h"
 #import "YMFormTableViewController.h"
 #import "YMAppDelegate.h"
 #import "RNFrostedSidebar.h"
@@ -17,13 +17,13 @@
 #import "YMGeneralInfoTableViewController.h"
 #import "MBProgressHUD.h"
 
-@interface YMTransactinTableViewController () <UITableViewDataSource, UITableViewDelegate, RNFrostedSidebarDelegate>
+@interface YMTransactionTableViewController () <UITableViewDataSource, UITableViewDelegate, RNFrostedSidebarDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) RNFrostedSidebar *sideBar;
 @property (nonatomic, strong) NSArray *transactions;
 @end
 
-@implementation YMTransactinTableViewController
+@implementation YMTransactionTableViewController
 
 @synthesize sideBar = _sideBar;
 @synthesize transactions = _transactions;
@@ -45,25 +45,6 @@
         _transactions = transactions;
         [self.tableView reloadData];
     }
-}
-
-- (void)showMenu:(id)sender {
-    [self.sideBar show];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.sideBar dismiss];
-}
-
-- (void)setupNavBar
-{
-    // hide the back button
-    [self.navigationItem setHidesBackButton:YES animated:NO];
-    // set up sideBar Btn
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"menuBtn.png"] target:self action:@selector(showMenu:)];
-    
 }
 
 - (void)setupSideBar
@@ -114,14 +95,8 @@
 {
     [super viewDidLoad];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"p6.png"]];
-    
     // setup sideBar
     [self setupSideBar];
-    [self setupNavBar];
     // sign up for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo:) name:YMUNDidGetUserInfoNotification object:nil];
     // get all transactions

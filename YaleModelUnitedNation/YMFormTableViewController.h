@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface YMFormTableViewController : UITableViewController
+#import "YMBaseTableViewController.h"
+@interface YMFormTableViewController : YMBaseTableViewController
 
 @end

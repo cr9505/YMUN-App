@@ -52,6 +52,7 @@
         NSString *response = [operation responseString];
         NSDictionary *jsonResponse = [YMAPIInterfaceCenter parseJSON:response];
         // post a notification
+        NSLog(@"%@", jsonResponse);
         [[NSNotificationCenter defaultCenter] postNotificationName:YMUNDidGetUserInfoNotification object:self userInfo:jsonResponse];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 #warning tell user there is a network error

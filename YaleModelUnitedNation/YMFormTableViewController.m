@@ -12,7 +12,7 @@
 #import "RNFrostedSidebar.h"
 #import "YMAppDelegate.h"
 #import "YMDateView.h"
-#import "YMTransactinTableViewController.h"
+#import "YMTransactionTableViewController.h"
 #import "YMGeneralInfoTableViewController.h"
 
 @interface YMFormTableViewController () <RNFrostedSidebarDelegate, UITableViewDataSource, UITableViewDelegate>
@@ -44,22 +44,6 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.sideBar dismiss];
-}
-
-- (void)showMenu
-{
-    [self.sideBar show];
-}
-
-- (void)setupMenuBtn
-{
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"menuBtn.png"] target:self action:@selector(showMenu)];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -87,13 +71,7 @@
     // get sideBar
     self.sideBar = ((YMAppDelegate *)[UIApplication sharedApplication].delegate).sharedSideBar;
     self.sideBar.delegate = self;
-    // setup dataSource and delegate for tableView
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"p6.png"]];
     // setup the menuBtn
-    [self setupMenuBtn];
     // setup title
     self.navigationItem.title = @"Forms";
     // Uncomment the following line to preserve selection between presentations.
@@ -222,7 +200,7 @@
         // write code to push forms page
         [self.sideBar dismiss];
     } else if (index == 2) {
-        YMTransactinTableViewController *transacVC = [self.storyboard instantiateViewControllerWithIdentifier:@"transacVC"];
+        YMTransactionTableViewController *transacVC = [self.storyboard instantiateViewControllerWithIdentifier:@"transacVC"];
         [self.navigationController pushViewController:transacVC animated:YES];
     }
 }

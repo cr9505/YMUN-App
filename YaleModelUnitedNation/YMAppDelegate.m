@@ -11,6 +11,7 @@
 @implementation YMAppDelegate
 
 @synthesize sharedSideBar = _sharedSideBar;
+@synthesize delegateSharedSideBar = _delegateSharedSideBar;
 @synthesize background = _background;
 
 - (RNFrostedSidebar *)sharedSideBar
@@ -22,6 +23,17 @@
         _sharedSideBar.itemSize = CGSizeMake(50, 50);
     }
     return _sharedSideBar;
+}
+
+- (RNFrostedSidebar *)delegateSharedSideBar
+{
+    if (!_delegateSharedSideBar) {
+        NSArray *images = [NSArray arrayWithObjects:[UIImage imageNamed:@"info.png"], [UIImage imageNamed:@"form.png"], nil];
+        _delegateSharedSideBar = [[RNFrostedSidebar alloc] initWithImages:images selectedIndices:[[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, [images count])] borderColors:[NSArray arrayWithObjects:[UIColor whiteColor], [UIColor whiteColor], nil]];
+        _delegateSharedSideBar.width = 75;
+        _delegateSharedSideBar.itemSize = CGSizeMake(50, 50);
+    }
+    return _delegateSharedSideBar;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

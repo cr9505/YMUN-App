@@ -12,7 +12,7 @@
 #import "YMAfterLoginInitialViewController.h"
 #import "RNFrostedSidebar.h"
 #import "YMAppDelegate.h"
-#import "YMTransactinTableViewController.h"
+#import "YMTransactionTableViewController.h"
 #import "Transaction+Create.h"
 #import "Form+CreateAndModify.h"
 #import "NSString+Date.h"
@@ -53,7 +53,7 @@
         destinationVC.interfaceCenter = self.interfaceCenter;
     }
     if ([segue.identifier isEqualToString:@"transactionSegue"]) {
-        YMTransactinTableViewController *destinationVC = (YMTransactinTableViewController *)segue.destinationViewController;
+        YMTransactionTableViewController *destinationVC = (YMTransactionTableViewController *)segue.destinationViewController;
         destinationVC.interfaceCenter = self.interfaceCenter;
     }
 }
@@ -193,12 +193,18 @@
 - (void)saveGeneralInfoToUserDefault:(NSDictionary *)info
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[info objectForKey:ADVISOR_COUNT] forKey:ADVISOR_COUNT];
-    [defaults setObject:[info objectForKey:DELEGATE_COUNT] forKey:DELEGATE_COUNT];
-    [defaults setObject:[info objectForKey:USER_NAME] forKey:USER_NAME];
-    [defaults setObject:[info objectForKey:HOTEL] forKey:HOTEL];
-    [defaults setObject:[info objectForKey:PAID_DEPOSIT] forKey:PAID_DEPOSIT];
+    BOOL isDelegate = [[info objectForKey:IS_DELEGATE] boolValue];
+    [defaults setObject:[info objectForKey:IS_DELEGATE] forKey:IS_DELEGATE];
     [defaults setObject:[info objectForKey:SCHOOL_NAME] forKey:SCHOOL_NAME];
+    [defaults setObject:[info objectForKey:HOTEL] forKey:HOTEL];
+    if (!isDelegate)
+    {
+        // data to save for non-delegates
+        [defaults setObject:[info objectForKey:ADVISOR_COUNT] forKey:ADVISOR_COUNT];
+        [defaults setObject:[info objectForKey:DELEGATE_COUNT] forKey:DELEGATE_COUNT];
+        [defaults setObject:[info objectForKey:USER_NAME] forKey:USER_NAME];
+        [defaults setObject:[info objectForKey:PAID_DEPOSIT] forKey:PAID_DEPOSIT];
+    }
     [defaults synchronize];
 }
 
@@ -218,7 +224,13 @@
             [Form modifySubmitted:[NSNumber numberWithBool:[[form objectForKey:SUBMITTED] boolValue]] forFormWithID:[form objectForKey:ID]];
         }
         [self saveGeneralInfoToUserDefault:notification.userInfo];
-        [self performSegueWithIdentifier:@"generalInfoSegue" sender:self];
+        BOOL isDelegate = [[notification.userInfo objectForKey:IS_DELEGATE] boolValue];
+        if (isDelegate) {
+            // perform segue into the delegate UI
+        }
+        else {
+            [self performSegueWithIdentifier:@"generalInfoSegue" sender:self];
+        }
         self.hud.labelText = @"Success";
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     } else {

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YMBaseTableViewController.h"
 
-@interface YMGeneralInfoTableViewController : UITableViewController
+@interface YMGeneralInfoTableViewController : YMBaseTableViewController
 
 @end
