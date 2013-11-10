@@ -195,14 +195,20 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL isDelegate = [[info objectForKey:IS_DELEGATE] boolValue];
     [defaults setObject:[info objectForKey:IS_DELEGATE] forKey:IS_DELEGATE];
-    [defaults setObject:[info objectForKey:SCHOOL_NAME] forKey:SCHOOL_NAME];
-    [defaults setObject:[info objectForKey:HOTEL] forKey:HOTEL];
+    NSString *schooleName = [info objectForKey:SCHOOL_NAME];
+    if ([schooleName isKindOfClass:[NSNull class]]) schooleName = @"NULL";
+    [defaults setObject:schooleName forKey:SCHOOL_NAME];
+    NSString *hotelName = [info objectForKey:HOTEL];
+    if ([hotelName isKindOfClass:[NSNull class]]) hotelName = @"NULL";
+    [defaults setObject:hotelName forKey:HOTEL];
     if (!isDelegate)
     {
         // data to save for non-delegates
         [defaults setObject:[info objectForKey:ADVISOR_COUNT] forKey:ADVISOR_COUNT];
         [defaults setObject:[info objectForKey:DELEGATE_COUNT] forKey:DELEGATE_COUNT];
-        [defaults setObject:[info objectForKey:USER_NAME] forKey:USER_NAME];
+        NSString *userName = [info objectForKey:USER_NAME];
+        if ([userName isKindOfClass:[NSNull class]]) userName = @"NULL";
+        [defaults setObject:userName forKey:USER_NAME];
         [defaults setObject:[info objectForKey:PAID_DEPOSIT] forKey:PAID_DEPOSIT];
     }
     [defaults synchronize];
