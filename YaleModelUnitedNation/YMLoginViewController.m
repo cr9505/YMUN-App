@@ -227,6 +227,7 @@
         BOOL isDelegate = [[notification.userInfo objectForKey:IS_DELEGATE] boolValue];
         if (isDelegate) {
             // perform segue into the delegate UI
+            [self performSegueWithIdentifier:@"delegateGeneralInfo" sender:self];
         }
         else {
             [self performSegueWithIdentifier:@"generalInfoSegue" sender:self];
@@ -237,7 +238,7 @@
         self.hud.labelText = @"Pleas re-authenticate";
         [self.hud hide:YES afterDelay:0.5];
     }
-}   
+}
 
 - (void)hudTapped:(UIGestureRecognizer *)tap
 {

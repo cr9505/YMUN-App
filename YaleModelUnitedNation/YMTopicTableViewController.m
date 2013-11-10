@@ -1,24 +1,35 @@
 //
-//  YMBaseTableViewController.m
+//  YMTopicTableViewController.m
 //  YaleModelUnitedNation
 //
-//  Created by Hengchu Zhang on 11/8/13.
+//  Created by Hengchu Zhang on 11/10/13.
 //  Copyright (c) 2013 edu.yale.hengchu. All rights reserved.
 //
 
-#import "YMBaseTableViewController.h"
-#import "UIBarButtonItem+buttonWithImage.h"
+#import "YMTopicTableViewController.h"
 #import "YMAPIInterfaceCenter.h"
-#import "YMAppDelegate.h"
+#import "YMPostsTableViewController.h"
 
-
-@interface YMBaseTableViewController () <UIAlertViewDelegate>
+@interface YMTopicTableViewController ()
 
 @end
 
-@implementation YMBaseTableViewController
+@implementation YMTopicTableViewController
 
-@synthesize sideBar = _sideBar;
+@synthesize forumID = _forumID;
+
+- (void)setForumID:(NSNumber *)forumID
+{
+    _forumID = forumID;
+    [YMAPIInterfaceCenter getTopicsWithForumID:self.forumID];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [YMAPIInterfaceCenter getTopicsWithForumID:self.forumID];
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,53 +40,12 @@
     return self;
 }
 
-- (void)showMenu
-{
-    [self.sideBar show];
-}
-
-- (void)logout
-{
-    UIAlertView *logoutAlert = [[UIAlertView alloc] initWithTitle:@"Logout"
-                                                          message:@"Would you like to log out?"
-                                                         delegate:self
-                                                cancelButtonTitle:@"cancel"
-                                                otherButtonTitles:@"Yes", nil];
-    [logoutAlert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1)
-    {
-        [YMAPIInterfaceCenter destroySession];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }
-}
-
-- (void)setupMenuBtn
-{
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"menuBtn.png"] target:self action:@selector(showMenu)];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"logout.png"] target:self action:@selector(logout)];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.sideBar dismiss];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"p6.png"]];
-    [self setupMenuBtn];
-    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -86,30 +56,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"topicCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    NSDictionary *entry = [self.data objectAtIndex:indexPath.row];
     // Configure the cell...
-    
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:12.0];
+    cell.textLabel.text = [entry objectForKey:@"title"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ posts", [entry objectForKey:@"num_posts"]];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *entry = [self.data objectAtIndex:indexPath.row];
+    NSNumber *topicID = [entry objectForKey:@"id"];
+    YMPostsTableViewController *postVC = [self.storyboard instantiateViewControllerWithIdentifier:@"postVC"];
+    postVC.topicID = topicID;
+    [self.navigationController pushViewController:postVC animated:YES];
 }
 
 /*

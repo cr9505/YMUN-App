@@ -9,10 +9,12 @@
 #import "YMDelegateGeneralInfoTableViewController.h"
 #import "YMAPIInterfaceCenter.h"
 #import "YMAnnotation.h"
+#import "YMAppDelegate.h"
+#import "YMForumTableViewController.h"
 #import "UIBarButtonItem+buttonWithImage.h"
 #import <MapKit/MapKit.h>
 
-@interface YMDelegateGeneralInfoTableViewController ()
+@interface YMDelegateGeneralInfoTableViewController () <RNFrostedSidebarDelegate>
 
 @end
 
@@ -30,7 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.navigationItem.title = @"Information";
+    self.sideBar = [(YMAppDelegate *)[UIApplication sharedApplication].delegate delegateSharedSideBar];
+    self.sideBar.delegate = self;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -70,7 +74,7 @@
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"School Name";
-            cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:SCHOOL_NAME];;
+            cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:SCHOOL_NAME];
             break;
         case 1:
         {
@@ -102,37 +106,31 @@
             CLGeocoder *geocoder = [[CLGeocoder alloc] init];
             [geocoder geocodeAddressString:address
                          completionHandler:^(NSArray *placemarks, NSError *error) {
+                             MKCoordinateRegion region;
+                             MKCoordinateSpan span;
+                             YMAnnotation *annotation;
+                             span.longitudeDelta = 0.01;
+                             span.latitudeDelta = 0.01;
+                             region.span = span;
                              if ([placemarks count] > 0 && ![address isEqualToString:@"NA"]) {
                                  CLPlacemark *placemark = [placemarks objectAtIndex:0];
-                                 YMAnnotation *annotation = [[YMAnnotation alloc] initWithCoordinates:placemark.location.coordinate
-                                                                                                title:[[NSUserDefaults standardUserDefaults] objectForKey:HOTEL]
-                                                                                             subtitle:address];
-                                 MKCoordinateRegion region;
-                                 MKCoordinateSpan span;
-                                 span.longitudeDelta = 0.01;
-                                 span.latitudeDelta = 0.01;
+                                 annotation = [[YMAnnotation alloc] initWithCoordinates:placemark.location.coordinate
+                                                                                  title:[[NSUserDefaults standardUserDefaults] objectForKey:HOTEL]
+                                                                               subtitle:address];
                                  region.center = placemark.location.coordinate;
-                                 region.span = span;
-                                 [mapView addAnnotation:annotation];
-                                 [mapView setRegion:region animated:YES];
-                                 [mapView regionThatFits:region];
                              } else {
                                  CLLocationCoordinate2D coord;
                                  coord.latitude = 41.3111;
                                  coord.longitude = -72.9267;
-                                 YMAnnotation *annotation = [[YMAnnotation alloc] initWithCoordinates:coord
-                                                                                                title:@"Yale University"
-                                                                                             subtitle:@"New Haven, CT"];
-                                 MKCoordinateRegion region;
-                                 MKCoordinateSpan span;
-                                 span.longitudeDelta = 0.01;
-                                 span.latitudeDelta = 0.01;
+                                 annotation = [[YMAnnotation alloc] initWithCoordinates:coord
+                                                                                  title:@"Yale University"
+                                                                               subtitle:@"New Haven, CT"];
                                  region.center = coord;
-                                 region.span = span;
-                                 [mapView addAnnotation:annotation];
-                                 [mapView setRegion:region animated:YES];
-                                 [mapView regionThatFits:region];
                              }
+                             [mapView addAnnotation:annotation];
+                             [mapView setRegion:region animated:YES];
+                             [mapView regionThatFits:region];
+
                          }];
             break;
         }
@@ -143,6 +141,32 @@
     return cell;
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        return 40.0;
+    } else {
+        return 268.0;
+    }
+}
+
+- (void)dealloc
+{
+    self.sideBar.delegate = nil;
+}
+
+- (void)sidebar:(RNFrostedSidebar *)sidebar didTapItemAtIndex:(NSUInteger)index
+{
+    if (index == 0) {
+        [self.sideBar dismiss];
+    } else if (index == 1) {
+        // write code to push forum pages
+        YMForumTableViewController *forumVC = [self.storyboard instantiateViewControllerWithIdentifier:@"forumVC"];
+        [self.navigationController pushViewController:forumVC animated:YES];
+        [self.sideBar dismiss];
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

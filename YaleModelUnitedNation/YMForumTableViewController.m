@@ -1,24 +1,20 @@
 //
-//  YMBaseTableViewController.m
+//  YMForumTableViewController.m
 //  YaleModelUnitedNation
 //
-//  Created by Hengchu Zhang on 11/8/13.
+//  Created by Hengchu Zhang on 11/10/13.
 //  Copyright (c) 2013 edu.yale.hengchu. All rights reserved.
 //
 
-#import "YMBaseTableViewController.h"
-#import "UIBarButtonItem+buttonWithImage.h"
+#import "YMForumTableViewController.h"
 #import "YMAPIInterfaceCenter.h"
-#import "YMAppDelegate.h"
+#import "YMTopicTableViewController.h"
 
-
-@interface YMBaseTableViewController () <UIAlertViewDelegate>
+@interface YMForumTableViewController ()
 
 @end
 
-@implementation YMBaseTableViewController
-
-@synthesize sideBar = _sideBar;
+@implementation YMForumTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,55 +25,20 @@
     return self;
 }
 
-- (void)showMenu
-{
-    [self.sideBar show];
-}
-
-- (void)logout
-{
-    UIAlertView *logoutAlert = [[UIAlertView alloc] initWithTitle:@"Logout"
-                                                          message:@"Would you like to log out?"
-                                                         delegate:self
-                                                cancelButtonTitle:@"cancel"
-                                                otherButtonTitles:@"Yes", nil];
-    [logoutAlert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1)
-    {
-        [YMAPIInterfaceCenter destroySession];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }
-}
-
-- (void)setupMenuBtn
-{
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"menuBtn.png"] target:self action:@selector(showMenu)];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"logout.png"] target:self action:@selector(logout)];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.sideBar dismiss];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"p6.png"]];
-    [self setupMenuBtn];
-    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [YMAPIInterfaceCenter getForumInfo];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,30 +47,26 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"forumCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
+
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:12.0];
+    NSDictionary *entry = [self.data objectAtIndex:indexPath.row];
+    cell.textLabel.text = [entry objectForKey:@"name"];
+    cell.detailTextLabel.text = @"";
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *entry = [self.data objectAtIndex:indexPath.row];
+    NSNumber *forumID = [entry objectForKey:@"id"];
+    YMTopicTableViewController *topicVC = [self.storyboard instantiateViewControllerWithIdentifier:@"topicVC"];
+    topicVC.forumID = forumID;
+    [self.navigationController pushViewController:topicVC animated:YES];
 }
 
 /*

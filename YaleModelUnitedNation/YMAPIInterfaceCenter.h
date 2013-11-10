@@ -32,12 +32,14 @@
 
 #define YMUNLoginStatusNotification @"YMUNLoginStatusNotification"
 #define YMUNDidGetUserInfoNotification @"YMUNDidGetUserInfoNotification"
+#define YMUNDidGetForumInfoNotification @"YMUNDidGetForumInfoNotification"
 #define YMUNNetworkErrorNotificatoin @"YMUNNetworkErrorNotificatoin"
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
 @protocol YMAPIInterfaceCenterDelegate <NSObject>
+@optional;
 - (void)interfaceCenterDidGetUserInfo:(NSDictionary *)userInfo;
 @end
 
@@ -50,6 +52,9 @@
 + (BOOL)validateUserInfo:(NSDictionary *)userinfo;
 + (BOOL)hasUserAccessToken;
 + (NSString *)addressForHotel:(NSString *)name;
++ (void)getForumInfo;
++ (void)getTopicsWithForumID:(NSNumber *)forumID;
++ (void)getPostsWithTopicID:(NSNumber *)topicID;
 + (void)destroySession;
 
 @end

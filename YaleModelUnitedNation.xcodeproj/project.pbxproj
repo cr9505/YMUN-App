@@ -24,6 +24,11 @@
 		9B36353A17FE3A90001DE18A /* YMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B36353917FE3A90001DE18A /* YMAboutViewController.m */; };
 		9B3F5504182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F5503182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.m */; };
 		9B3F5507182D9FE6000A0CC7 /* YMBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F5506182D9FE6000A0CC7 /* YMBaseTableViewController.m */; };
+		9B3F550C18302D3F000A0CC7 /* YMForumBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F550B18302D3F000A0CC7 /* YMForumBaseTableViewController.m */; };
+		9B3F550F18303003000A0CC7 /* YMForumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F550E18303003000A0CC7 /* YMForumTableViewController.m */; };
+		9B3F5512183033F5000A0CC7 /* YMTopicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F5511183033F5000A0CC7 /* YMTopicTableViewController.m */; };
+		9B3F55151830386B000A0CC7 /* YMPostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F55141830386B000A0CC7 /* YMPostsTableViewController.m */; };
+		9B3F55181830468E000A0CC7 /* YMPostContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F55171830468E000A0CC7 /* YMPostContentViewController.m */; };
 		9B497BFE17F7B9CE001A174B /* YMAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B497BFD17F7B9CE001A174B /* YMAnnotation.m */; };
 		9B8067D517E5813500DE4212 /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80679D17E5813500DE4212 /* MagicalImportFunctions.m */; };
 		9B8067D617E5813500DE4212 /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80679F17E5813500DE4212 /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -158,6 +163,16 @@
 		9B3F5503182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMDelegateGeneralInfoTableViewController.m; sourceTree = "<group>"; };
 		9B3F5505182D9FE6000A0CC7 /* YMBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMBaseTableViewController.h; sourceTree = "<group>"; };
 		9B3F5506182D9FE6000A0CC7 /* YMBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMBaseTableViewController.m; sourceTree = "<group>"; };
+		9B3F550A18302D3F000A0CC7 /* YMForumBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMForumBaseTableViewController.h; sourceTree = "<group>"; };
+		9B3F550B18302D3F000A0CC7 /* YMForumBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMForumBaseTableViewController.m; sourceTree = "<group>"; };
+		9B3F550D18303003000A0CC7 /* YMForumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMForumTableViewController.h; sourceTree = "<group>"; };
+		9B3F550E18303003000A0CC7 /* YMForumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMForumTableViewController.m; sourceTree = "<group>"; };
+		9B3F5510183033F5000A0CC7 /* YMTopicTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMTopicTableViewController.h; sourceTree = "<group>"; };
+		9B3F5511183033F5000A0CC7 /* YMTopicTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMTopicTableViewController.m; sourceTree = "<group>"; };
+		9B3F55131830386B000A0CC7 /* YMPostsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMPostsTableViewController.h; sourceTree = "<group>"; };
+		9B3F55141830386B000A0CC7 /* YMPostsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMPostsTableViewController.m; sourceTree = "<group>"; };
+		9B3F55161830468E000A0CC7 /* YMPostContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMPostContentViewController.h; sourceTree = "<group>"; };
+		9B3F55171830468E000A0CC7 /* YMPostContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMPostContentViewController.m; sourceTree = "<group>"; };
 		9B497BFC17F7B9CE001A174B /* YMAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAnnotation.h; sourceTree = "<group>"; };
 		9B497BFD17F7B9CE001A174B /* YMAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAnnotation.m; sourceTree = "<group>"; };
 		9B80679C17E5813500DE4212 /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
@@ -627,6 +642,8 @@
 		9BDAEF8317A849490049C707 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9B3F55161830468E000A0CC7 /* YMPostContentViewController.h */,
+				9B3F55171830468E000A0CC7 /* YMPostContentViewController.m */,
 				9B80681317E60A7F00DE4212 /* YMFormTableViewController.h */,
 				9B80681417E60A7F00DE4212 /* YMFormTableViewController.m */,
 				9B06DDCE17E513A400BD6DC6 /* YMTransactionTableViewController.h */,
@@ -641,6 +658,14 @@
 				9B80681E17E6343400DE4212 /* YMGeneralInfoTableViewController.m */,
 				9B3F5502182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.h */,
 				9B3F5503182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.m */,
+				9B3F550A18302D3F000A0CC7 /* YMForumBaseTableViewController.h */,
+				9B3F550B18302D3F000A0CC7 /* YMForumBaseTableViewController.m */,
+				9B3F550D18303003000A0CC7 /* YMForumTableViewController.h */,
+				9B3F550E18303003000A0CC7 /* YMForumTableViewController.m */,
+				9B3F5510183033F5000A0CC7 /* YMTopicTableViewController.h */,
+				9B3F5511183033F5000A0CC7 /* YMTopicTableViewController.m */,
+				9B3F55131830386B000A0CC7 /* YMPostsTableViewController.h */,
+				9B3F55141830386B000A0CC7 /* YMPostsTableViewController.m */,
 				9B3F5505182D9FE6000A0CC7 /* YMBaseTableViewController.h */,
 				9B3F5506182D9FE6000A0CC7 /* YMBaseTableViewController.m */,
 			);
@@ -904,12 +929,17 @@
 				9B8067D717E5813500DE4212 /* NSEntityDescription+MagicalDataImport.m in Sources */,
 				9B8067D817E5813500DE4212 /* NSNumber+MagicalDataImport.m in Sources */,
 				9B497BFE17F7B9CE001A174B /* YMAnnotation.m in Sources */,
+				9B3F55181830468E000A0CC7 /* YMPostContentViewController.m in Sources */,
+				9B3F550C18302D3F000A0CC7 /* YMForumBaseTableViewController.m in Sources */,
+				9B3F5512183033F5000A0CC7 /* YMTopicTableViewController.m in Sources */,
 				9B8067D917E5813500DE4212 /* NSObject+MagicalDataImport.m in Sources */,
 				9B8067DA17E5813500DE4212 /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				9B8067DB17E5813500DE4212 /* NSString+MagicalDataImport.m in Sources */,
 				9B8067DC17E5813500DE4212 /* NSManagedObject+MagicalAggregation.m in Sources */,
 				9B8067DD17E5813500DE4212 /* NSManagedObject+MagicalDataImport.m in Sources */,
 				9B8067DE17E5813500DE4212 /* NSManagedObject+MagicalFinders.m in Sources */,
+				9B3F550F18303003000A0CC7 /* YMForumTableViewController.m in Sources */,
+				9B3F55151830386B000A0CC7 /* YMPostsTableViewController.m in Sources */,
 				9B8067DF17E5813500DE4212 /* NSManagedObject+MagicalRecord.m in Sources */,
 				9B8067E017E5813500DE4212 /* NSManagedObject+MagicalRequests.m in Sources */,
 				9B8067E117E5813500DE4212 /* NSManagedObjectContext+MagicalObserving.m in Sources */,

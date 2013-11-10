@@ -1,24 +1,22 @@
 //
-//  YMBaseTableViewController.m
+//  YMForumBaseTableViewController.m
 //  YaleModelUnitedNation
 //
-//  Created by Hengchu Zhang on 11/8/13.
+//  Created by Hengchu Zhang on 11/10/13.
 //  Copyright (c) 2013 edu.yale.hengchu. All rights reserved.
 //
 
-#import "YMBaseTableViewController.h"
-#import "UIBarButtonItem+buttonWithImage.h"
+#import "YMForumBaseTableViewController.h"
 #import "YMAPIInterfaceCenter.h"
-#import "YMAppDelegate.h"
+#import "UIBarButtonItem+buttonWithImage.h"
 
-
-@interface YMBaseTableViewController () <UIAlertViewDelegate>
+@interface YMForumBaseTableViewController ()
 
 @end
 
-@implementation YMBaseTableViewController
+@implementation YMForumBaseTableViewController
 
-@synthesize sideBar = _sideBar;
+@synthesize data = _data;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,9 +27,13 @@
     return self;
 }
 
-- (void)showMenu
+- (void)setData:(id)data
 {
-    [self.sideBar show];
+    if (data != _data)
+    {
+        _data = data;
+        [self.tableView reloadData];
+    }
 }
 
 - (void)logout
@@ -53,31 +55,38 @@
     }
 }
 
-- (void)setupMenuBtn
-{
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"menuBtn.png"] target:self action:@selector(showMenu)];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"logout.png"] target:self action:@selector(logout)];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.sideBar dismiss];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"p6.png"]];
     [self setupMenuBtn];
     
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor whiteColor],UITextAttributeTextColor,
+                                nil];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes
+                                                forState:UIControlStateNormal];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetForumInfo:) name:YMUNDidGetForumInfoNotification object:nil];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)didGetForumInfo:(NSNotification *)notification
+{
+    id userInfo = notification.userInfo;
+    self.data = userInfo;
+}
+
+- (void)setupMenuBtn
+{
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"logout.png"] target:self action:@selector(logout)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,19 +96,16 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.data count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,6 +116,11 @@
     // Configure the cell...
     
     return cell;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*
