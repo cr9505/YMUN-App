@@ -29,6 +29,8 @@
 		9B3F5512183033F5000A0CC7 /* YMTopicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F5511183033F5000A0CC7 /* YMTopicTableViewController.m */; };
 		9B3F55151830386B000A0CC7 /* YMPostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F55141830386B000A0CC7 /* YMPostsTableViewController.m */; };
 		9B3F55181830468E000A0CC7 /* YMPostContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F55171830468E000A0CC7 /* YMPostContentViewController.m */; };
+		9B3F551B183050DA000A0CC7 /* forum.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B3F5519183050DA000A0CC7 /* forum.png */; };
+		9B3F551C183050DA000A0CC7 /* forum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B3F551A183050DA000A0CC7 /* forum@2x.png */; };
 		9B497BFE17F7B9CE001A174B /* YMAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B497BFD17F7B9CE001A174B /* YMAnnotation.m */; };
 		9B8067D517E5813500DE4212 /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80679D17E5813500DE4212 /* MagicalImportFunctions.m */; };
 		9B8067D617E5813500DE4212 /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80679F17E5813500DE4212 /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -173,6 +175,8 @@
 		9B3F55141830386B000A0CC7 /* YMPostsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMPostsTableViewController.m; sourceTree = "<group>"; };
 		9B3F55161830468E000A0CC7 /* YMPostContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMPostContentViewController.h; sourceTree = "<group>"; };
 		9B3F55171830468E000A0CC7 /* YMPostContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMPostContentViewController.m; sourceTree = "<group>"; };
+		9B3F5519183050DA000A0CC7 /* forum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forum.png; sourceTree = "<group>"; };
+		9B3F551A183050DA000A0CC7 /* forum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forum@2x.png"; sourceTree = "<group>"; };
 		9B497BFC17F7B9CE001A174B /* YMAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAnnotation.h; sourceTree = "<group>"; };
 		9B497BFD17F7B9CE001A174B /* YMAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAnnotation.m; sourceTree = "<group>"; };
 		9B80679C17E5813500DE4212 /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
@@ -736,6 +740,8 @@
 		9BEF29A617E395E6006C88D6 /* glyph */ = {
 			isa = PBXGroup;
 			children = (
+				9B3F5519183050DA000A0CC7 /* forum.png */,
+				9B3F551A183050DA000A0CC7 /* forum@2x.png */,
 				9B36353417FE3A08001DE18A /* about.png */,
 				9B36353517FE3A08001DE18A /* about@2x.png */,
 				9B36353017FE2E11001DE18A /* logout.png */,
@@ -851,6 +857,7 @@
 				9BDAEFCB17A9A6760049C707 /* blue_pattern.png in Resources */,
 				9BDAEFE817A9AC6F0049C707 /* PaperFoldResources.bundle in Resources */,
 				9BDAEFEB17A9AC6F0049C707 /* swipe_guide.psd in Resources */,
+				9B3F551B183050DA000A0CC7 /* forum.png in Resources */,
 				9BDAEFEC17A9AC6F0049C707 /* swipe_guide2.psd in Resources */,
 				9BC8B29117AABDCD00F6D3DF /* downarrow.png in Resources */,
 				9BC8B29217AABDCD00F6D3DF /* downarrow@2x.png in Resources */,
@@ -871,6 +878,7 @@
 				9BA1F09318009D63007872FA /* 114x114.png in Resources */,
 				9BEF29A517E395B6006C88D6 /* purchases@2x.png in Resources */,
 				9B06DDD617E5366F00BD6DC6 /* navBar.png in Resources */,
+				9B3F551C183050DA000A0CC7 /* forum@2x.png in Resources */,
 				9B36353317FE2E11001DE18A /* logout@2x.png in Resources */,
 				9B06DDD717E5366F00BD6DC6 /* navBar@2x.png in Resources */,
 				9B06DDE817E53D4100BD6DC6 /* menuBtn.png in Resources */,
@@ -1059,8 +1067,8 @@
 				INFOPLIST_FILE = "YaleModelUnitedNation/YaleModelUnitedNation-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7854746C-6F5E-4AFA-8861-5D1183623171";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7854746C-6F5E-4AFA-8861-5D1183623171";
+				PROVISIONING_PROFILE = "CB43993B-3EA7-45E3-AE9A-965A2CFE7140";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CB43993B-3EA7-45E3-AE9A-965A2CFE7140";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1077,8 +1085,8 @@
 				INFOPLIST_FILE = "YaleModelUnitedNation/YaleModelUnitedNation-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7854746C-6F5E-4AFA-8861-5D1183623171";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7854746C-6F5E-4AFA-8861-5D1183623171";
+				PROVISIONING_PROFILE = "CB43993B-3EA7-45E3-AE9A-965A2CFE7140";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CB43993B-3EA7-45E3-AE9A-965A2CFE7140";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

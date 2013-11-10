@@ -15,6 +15,7 @@
 #import "NSString+Date.h"
 #import "UIBarButtonItem+buttonWithImage.h"
 #import "YMGeneralInfoTableViewController.h"
+#import "YMForumTableViewController.h"
 #import "MBProgressHUD.h"
 
 @interface YMTransactionTableViewController () <UITableViewDataSource, UITableViewDelegate, RNFrostedSidebarDelegate>
@@ -247,6 +248,10 @@
         [self.navigationController pushViewController:formTableVC animated:YES];
         
     } else if (index == 2) {
+        [self.sideBar dismiss];
+    } else if (index == 3) {
+        YMForumTableViewController *forumVC = [self.storyboard instantiateViewControllerWithIdentifier:@"forumVC"];
+        [self.navigationController pushViewController:forumVC animated:YES];
         [self.sideBar dismiss];
     }
 }

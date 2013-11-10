@@ -14,6 +14,7 @@
 #import "YMDateView.h"
 #import "YMTransactionTableViewController.h"
 #import "YMGeneralInfoTableViewController.h"
+#import "YMForumTableViewController.h"
 
 @interface YMFormTableViewController () <RNFrostedSidebarDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -202,6 +203,10 @@
     } else if (index == 2) {
         YMTransactionTableViewController *transacVC = [self.storyboard instantiateViewControllerWithIdentifier:@"transacVC"];
         [self.navigationController pushViewController:transacVC animated:YES];
+    } else if (index == 3) {
+        YMForumTableViewController *forumVC = [self.storyboard instantiateViewControllerWithIdentifier:@"forumVC"];
+        [self.navigationController pushViewController:forumVC animated:YES];
+        [self.sideBar dismiss];
     }
 }
 
