@@ -7,6 +7,7 @@
 //
 
 #define YMUN_URL        @"http://ymun.yira.org/"
+#define PUSH_CENTER_URL @"http://ymunpushcenter.herokuapp.com/"
 // define some macro for access userInfo dictionary
 #define ACCESS_TOKEN    @"access_token"
 #define LOGIN_STATUS    @"status"
@@ -56,5 +57,7 @@
 + (void)getTopicsWithForumID:(NSNumber *)forumID;
 + (void)getPostsWithTopicID:(NSNumber *)topicID;
 + (void)destroySession;
++ (void)postTokenToPushCenter:(NSString *)token;
++ (BOOL)hasRegisteredOnPushCenter;
 
 @end

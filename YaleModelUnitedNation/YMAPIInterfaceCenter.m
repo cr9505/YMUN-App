@@ -10,6 +10,8 @@
 #import "Form+CreateAndModify.h"
 #import "Transaction+Create.h"
 
+#define PUSH_CENTER_REGISTRATION_STATUS @"PUSH_CENTER_REGISTRATION_STATUS"
+
 @interface YMAPIInterfaceCenter ()
 
 @property (nonatomic) BOOL isLoggedIn;
@@ -20,6 +22,11 @@
 @implementation YMAPIInterfaceCenter
 
 @synthesize isLoggedIn = _isLoggedIn;
+
++ (BOOL)hasRegisteredOnPushCenter
+{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:PUSH_CENTER_REGISTRATION_STATUS] boolValue];
+}
 
 - (BOOL)isLogin
 {
@@ -113,6 +120,36 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:YMUNNetworkErrorNotificatoin object:self userInfo:nil];
     }];
 }
+
++ (void)storePushCenterRegistrationStatus:(BOOL)success
+{
+    NSNumber *registrationSuccess = [NSNumber numberWithBool:success];
+    [[NSUserDefaults standardUserDefaults] setObject:registrationSuccess forKey:PUSH_CENTER_REGISTRATION_STATUS];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (void)postTokenToPushCenter:(NSString *)token
+{
+    NSURL *url = [NSURL URLWithString:PUSH_CENTER_URL];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
+    NSDictionary *params = [NSDictionary dictionaryWithObject:token forKey:@"token"];
+    [client postPath:@"users" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *response = [operation responseString];
+        DLog(@"%@", response);
+        NSDictionary *jsonResponse = [YMAPIInterfaceCenter parseJSON:response];
+        if (![jsonResponse objectForKey:@"error"]) {
+            // store in user defaults that user has successfully registered on push center
+            [self storePushCenterRegistrationStatus:YES];
+        } else {
+            [self storePushCenterRegistrationStatus:NO];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        DLog(@"Network error!");
+        DLog(@"Error Detail: %@", error.localizedDescription);
+        [[NSNotificationCenter defaultCenter] postNotificationName:YMUNNetworkErrorNotificatoin object:self userInfo:nil];
+    }];
+}
+
 
 + (BOOL)validateUserInfo:(NSDictionary *)userinfo
 {
