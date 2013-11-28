@@ -71,6 +71,17 @@
 		9B80681C17E6284A00DE4212 /* UIBarButtonItem+buttonWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80681B17E6284A00DE4212 /* UIBarButtonItem+buttonWithImage.m */; };
 		9B80681F17E6343400DE4212 /* YMGeneralInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B80681E17E6343400DE4212 /* YMGeneralInfoTableViewController.m */; };
 		9B80682117E6423900DE4212 /* loginbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B80682017E6423900DE4212 /* loginbg.png */; };
+		9B8159691846B3D500603567 /* WRGlobalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8159681846B3D500603567 /* WRGlobalHelper.m */; };
+		9B81596C1846F94600603567 /* speech.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B81596A1846F94600603567 /* speech.png */; };
+		9B81596D1846F94600603567 /* speech@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B81596B1846F94600603567 /* speech@2x.png */; };
+		9B8159771846FC1C00603567 /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8159701846FC1C00603567 /* MZFormSheetBackgroundWindow.m */; };
+		9B8159781846FC1C00603567 /* MZFormSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8159721846FC1C00603567 /* MZFormSheetController.m */; };
+		9B8159791846FC1C00603567 /* MZFormSheetSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8159741846FC1C00603567 /* MZFormSheetSegue.m */; };
+		9B81597A1846FC1C00603567 /* UIImage+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8159761846FC1C00603567 /* UIImage+Additional.m */; };
+		9B8159801846FCA500603567 /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B81597D1846FCA500603567 /* MZAppearance.m */; };
+		9B8159811846FCA500603567 /* NSInvocation+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B81597F1846FCA500603567 /* NSInvocation+Copy.m */; };
+		9B8159841846FDC800603567 /* YMPostToForumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8159831846FDC800603567 /* YMPostToForumViewController.m */; };
+		9B8159881847076900603567 /* BZGFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8159871847076900603567 /* BZGFormField.m */; };
 		9B84777B17A1EC88008BBFC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B84777A17A1EC88008BBFC6 /* UIKit.framework */; };
 		9B84777D17A1EC88008BBFC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B84777C17A1EC88008BBFC6 /* Foundation.framework */; };
 		9B84777F17A1EC88008BBFC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B84777E17A1EC88008BBFC6 /* CoreGraphics.framework */; };
@@ -254,6 +265,26 @@
 		9B80681D17E6343400DE4212 /* YMGeneralInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMGeneralInfoTableViewController.h; sourceTree = "<group>"; };
 		9B80681E17E6343400DE4212 /* YMGeneralInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMGeneralInfoTableViewController.m; sourceTree = "<group>"; };
 		9B80682017E6423900DE4212 /* loginbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginbg.png; sourceTree = "<group>"; };
+		9B8159671846B3D500603567 /* WRGlobalHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRGlobalHelper.h; sourceTree = "<group>"; };
+		9B8159681846B3D500603567 /* WRGlobalHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRGlobalHelper.m; sourceTree = "<group>"; };
+		9B81596A1846F94600603567 /* speech.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speech.png; sourceTree = "<group>"; };
+		9B81596B1846F94600603567 /* speech@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speech@2x.png"; sourceTree = "<group>"; };
+		9B81596F1846FC1C00603567 /* MZFormSheetBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindow.h; sourceTree = "<group>"; };
+		9B8159701846FC1C00603567 /* MZFormSheetBackgroundWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetBackgroundWindow.m; sourceTree = "<group>"; };
+		9B8159711846FC1C00603567 /* MZFormSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetController.h; sourceTree = "<group>"; };
+		9B8159721846FC1C00603567 /* MZFormSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetController.m; sourceTree = "<group>"; };
+		9B8159731846FC1C00603567 /* MZFormSheetSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetSegue.h; sourceTree = "<group>"; };
+		9B8159741846FC1C00603567 /* MZFormSheetSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetSegue.m; sourceTree = "<group>"; };
+		9B8159751846FC1C00603567 /* UIImage+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additional.h"; sourceTree = "<group>"; };
+		9B8159761846FC1C00603567 /* UIImage+Additional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additional.m"; sourceTree = "<group>"; };
+		9B81597C1846FCA500603567 /* MZAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZAppearance.h; sourceTree = "<group>"; };
+		9B81597D1846FCA500603567 /* MZAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZAppearance.m; sourceTree = "<group>"; };
+		9B81597E1846FCA500603567 /* NSInvocation+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Copy.h"; sourceTree = "<group>"; };
+		9B81597F1846FCA500603567 /* NSInvocation+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Copy.m"; sourceTree = "<group>"; };
+		9B8159821846FDC800603567 /* YMPostToForumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMPostToForumViewController.h; sourceTree = "<group>"; };
+		9B8159831846FDC800603567 /* YMPostToForumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMPostToForumViewController.m; sourceTree = "<group>"; };
+		9B8159861847076900603567 /* BZGFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZGFormField.h; sourceTree = "<group>"; };
+		9B8159871847076900603567 /* BZGFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZGFormField.m; sourceTree = "<group>"; };
 		9B84777717A1EC88008BBFC6 /* YaleModelUnitedNation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaleModelUnitedNation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B84777A17A1EC88008BBFC6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9B84777C17A1EC88008BBFC6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -502,9 +533,49 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		9B81596E1846FC1C00603567 /* MZFormSheetController */ = {
+			isa = PBXGroup;
+			children = (
+				9B81596F1846FC1C00603567 /* MZFormSheetBackgroundWindow.h */,
+				9B8159701846FC1C00603567 /* MZFormSheetBackgroundWindow.m */,
+				9B8159711846FC1C00603567 /* MZFormSheetController.h */,
+				9B8159721846FC1C00603567 /* MZFormSheetController.m */,
+				9B8159731846FC1C00603567 /* MZFormSheetSegue.h */,
+				9B8159741846FC1C00603567 /* MZFormSheetSegue.m */,
+				9B8159751846FC1C00603567 /* UIImage+Additional.h */,
+				9B8159761846FC1C00603567 /* UIImage+Additional.m */,
+			);
+			path = MZFormSheetController;
+			sourceTree = "<group>";
+		};
+		9B81597B1846FCA500603567 /* Additional */ = {
+			isa = PBXGroup;
+			children = (
+				9B81597C1846FCA500603567 /* MZAppearance.h */,
+				9B81597D1846FCA500603567 /* MZAppearance.m */,
+				9B81597E1846FCA500603567 /* NSInvocation+Copy.h */,
+				9B81597F1846FCA500603567 /* NSInvocation+Copy.m */,
+			);
+			path = Additional;
+			sourceTree = "<group>";
+		};
+		9B8159851847076900603567 /* BZGFormField */ = {
+			isa = PBXGroup;
+			children = (
+				9B8159861847076900603567 /* BZGFormField.h */,
+				9B8159871847076900603567 /* BZGFormField.m */,
+			);
+			path = BZGFormField;
+			sourceTree = "<group>";
+		};
 		9B84776E17A1EC88008BBFC6 = {
 			isa = PBXGroup;
 			children = (
+				9B8159851847076900603567 /* BZGFormField */,
+				9B8159671846B3D500603567 /* WRGlobalHelper.h */,
+				9B8159681846B3D500603567 /* WRGlobalHelper.m */,
+				9B81597B1846FCA500603567 /* Additional */,
+				9B81596E1846FC1C00603567 /* MZFormSheetController */,
 				9BEDC8F217E6D85300A0A809 /* MBProgressHUD */,
 				9B80680217E5918D00DE4212 /* CoreData.framework */,
 				9B80679917E5813500DE4212 /* MagicalRecord */,
@@ -646,6 +717,8 @@
 		9BDAEF8317A849490049C707 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9B8159821846FDC800603567 /* YMPostToForumViewController.h */,
+				9B8159831846FDC800603567 /* YMPostToForumViewController.m */,
 				9B3F55161830468E000A0CC7 /* YMPostContentViewController.h */,
 				9B3F55171830468E000A0CC7 /* YMPostContentViewController.m */,
 				9B80681317E60A7F00DE4212 /* YMFormTableViewController.h */,
@@ -740,6 +813,8 @@
 		9BEF29A617E395E6006C88D6 /* glyph */ = {
 			isa = PBXGroup;
 			children = (
+				9B81596A1846F94600603567 /* speech.png */,
+				9B81596B1846F94600603567 /* speech@2x.png */,
 				9B3F5519183050DA000A0CC7 /* forum.png */,
 				9B3F551A183050DA000A0CC7 /* forum@2x.png */,
 				9B36353417FE3A08001DE18A /* about.png */,
@@ -849,6 +924,7 @@
 				9B84778F17A1EC88008BBFC6 /* Default@2x.png in Resources */,
 				9B84779117A1EC88008BBFC6 /* Default-568h@2x.png in Resources */,
 				9BA1F09118009D63007872FA /* 58x58.png in Resources */,
+				9B81596D1846F94600603567 /* speech@2x.png in Resources */,
 				9B84779417A1EC88008BBFC6 /* MainStoryboard.storyboard in Resources */,
 				9BDAEFAC17A8D5D00049C707 /* p6.png in Resources */,
 				9BDAEFAD17A8D5D00049C707 /* p6@2X.png in Resources */,
@@ -865,6 +941,7 @@
 				9BC8B29417AABDCD00F6D3DF /* leftarrow@2x.png in Resources */,
 				9BA1F09018009D63007872FA /* 57x57.png in Resources */,
 				9BAFF87317F7C54A008D0BA0 /* Images.xcassets in Resources */,
+				9B81596C1846F94600603567 /* speech.png in Resources */,
 				9BC8B29517AABDCD00F6D3DF /* rightarrow.png in Resources */,
 				9BC8B29617AABDCD00F6D3DF /* rightarrow@2x.png in Resources */,
 				9BC8B29717AABDCD00F6D3DF /* uparrow.png in Resources */,
@@ -907,6 +984,7 @@
 				9B8477A217A1F58D008BBFC6 /* YMAPIInterfaceCenter.m in Sources */,
 				9B8477B717A1F645008BBFC6 /* AFHTTPClient.m in Sources */,
 				9B8477B817A1F645008BBFC6 /* AFHTTPRequestOperation.m in Sources */,
+				9B8159781846FC1C00603567 /* MZFormSheetController.m in Sources */,
 				9B3F5507182D9FE6000A0CC7 /* YMBaseTableViewController.m in Sources */,
 				9B8477B917A1F645008BBFC6 /* AFImageRequestOperation.m in Sources */,
 				9B8477BA17A1F645008BBFC6 /* AFJSONRequestOperation.m in Sources */,
@@ -914,6 +992,7 @@
 				9B8477BC17A1F645008BBFC6 /* AFPropertyListRequestOperation.m in Sources */,
 				9B8477BD17A1F645008BBFC6 /* AFURLConnectionOperation.m in Sources */,
 				9B8477BE17A1F645008BBFC6 /* AFXMLRequestOperation.m in Sources */,
+				9B8159691846B3D500603567 /* WRGlobalHelper.m in Sources */,
 				9B3F5504182D9CD7000A0CC7 /* YMDelegateGeneralInfoTableViewController.m in Sources */,
 				9B8477BF17A1F645008BBFC6 /* UIImageView+AFNetworking.m in Sources */,
 				9BDAEF8217A849390049C707 /* YMAfterLoginInitialViewController.m in Sources */,
@@ -943,13 +1022,17 @@
 				9B8067D917E5813500DE4212 /* NSObject+MagicalDataImport.m in Sources */,
 				9B8067DA17E5813500DE4212 /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				9B8067DB17E5813500DE4212 /* NSString+MagicalDataImport.m in Sources */,
+				9B81597A1846FC1C00603567 /* UIImage+Additional.m in Sources */,
 				9B8067DC17E5813500DE4212 /* NSManagedObject+MagicalAggregation.m in Sources */,
 				9B8067DD17E5813500DE4212 /* NSManagedObject+MagicalDataImport.m in Sources */,
+				9B8159811846FCA500603567 /* NSInvocation+Copy.m in Sources */,
+				9B8159881847076900603567 /* BZGFormField.m in Sources */,
 				9B8067DE17E5813500DE4212 /* NSManagedObject+MagicalFinders.m in Sources */,
 				9B3F550F18303003000A0CC7 /* YMForumTableViewController.m in Sources */,
 				9B3F55151830386B000A0CC7 /* YMPostsTableViewController.m in Sources */,
 				9B8067DF17E5813500DE4212 /* NSManagedObject+MagicalRecord.m in Sources */,
 				9B8067E017E5813500DE4212 /* NSManagedObject+MagicalRequests.m in Sources */,
+				9B8159771846FC1C00603567 /* MZFormSheetBackgroundWindow.m in Sources */,
 				9B8067E117E5813500DE4212 /* NSManagedObjectContext+MagicalObserving.m in Sources */,
 				9B8067E217E5813500DE4212 /* NSManagedObjectContext+MagicalRecord.m in Sources */,
 				9B8067E317E5813500DE4212 /* NSManagedObjectContext+MagicalSaves.m in Sources */,
@@ -960,12 +1043,15 @@
 				9B8067E817E5813500DE4212 /* MagicalRecord+Actions.m in Sources */,
 				9B8067E917E5813500DE4212 /* MagicalRecord+ErrorHandling.m in Sources */,
 				9B8067EA17E5813500DE4212 /* MagicalRecord+iCloud.m in Sources */,
+				9B8159841846FDC800603567 /* YMPostToForumViewController.m in Sources */,
 				9B8067EB17E5813500DE4212 /* MagicalRecord+Options.m in Sources */,
+				9B8159791846FC1C00603567 /* MZFormSheetSegue.m in Sources */,
 				9B8067EC17E5813500DE4212 /* MagicalRecord+Setup.m in Sources */,
 				9B8067ED17E5813500DE4212 /* MagicalRecord+ShorthandSupport.m in Sources */,
 				9B8067EE17E5813500DE4212 /* MagicalRecord.m in Sources */,
 				9B8067F117E5824D00DE4212 /* DataModel.xcdatamodeld in Sources */,
 				9B8067FB17E5834B00DE4212 /* Transaction+Create.m in Sources */,
+				9B8159801846FCA500603567 /* MZAppearance.m in Sources */,
 				9B8067FE17E5859A00DE4212 /* Form+CreateAndModify.m in Sources */,
 				9B80680617E5F80200DE4212 /* NSString+Date.m in Sources */,
 				9B80680F17E607CF00DE4212 /* Form.m in Sources */,

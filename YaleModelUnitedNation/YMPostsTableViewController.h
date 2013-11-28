@@ -10,7 +10,6 @@
 #import "YMForumBaseTableViewController.h"
 
 @interface YMPostsTableViewController : YMForumBaseTableViewController
-
 @property (nonatomic, strong) NSNumber *topicID;
-
+- (void)refresh;
 @end

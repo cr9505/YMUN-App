@@ -18,6 +18,11 @@
 
 @synthesize forumID = _forumID;
 
+- (void)refresh
+{
+    [YMAPIInterfaceCenter getTopicsWithForumID:self.forumID];
+}
+
 - (void)setForumID:(NSNumber *)forumID
 {
     _forumID = forumID;

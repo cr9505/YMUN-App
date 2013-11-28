@@ -16,6 +16,11 @@
 
 @implementation YMForumTableViewController
 
+- (void)refresh
+{
+    [YMAPIInterfaceCenter getForumInfo];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];

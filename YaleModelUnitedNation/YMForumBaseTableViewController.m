@@ -9,9 +9,14 @@
 #import "YMForumBaseTableViewController.h"
 #import "YMAPIInterfaceCenter.h"
 #import "UIBarButtonItem+buttonWithImage.h"
+#import "WRGlobalHelper.h"
+#import "YMTopicTableViewController.h"
+#import "YMPostsTableViewController.h"
+#import "YMPostToForumViewController.h"
 
 @interface YMForumBaseTableViewController ()
-
+@property (nonatomic, strong) UIImageView *addImageView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation YMForumBaseTableViewController
@@ -59,12 +64,19 @@
 {
     [super viewDidLoad];
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+   
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"p6.png"]];
-    [self setupMenuBtn];
+    if ([self class] == [YMTopicTableViewController class] || [self class] == [YMPostsTableViewController class])
+    {
+        [self setupMenuBtn];
+    }
     
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIColor whiteColor],UITextAttributeTextColor,
@@ -87,11 +99,28 @@
 {
     id userInfo = notification.userInfo;
     self.data = userInfo;
+    [self.refreshControl endRefreshing];
 }
 
 - (void)setupMenuBtn
 {
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"logout.png"] target:self action:@selector(logout)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"speech.png"] target:self action:@selector(postContentToForum)];
+}
+
+- (void)postContentToForum
+{
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"postToForum"];
+    if ([self class] == [YMTopicTableViewController class])
+    {
+        [(YMPostToForumViewController *)vc setNewTopic:YES];
+        [(YMPostToForumViewController *)vc setFTid:[(YMTopicTableViewController *)self forumID]];
+    } else if ([self class] == [YMPostsTableViewController class])
+    {
+                [(YMPostToForumViewController *)vc setFTid:[(YMPostsTableViewController *)self topicID]];
+    }
+    [self presentFormSheetWithViewController:vc animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        //
+    }];
 }
 
 - (void)didReceiveMemoryWarning

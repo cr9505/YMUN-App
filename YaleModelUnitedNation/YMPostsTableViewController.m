@@ -18,7 +18,10 @@
 
 @synthesize topicID = _topicID;
 
-
+- (void)refresh
+{
+    [YMAPIInterfaceCenter getPostsWithTopicID:self.topicID];
+}
 
 - (void)setTopicID:(NSNumber *)topicID
 {

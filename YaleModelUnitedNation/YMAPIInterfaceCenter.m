@@ -11,6 +11,8 @@
 #import "Transaction+Create.h"
 
 #define PUSH_CENTER_REGISTRATION_STATUS @"PUSH_CENTER_REGISTRATION_STATUS"
+#define ADD_TOPIC_STATUS @"ADD_TOPIC_STATUS"
+
 
 @interface YMAPIInterfaceCenter ()
 
@@ -150,6 +152,51 @@
     }];
 }
 
++ (void)createNewTopicWithForumID:(NSNumber *)forumID content:(NSString *)content title:(NSString *)title
+{
+    NSURL *url = [NSURL URLWithString:YMUN_URL];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
+    NSDictionary *params = [NSDictionary
+                            dictionaryWithObjectsAndKeys:
+                            forumID, @"forum_id",
+                            [[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN], @"access_token",
+                            content, @"content",
+                            title, @"title", nil];
+    DLog(@"%@", params);
+    [client postPath:@"Registration/api/add_topic.php" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *response = [operation responseString];
+        DLog(@"%@", response);
+        NSDictionary *jsonResponse = [YMAPIInterfaceCenter parseJSON:response];
+        DLog(@"%@", jsonResponse);
+        [[NSNotificationCenter defaultCenter] postNotificationName:YMUNDidPostToForumNotification object:self userInfo:jsonResponse];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        DLog(@"Network error!");
+        DLog(@"Error Detail: %@", error.localizedDescription);
+        [[NSNotificationCenter defaultCenter] postNotificationName:YMUNNetworkErrorNotificatoin object:self userInfo:nil];
+    }];
+}
+
++ (void)replyToTopicWithTopicID:(NSNumber *)topicID content:(NSString *)content
+{
+    NSURL *url = [NSURL URLWithString:YMUN_URL];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            topicID, @"topic_id",
+                            content, @"content",
+                            [[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN], @"access_token", nil];
+    DLog(@"%@", params);
+    [client postPath:@"/Registration/api/post_to_topic.php" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *response = [operation responseString];
+        DLog(@"%@", response);
+        NSDictionary *jsonResponse = [YMAPIInterfaceCenter parseJSON:response];
+        DLog(@"%@", jsonResponse);
+        [[NSNotificationCenter defaultCenter] postNotificationName:YMUNDidPostToForumNotification object:self userInfo:jsonResponse];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        DLog(@"Network error!");
+        DLog(@"Error Detail: %@", error.localizedDescription);
+        [[NSNotificationCenter defaultCenter] postNotificationName:YMUNNetworkErrorNotificatoin object:self userInfo:nil];
+    }];
+}
 
 + (BOOL)validateUserInfo:(NSDictionary *)userinfo
 {

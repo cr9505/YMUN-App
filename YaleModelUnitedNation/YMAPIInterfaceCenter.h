@@ -35,6 +35,7 @@
 #define YMUNDidGetUserInfoNotification @"YMUNDidGetUserInfoNotification"
 #define YMUNDidGetForumInfoNotification @"YMUNDidGetForumInfoNotification"
 #define YMUNNetworkErrorNotificatoin @"YMUNNetworkErrorNotificatoin"
+#define YMUNDidPostToForumNotification @"YMUN_DID_POST_TO_FORUM_NOTIFICATION"
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
@@ -59,5 +60,7 @@
 + (void)destroySession;
 + (void)postTokenToPushCenter:(NSString *)token;
 + (BOOL)hasRegisteredOnPushCenter;
++ (void)createNewTopicWithForumID:(NSNumber *)forumID content:(NSString *)content title:(NSString *)title;
++ (void)replyToTopicWithTopicID:(NSNumber *)topicID content:(NSString *)content;
 
 @end
