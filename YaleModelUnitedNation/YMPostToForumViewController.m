@@ -97,6 +97,16 @@
     [self dismissFormSheetControllerAnimated:YES completionHandler:NULL];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"])
+    {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
 - (void)didPostToForum:(NSNotification *)notification
 {
     NSDictionary *userInfo = notification.userInfo;

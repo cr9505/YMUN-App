@@ -73,15 +73,15 @@
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:12.0];
     cell.textLabel.text = [entry objectForKey:@"name"];
     NSString *content = [entry objectForKey:@"content"];
-    if ([content length] > 30)
-    {
-        content = [content substringToIndex:30];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ...", content];
-    }
-    else {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", content];
-    }
-    
+
+    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.detailTextLabel.numberOfLines = 0;
+    CGSize constraintSize = CGSizeMake(cell.detailTextLabel.bounds.size.width, MAXFLOAT);
+    CGSize labelSize = [content sizeWithFont:cell.detailTextLabel.font constrainedToSize:constraintSize];
+    CGRect oldFrame = cell.detailTextLabel.frame;
+    oldFrame.size = labelSize;
+    cell.detailTextLabel.frame = oldFrame;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", content];
     return cell;
 }
 
@@ -92,6 +92,15 @@
     YMPostContentViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"contentVC"];
     contentVC.content = content;
     [self.navigationController pushViewController:contentVC animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *entry = [self.data objectAtIndex:indexPath.row];
+    NSString *content = [entry objectForKey:@"content"];
+    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+    CGSize labelSize = [content sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:constraintSize];
+    return labelSize.height + 30;
 }
 
 /*

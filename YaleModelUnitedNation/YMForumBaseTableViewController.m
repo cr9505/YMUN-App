@@ -78,13 +78,14 @@
         [self setupMenuBtn];
     }
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+    if ([WRGlobalHelper currentDeviceVersion] >= 7.0) {
+        NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIColor whiteColor],UITextAttributeTextColor,
                                 nil];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes
+        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        [[UIBarButtonItem appearance] setTitleTextAttributes:attributes
                                                 forState:UIControlStateNormal];
-    
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetForumInfo:) name:YMUNDidGetForumInfoNotification object:nil];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -119,7 +120,7 @@
                 [(YMPostToForumViewController *)vc setFTid:[(YMPostsTableViewController *)self topicID]];
     }
     [self presentFormSheetWithViewController:vc animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-        //
+        formSheetController.shouldMoveToTopWhenKeyboardAppears = YES;
     }];
 }
 
